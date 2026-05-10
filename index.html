@@ -214,7 +214,79 @@ html,body{width:100%;height:100%;overflow:hidden;background:#06050e;font-family:
 .wr-arrow{font-family:var(--mono);font-size:9px;letter-spacing:.12em;color:var(--dim);
   transition:color .3s,transform .3s;display:inline-block;white-space:nowrap}
 
-/* ── MOBILE: About + Writing ── */
+/* ── CV PANEL STYLES ── */
+
+/* Stats row (horizontal) */
+.ab-stats-row{display:flex;gap:0;margin:1.8rem 0 2.5rem;
+  border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07)}
+.ab-stats-row .ab-stat{flex:1;padding:1.1rem 1.2rem;text-align:center;
+  border-right:1px solid rgba(255,255,255,.07)}
+.ab-stats-row .ab-stat:last-child{border-right:none}
+.ab-stats-row .ab-num{font-family:var(--serif);font-size:2rem;font-weight:300;
+  color:var(--gold);letter-spacing:-.03em;line-height:1;margin-bottom:.2rem}
+.ab-stats-row .ab-lbl{font-family:var(--mono);font-size:7.5px;letter-spacing:.2em;
+  color:var(--dim);text-transform:uppercase}
+
+/* CV section wrapper */
+.cv-section{margin-bottom:2.5rem}
+.cv-sec-label{font-family:var(--mono);font-size:8px;letter-spacing:.38em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1.2rem;display:flex;align-items:center;gap:.8rem}
+.cv-sec-label::after{content:'';flex:1;height:1px;background:rgba(200,169,126,.15)}
+
+/* Experience block */
+.cv-block{margin-bottom:2rem;padding-bottom:2rem;
+  border-bottom:1px solid rgba(255,255,255,.05)}
+.cv-block:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.cv-role-header{display:flex;justify-content:space-between;align-items:baseline;
+  gap:1rem;margin-bottom:.35rem;flex-wrap:wrap}
+.cv-company{font-family:var(--serif);font-size:1.1rem;font-weight:400;color:var(--bright)}
+.cv-period{font-family:var(--mono);font-size:7.5px;letter-spacing:.15em;
+  color:var(--dim);white-space:nowrap}
+.cv-role-title{font-family:var(--mono);font-size:9px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--rose);margin-bottom:.9rem}
+.cv-bullets{list-style:none;display:flex;flex-direction:column;gap:.55rem;margin:0;padding:0}
+.cv-bullets li{font-family:var(--serif);font-size:.95rem;font-weight:300;
+  color:var(--muted);line-height:1.7;padding-left:1.1rem;position:relative}
+.cv-bullets li::before{content:'·';position:absolute;left:0;color:var(--rose);opacity:.6}
+.cv-link{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(200,169,126,.3);
+  transition:border-color .2s,color .2s}
+.cv-link:hover{color:#e0c090;border-color:rgba(200,169,126,.8)}
+
+/* Education */
+.cv-edu-row{display:grid;grid-template-columns:1fr 1.4fr;gap:1rem;
+  padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,.04);align-items:baseline}
+.cv-edu-row:first-of-type{border-top:1px solid rgba(255,255,255,.04)}
+.cv-edu-degree{font-family:var(--serif);font-size:1rem;font-weight:300;color:var(--bright)}
+.cv-grade{font-family:var(--mono);font-size:8px;letter-spacing:.12em;color:var(--gold)}
+.cv-edu-inst{font-family:var(--mono);font-size:8px;letter-spacing:.1em;color:var(--dim);line-height:1.6}
+
+/* Certifications */
+.cv-cert-row{display:flex;flex-direction:column;gap:.25rem;
+  padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.cv-cert-row:first-of-type{border-top:1px solid rgba(255,255,255,.04)}
+.cv-cert-name{font-family:var(--serif);font-size:1rem;font-weight:300;color:var(--bright)}
+.cv-cert-inst{font-family:var(--mono);font-size:7.5px;letter-spacing:.12em;color:var(--dim)}
+
+/* Tools + Skills two-column */
+.cv-two-col{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2.5rem}
+.cv-tool-group{display:grid;grid-template-columns:100px 1fr;gap:.5rem;
+  padding:.55rem 0;border-bottom:1px solid rgba(255,255,255,.04);align-items:baseline}
+.cv-tool-group:first-of-type{border-top:1px solid rgba(255,255,255,.04)}
+.cv-tool-cat{font-family:var(--mono);font-size:7.5px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--dim)}
+.cv-tool-val{font-family:var(--serif);font-size:.9rem;font-weight:300;color:var(--muted);line-height:1.5}
+
+/* Portfolio links grid */
+.cv-links-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:.5rem}
+.cv-plink{display:flex;flex-direction:column;gap:.25rem;padding:1rem 1.2rem;
+  background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);
+  text-decoration:none;transition:background .3s,border-color .3s}
+.cv-plink:hover{background:rgba(200,169,126,.06);border-color:rgba(200,169,126,.25)}
+.cv-plink-label{font-family:var(--mono);font-size:8px;letter-spacing:.25em;
+  text-transform:uppercase;color:var(--dim)}
+.cv-plink-url{font-family:var(--serif);font-size:.95rem;font-weight:300;color:var(--gold)}
+
+/* ── MOBILE: About + Writing + CV ── */
 @media(max-width:600px){
   .ab-grid{grid-template-columns:1fr;gap:2rem}
   .ab-sidebar{flex-direction:row;gap:0;border-top:1px solid rgba(255,255,255,.06);padding-top:1rem}
@@ -225,6 +297,15 @@ html,body{width:100%;height:100%;overflow:hidden;background:#06050e;font-family:
   .wr-item{grid-template-columns:1fr auto;gap:1rem}
   .wr-meta{flex-direction:row;align-items:center;gap:.5rem;grid-column:1/-1;margin-bottom:-.5rem}
   .wr-title{font-size:.92rem}
+  /* CV mobile */
+  .ab-stats-row{flex-wrap:wrap}
+  .ab-stats-row .ab-stat{min-width:30%;border-bottom:1px solid rgba(255,255,255,.07)}
+  .cv-role-header{flex-direction:column;gap:.2rem}
+  .cv-period{white-space:normal}
+  .cv-edu-row{grid-template-columns:1fr;gap:.2rem}
+  .cv-two-col{grid-template-columns:1fr;gap:0}
+  .cv-links-grid{grid-template-columns:1fr}
+  .cv-tool-group{grid-template-columns:80px 1fr}
 }
 #pnl{position:absolute;inset:0;z-index:50;pointer-events:none;
   clip-path:circle(0% at var(--px,50%) var(--py,50%));
@@ -417,7 +498,7 @@ var bodies = [
     name:'Energy · About Me', desc:'Radiant, electric, personal',
     focAz:Math.PI, focEl:.18, focR:8,
     pCol:'#c8a97e', pBg:'radial-gradient(ellipse at 15% 8%,rgba(100,80,20,.28),transparent 55%),#06050e',
-    pLbl:'Energy', pCap:'E = mc² — mass and energy are one. So am I.',
+    pLbl:'About Me', pCap:'UX/UI Designer · 5+ years · Enterprise SaaS & Beyond',
     pTit:'UI/UX Designer',
     pBdy:'<p class=\"work-intro\">I\'m a UI/UX designer with 5+ years of experience and a strong foundation in visual design. I started in graphic design and transitioned into UX to focus on solving real user problems. Currently I work on enterprise SaaS products — designing end-to-end workflows, dashboards that simplify complex data, and communication materials that drive user adoption.</p><div class=\"ab-stats-row\"><div class=\"ab-stat\"><div class=\"ab-num\">5+</div><div class=\"ab-lbl\">Years</div></div><div class=\"ab-stat\"><div class=\"ab-num\">12+</div><div class=\"ab-lbl\">Projects</div></div><div class=\"ab-stat\"><div class=\"ab-num\">3</div><div class=\"ab-lbl\">Industries</div></div></div><div class=\"cv-section\"><div class=\"cv-sec-label\">Experience</div><div class=\"cv-block\"><div class=\"cv-role-header\"><div class=\"cv-company\">Sarjak Container Lines Pvt. Ltd.</div><div class=\"cv-period\">May 2023 – Present &middot; 2 yrs 9 mo</div></div><div class=\"cv-role-title\">UX / UI Designer</div><ul class=\"cv-bullets\"><li>Designed end-to-end UX for a SaaS Document Parsing and Accounts Payable platform, transforming complex financial workflows into intuitive, user-centric interfaces.</li><li>Defined scalable document schemas and system logic to support automated invoice processing and improve data accuracy.</li><li>Mapped and optimised the complete Accounts Payable lifecycle — upload, extraction, validation, approval, and payout flows — reducing user friction.</li><li>Developed ILT materials and engaging visual content for user onboarding and system adoption using Vyond.</li><li>Led redesign of advanced chat features, improving real-time collaboration and user engagement.</li><li>Designed interactive BI dashboards for Inventory and Pricing using data visualisation and information hierarchy principles.</li><li><a class=\"cv-link\" href=\"https://www.linkedin.com/posts/arconcontainer_arcon-award-winners-ugcPost-7186304217073020929--eAz?utm_source=share&utm_medium=member_android\" target=\"_blank\">Received Dashing Debut Award</a> at Saksham Annual Meet, 2024.</li></ul></div><div class=\"cv-block\"><div class=\"cv-role-header\"><div class=\"cv-company\">Webtactic</div><div class=\"cv-period\">Jan 2022 – Mar 2023 &middot; 1 yr 3 mo</div></div><div class=\"cv-role-title\">Graphic &amp; UI Designer</div><ul class=\"cv-bullets\"><li>Delivered communication-driven design solutions including digital campaigns, brand assets, and marketing collaterals.</li><li>Conceptualised and designed a <a class=\"cv-link\" href=\"https://www.idobro.com/wp-content/uploads/2022/05/One-Pandemic-Multiple-Warriors-CTB_low-res-compressed.pdf\" target=\"_blank\">coffee table book for UNICEF</a>, applying strong information hierarchy and layout systems.</li><li>Translated UX insights into visually compelling, conversion-focused creatives across multiple channels.</li><li>Ensured consistency in visual branding, layout systems, and design standards across projects.</li></ul></div><div class=\"cv-block\"><div class=\"cv-role-header\"><div class=\"cv-company\">Gator Creative Studio</div><div class=\"cv-period\">Aug 2019 – Jul 2020 &middot; 1 yr</div></div><div class=\"cv-role-title\">Graphic Designer</div><ul class=\"cv-bullets\"><li>Designed creative assets and branding materials for clients across Pharmaceutical, Fertilizers, IT, and Manufacturing industries.</li><li>Developed visual concepts aligned with brand identity and business communication needs.</li></ul></div></div><div class=\"cv-section\"><div class=\"cv-sec-label\">Education</div><div class=\"cv-edu-row\"><div class=\"cv-edu-degree\">Bachelor of Commerce <span class=\"cv-grade\">(B Grade)</span></div><div class=\"cv-edu-inst\">K.J. Somaiya Clg. of Arts &amp; Commerce, Mumbai University &middot; 2013–2016</div></div><div class=\"cv-edu-row\"><div class=\"cv-edu-degree\">Class 12 <span class=\"cv-grade\">(74%)</span></div><div class=\"cv-edu-inst\">Indian School Al Wadi Al Kabir, CBSE &middot; 2012–2013</div></div><div class=\"cv-edu-row\"><div class=\"cv-edu-degree\">Class 10 <span class=\"cv-grade\">(89%)</span></div><div class=\"cv-edu-inst\">Indian School Al Wadi Al Kabir, CBSE &middot; 2010–2011</div></div></div><div class=\"cv-section\"><div class=\"cv-sec-label\">Certifications</div><div class=\"cv-cert-row\"><a class=\"cv-link\" href=\"https://www.coursera.org\" target=\"_blank\">Google UX Design Professional Certificate (98.33%)</a><span class=\"cv-cert-inst\">Coursera &middot; 2022</span></div><div class=\"cv-cert-row\"><div class=\"cv-cert-name\">Advance Program in Digital Media &amp; Design (B+ Grade)</div><span class=\"cv-cert-inst\">Maya Academy of Advanced Cinematics &middot; 2016–2018</span></div></div><div class=\"cv-two-col\"><div class=\"cv-section\"><div class=\"cv-sec-label\">Tools</div><div class=\"cv-tool-group\"><div class=\"cv-tool-cat\">Design</div><div class=\"cv-tool-val\">Figma, Adobe XD, Photoshop, Illustrator</div></div><div class=\"cv-tool-group\"><div class=\"cv-tool-cat\">Prototyping</div><div class=\"cv-tool-val\">Framer</div></div><div class=\"cv-tool-group\"><div class=\"cv-tool-cat\">Content</div><div class=\"cv-tool-val\">Adobe Premiere Pro</div></div><div class=\"cv-tool-group\"><div class=\"cv-tool-cat\">Productivity</div><div class=\"cv-tool-val\">Google Workspace, Microsoft Office</div></div></div><div class=\"cv-section\"><div class=\"cv-sec-label\">Core Skills</div><div class=\"cs-tags\" style=\"margin-top:.5rem\"><span class=\"cs-tag\">UX/UI Design</span><span class=\"cs-tag\">Interaction Design</span><span class=\"cs-tag\">Visual Design</span><span class=\"cs-tag\">Information Architecture</span><span class=\"cs-tag\">Design Systems</span><span class=\"cs-tag\">Communication Design</span><span class=\"cs-tag\">Instructional Design</span><span class=\"cs-tag\">Data Visualisation</span></div></div></div><div class=\"cv-section\"><div class=\"cv-sec-label\">Portfolio &amp; Links</div><div class=\"cv-links-grid\"><a class=\"cv-plink\" href=\"https://www.behance.net/gunjs\" target=\"_blank\"><span class=\"cv-plink-label\">Behance</span><span class=\"cv-plink-url\">behance.net/gunjs</span></a><a class=\"cv-plink\" href=\"https://www.instagram.com/mahanadesign/\" target=\"_blank\"><span class=\"cv-plink-label\">Instagram</span><span class=\"cv-plink-url\">instagram.com/mahanadesign</span></a><a class=\"cv-plink\" href=\"https://www.figma.com/@gunjsampat\" target=\"_blank\"><span class=\"cv-plink-label\">Figma Resources</span><span class=\"cv-plink-url\">figma.com/@gunjsampat</span></a><a class=\"cv-plink\" href=\"https://www.youtube.com/watch?v=uUFRVWpBomU\" target=\"_blank\"><span class=\"cv-plink-label\">YouTube</span><span class=\"cv-plink-url\">youtube.com</span></a></div></div>'
   },
