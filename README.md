@@ -1,2 +1,2 @@
-# gunj.sampat
-Personal portfolio showcasing UX case studies and projects
+# portfolio
+Portfolio showcasing UX case studies and projects
