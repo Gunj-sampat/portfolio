@@ -1,1027 +1,615 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>My Whitespace</title>
+
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Mono:wght@300;400&display=swap');
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{width:100%;height:100%;overflow:hidden;background:#06050e;font-family:'Cormorant Garamond',Georgia,serif}
-:root{
-  --gold:#c8a97e;--rose:#c47a8a;--teal:#6ab4b4;--lilac:#9b8fc4;
-  --bright:#f0ece4;--muted:rgba(220,210,200,.55);--dim:rgba(200,190,180,.3);
-  --mono:'DM Mono',monospace;
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=DM+Mono:wght@300;400&display=swap');
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
-#wrap{position:relative;width:100vw;height:100vh;overflow:hidden}
-#c{position:absolute;top:0;left:0;display:block;cursor:grab}
-#c.grab{cursor:grabbing}
-#c.point{cursor:pointer}
 
-/* ONBOARD */
-#ob{position:absolute;inset:0;z-index:90;background:#06050e;
-  display:flex;flex-direction:column;justify-content:center;align-items:center;
-  text-align:center;padding:2rem;
-  transition:opacity 1s ease,transform 1s ease;}
-#ob.gone{opacity:0;transform:scale(14);pointer-events:none}
-.obl{font-size:clamp(1rem,2.2vw,1.5rem);font-weight:300;color:var(--bright);
-  line-height:2;opacity:0;animation:fu 1s forwards;}
-.obl em{font-style:italic;color:var(--lilac)}
-.obl:nth-child(1){animation-delay:.5s}.obl:nth-child(2){animation-delay:1.5s}.obl:nth-child(3){animation-delay:2.5s}
-.odv{width:36px;height:1px;background:rgba(155,143,196,.3);margin:1.6rem auto;opacity:0;animation:fu 1s 2.2s forwards}
-#obbtn{font-family:var(--mono);font-size:10px;letter-spacing:.4em;text-transform:uppercase;
-  color:var(--bright);background:transparent;border:1px solid rgba(200,169,126,.5);
-  padding:.9rem 2.6rem;cursor:pointer;margin-top:.5rem;
-  opacity:0;animation:fu 1s 3.4s forwards;
-  transition:color .25s,border-color .25s,letter-spacing .25s,box-shadow .25s,transform .08s;}
-#obbtn:hover{color:var(--gold);border-color:rgba(200,169,126,.9);letter-spacing:.48em;box-shadow:0 0 28px rgba(200,169,126,.2)}
-#obbtn:active{transform:scale(.93)}
-
-/* WARP FLASH */
-#wf{position:fixed;inset:0;z-index:999;pointer-events:none;opacity:0;
-  background:radial-gradient(ellipse at 50% 50%,rgba(200,169,126,.9),rgba(6,5,14,0) 60%);
-  transition:opacity .12s ease;}
-#wf.on{opacity:1}
-
-/* HUD */
-#hud{position:absolute;inset:0;pointer-events:none;z-index:10}
-#logo{position:absolute;top:1.1rem;left:1.3rem}
-.lmk{font-family:var(--mono);font-size:12px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;opacity:.85}
-.lsb{font-family:var(--mono);font-size:10px;letter-spacing:.22em;color:var(--dim);text-transform:uppercase;margin-top:2px}
-#sndbtn{position:absolute;top:1.1rem;right:1.3rem;font-family:var(--mono);font-size:7.5px;
-  letter-spacing:.2em;text-transform:uppercase;color:var(--dim);cursor:pointer;
-  background:none;border:1px solid rgba(255,255,255,.09);padding:.4rem .9rem;
-  transition:all .3s;pointer-events:all;z-index:20}
-#sndbtn:hover{color:var(--bright);border-color:rgba(255,255,255,.3)}
-#cmp{position:absolute;bottom:1.1rem;right:1.3rem;font-family:var(--mono);font-size:7px;
-  letter-spacing:.2em;color:var(--dim);text-transform:uppercase;text-align:right;line-height:2}
-#lgd{position:absolute;bottom:1.1rem;left:1.3rem;display:flex;flex-direction:column;gap:5px}
-.lgr{display:flex;align-items:center;gap:7px;font-family:var(--mono);font-size:7.5px;
-  letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
-.lgd2{width:5px;height:5px;border-radius:50%;flex-shrink:0}
-#hint{position:absolute;bottom:1.1rem;left:50%;transform:translateX(-50%);
-  font-family:var(--mono);font-size:7.5px;letter-spacing:.25em;color:var(--dim);
-  text-transform:uppercase;white-space:nowrap;animation:blk 3s 1s infinite;pointer-events:none}
-
-/* NODE LABELS */
-.nlb{position:absolute;pointer-events:none;cursor:pointer;transform:translate(-50%,-100%);
-  display:flex;flex-direction:column;align-items:center;gap:1px;
-  opacity:0;transition:opacity 1.4s ease,filter .3s,transform .3s}
-.nlb.vis{opacity:1}
-.nlb.interactive{pointer-events:all}
-.nlb:hover{filter:brightness(2.2);transform:translate(-50%,-112%)}
-.nc{font-family:var(--mono);font-size:7px;letter-spacing:.3em;text-transform:uppercase;opacity:.35}
-.nn{font-size:1.05rem;font-weight:300;line-height:1}
-.ns{font-family:var(--mono);font-size:6.5px;letter-spacing:.12em;opacity:.25}
-.nl{width:1px;height:18px;opacity:.18;margin-top:3px}
-#le{color:var(--gold)}#le .nl{background:var(--gold)}
-#lm{color:var(--rose)}#lm .nl{background:var(--rose)}
-#lf{color:var(--teal)}#lf .nl{background:var(--teal)}
-
-/* TOOLTIPS — hidden until phase 3 */
-#ntt,#btt{position:absolute;z-index:30;pointer-events:none;background:rgba(6,5,14,.95);
-  border:1px solid rgba(255,255,255,.1);padding:.55rem .85rem;opacity:0;
-  transition:opacity .22s;font-family:var(--mono);max-width:210px}
-#ntt.show,#btt.show{opacity:1}
-.tnm{font-size:9px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:3px}
-.tds{font-size:7.5px;letter-spacing:.1em;color:var(--dim);line-height:1.6}
-.brl{font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--lilac);margin-bottom:3px}
-.bds{font-size:.9rem;font-weight:300;color:var(--bright);line-height:1.5}
-
-/* About CTA */
-.ab-cta{margin-top:2.5rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.07)}
-.ab-cta-link{font-family:var(--mono);font-size:10px;letter-spacing:.28em;text-transform:uppercase;
-  color:var(--gold);text-decoration:none;border:1px solid rgba(200,169,126,.35);
-  padding:.65rem 1.6rem;display:inline-flex;align-items:center;gap:.5rem;
-  transition:color .3s,border-color .3s,letter-spacing .3s,box-shadow .3s}
-.ab-cta-link:hover{border-color:rgba(200,169,126,.9);letter-spacing:.36em;
-  box-shadow:0 0 24px rgba(200,169,126,.14)}
-
-/* ── PANEL CONTENT ENTRANCE ── */
-#pnl.open #pi{animation:panelIn .55s .3s both}
-@keyframes panelIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-
-/* ── WORK PANEL — stays cosmic dark ── */
-#pnl.work-mode{background:radial-gradient(ellipse at 20% 10%,rgba(110,35,20,.22),transparent 55%),#06050e!important}
-#pnl.work-mode #pi{color:var(--bright)}
-#pnl.work-mode .pbk{color:var(--dim);border-color:rgba(255,255,255,.12)}
-#pnl.work-mode .pbk:hover{border-color:rgba(255,255,255,.38);color:var(--bright)}
-#pnl.work-mode .plb{color:var(--rose)!important}
-#pnl.work-mode .pcp{color:var(--dim)}
-#pnl.work-mode .ptt{color:var(--bright);font-size:clamp(2rem,4vw,3.5rem);margin-bottom:.4rem}
-#pnl.work-mode .ptt em{color:var(--rose)}
-
-/* WORK INTRO */
-.work-intro{font-family:var(--serif);font-size:1.02rem;font-weight:300;color:var(--muted);
-  line-height:1.9;max-width:60ch;margin-bottom:2.5rem}
-
-/* CASE STUDY CONTAINER */
-.cs-container{max-width:1100px;margin:0 auto;
-  display:flex;flex-direction:column;gap:2px;
-  padding-bottom:3rem}
-
-/* CASE STUDY CARD — cosmic dark */
-.cs-card{
-  display:grid;grid-template-columns:55% 45%;
-  background:rgba(255,255,255,.03);
-  border:1px solid rgba(255,255,255,.07);
-  border-radius:0;
-  cursor:pointer;
-  transition:background .4s,border-color .4s,transform .35s;
-  text-decoration:none;color:inherit;
+html,body{
+  width:100%;
+  height:100%;
   overflow:hidden;
-  position:relative;
+  background:#06050e;
+  color:#fff;
+  font-family:'Cormorant Garamond', serif;
 }
-.cs-card::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse at 30% 50%,rgba(196,122,138,.06),transparent 65%);
-  opacity:0;transition:opacity .4s;pointer-events:none;
+
+:root{
+  --gold:#c8a97e;
+  --rose:#c47a8a;
+  --teal:#6ab4b4;
+  --bright:#f2ece6;
+  --dim:rgba(255,255,255,.35);
+  --mono:'DM Mono', monospace;
 }
-.cs-card:hover{background:rgba(255,255,255,.055);border-color:rgba(196,122,138,.25);transform:translateY(-3px)}
-.cs-card:hover::before{opacity:1}
-.cs-card:first-child{border-radius:14px 14px 0 0}
-.cs-card:last-child{border-radius:0 0 14px 14px}
-.cs-card:only-child{border-radius:14px}
 
-/* visual glyph panel */
-.cs-visual{
-  padding:48px 40px;
-  display:flex;align-items:center;justify-content:center;
-  border-right:1px solid rgba(255,255,255,.06);
-  position:relative;overflow:hidden;min-height:200px;
+canvas{
+  position:absolute;
+  inset:0;
 }
-.cs-visual::after{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse at 50% 50%,var(--vis-glow,rgba(196,122,138,.08)),transparent 70%);
+
+#overlay{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  z-index:10;
+  background:#06050e;
+  transition:opacity 1s ease;
 }
-.cs-v1{--vis-glow:rgba(200,169,126,.1)}
-.cs-v2{--vis-glow:rgba(80,120,200,.08)}
-.cs-v3{--vis-glow:rgba(106,180,180,.08)}
-.cs-v4{--vis-glow:rgba(155,143,196,.09)}
 
-/* abstract glyph art — cosmic placeholders */
-.cs-glyph{position:relative;width:120px;height:120px;z-index:1}
-.cs-glyph svg{width:100%;height:100%}
-
-/* content side */
-.cs-content{
-  padding:40px 36px;
-  display:flex;flex-direction:column;justify-content:center;gap:14px;
+#overlay.hide{
+  opacity:0;
+  pointer-events:none;
 }
-.cs-num{font-family:var(--mono);font-size:9px;letter-spacing:.3em;color:rgba(200,190,180,.2);
-  margin-bottom:-6px}
-.cs-title{font-family:var(--serif);font-size:clamp(1.15rem,2vw,1.55rem);
-  font-weight:300;line-height:1.3;color:var(--bright);max-width:28ch}
-.cs-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
-.cs-tag{font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;
-  color:rgba(200,190,180,.5);border:1px solid rgba(200,190,180,.2);
-  padding:.28rem .7rem;border-radius:999px;transition:all .3s}
-.cs-card:hover .cs-tag{color:var(--rose);border-color:rgba(196,122,138,.4)}
-.cs-arrow{font-family:var(--mono);font-size:10px;letter-spacing:.15em;color:rgba(200,190,180,.2);
-  margin-top:8px;transition:color .3s,transform .3s;display:inline-block}
-.cs-card:hover .cs-arrow{color:var(--rose);transform:translateX(4px)}
 
-/* ── ABOUT PANEL STYLES ── */
-.ab-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:3rem;margin-bottom:2.5rem;align-items:start}
-.ab-bio{}
-.ab-body{font-family:var(--serif);font-size:1rem;font-weight:300;color:var(--muted);line-height:1.9}
-.ab-sidebar{display:flex;flex-direction:column;gap:0}
-.ab-stat{padding:1rem 0;border-bottom:1px solid rgba(255,255,255,.06)}
-.ab-stat:first-child{border-top:1px solid rgba(255,255,255,.06)}
-.ab-num{font-family:var(--serif);font-size:2.4rem;font-weight:300;color:var(--gold);
-  letter-spacing:-.03em;line-height:1;margin-bottom:.15rem}
-.ab-lbl{font-family:var(--mono);font-size:8px;letter-spacing:.22em;color:var(--dim);text-transform:uppercase}
-.ab-skills{display:flex;flex-direction:column;gap:1.2rem;padding-top:1.8rem;
-  border-top:1px solid rgba(255,255,255,.06)}
-.ab-skill-group{display:flex;flex-direction:column;gap:.55rem}
-.ab-skill-cat{font-family:var(--mono);font-size:8px;letter-spacing:.3em;
-  text-transform:uppercase;color:var(--dim);margin-bottom:.1rem}
-
-/* ── WRITING PANEL STYLES ── */
-.wr-list{display:flex;flex-direction:column;margin-top:1rem}
-.wr-item{display:grid;grid-template-columns:auto 1fr auto;align-items:center;
-  gap:1.5rem;padding:1.35rem 0;border-bottom:1px solid rgba(255,255,255,.06);
-  text-decoration:none;color:inherit;cursor:pointer;transition:all .3s}
-.wr-item:first-child{border-top:1px solid rgba(255,255,255,.06)}
-.wr-item:hover .wr-title{color:var(--teal)}
-.wr-item:hover .wr-arrow{color:var(--teal);transform:translateX(4px)}
-.wr-meta{display:flex;flex-direction:column;gap:4px;align-items:flex-start;min-width:58px}
-.wr-date{font-family:var(--mono);font-size:8px;letter-spacing:.15em;color:var(--dim)}
-.wr-tag{font-family:var(--mono);font-size:7px;letter-spacing:.15em;text-transform:uppercase;
-  color:var(--teal);opacity:.65}
-.wr-title{font-family:var(--serif);font-size:1rem;font-weight:300;color:var(--muted);
-  line-height:1.5;transition:color .3s}
-.wr-arrow{font-family:var(--mono);font-size:9px;letter-spacing:.12em;color:var(--dim);
-  transition:color .3s,transform .3s;display:inline-block;white-space:nowrap}
-
-/* ── CV PANEL STYLES ── */
-
-/* Stats row (horizontal) */
-.ab-stats-row{display:flex;gap:0;margin:1.8rem 0 2.5rem;
-  border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07)}
-.ab-stats-row .ab-stat{flex:1;padding:1.1rem 1.2rem;text-align:center;
-  border-right:1px solid rgba(255,255,255,.07)}
-.ab-stats-row .ab-stat:last-child{border-right:none}
-.ab-stats-row .ab-num{font-family:var(--serif);font-size:2rem;font-weight:300;
-  color:var(--gold);letter-spacing:-.03em;line-height:1;margin-bottom:.2rem}
-.ab-stats-row .ab-lbl{font-family:var(--mono);font-size:7.5px;letter-spacing:.2em;
-  color:var(--dim);text-transform:uppercase}
-
-/* CV section wrapper */
-.cv-section{margin-bottom:2.5rem}
-.cv-sec-label{font-family:var(--mono);font-size:8px;letter-spacing:.38em;text-transform:uppercase;
-  color:var(--gold);margin-bottom:1.2rem;display:flex;align-items:center;gap:.8rem}
-.cv-sec-label::after{content:'';flex:1;height:1px;background:rgba(200,169,126,.15)}
-
-/* Experience block */
-.cv-block{margin-bottom:2rem;padding-bottom:2rem;
-  border-bottom:1px solid rgba(255,255,255,.05)}
-.cv-block:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
-.cv-role-header{display:flex;justify-content:space-between;align-items:baseline;
-  gap:1rem;margin-bottom:.35rem;flex-wrap:wrap}
-.cv-company{font-family:var(--serif);font-size:1.1rem;font-weight:400;color:var(--bright)}
-.cv-period{font-family:var(--mono);font-size:7.5px;letter-spacing:.15em;
-  color:var(--dim);white-space:nowrap}
-.cv-role-title{font-family:var(--mono);font-size:9px;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--rose);margin-bottom:.9rem}
-.cv-bullets{list-style:none;display:flex;flex-direction:column;gap:.55rem;margin:0;padding:0}
-.cv-bullets li{font-family:var(--serif);font-size:.95rem;font-weight:300;
-  color:var(--muted);line-height:1.7;padding-left:1.1rem;position:relative}
-.cv-bullets li::before{content:'·';position:absolute;left:0;color:var(--rose);opacity:.6}
-.cv-link{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(200,169,126,.3);
-  transition:border-color .2s,color .2s}
-.cv-link:hover{color:#e0c090;border-color:rgba(200,169,126,.8)}
-
-/* Education */
-.cv-edu-row{display:grid;grid-template-columns:1fr 1.4fr;gap:1rem;
-  padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,.04);align-items:baseline}
-.cv-edu-row:first-of-type{border-top:1px solid rgba(255,255,255,.04)}
-.cv-edu-degree{font-family:var(--serif);font-size:1rem;font-weight:300;color:var(--bright)}
-.cv-grade{font-family:var(--mono);font-size:8px;letter-spacing:.12em;color:var(--gold)}
-.cv-edu-inst{font-family:var(--mono);font-size:8px;letter-spacing:.1em;color:var(--dim);line-height:1.6}
-
-/* Certifications */
-.cv-cert-row{display:flex;flex-direction:column;gap:.25rem;
-  padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,.04)}
-.cv-cert-row:first-of-type{border-top:1px solid rgba(255,255,255,.04)}
-.cv-cert-name{font-family:var(--serif);font-size:1rem;font-weight:300;color:var(--bright)}
-.cv-cert-inst{font-family:var(--mono);font-size:7.5px;letter-spacing:.12em;color:var(--dim)}
-
-/* Tools + Skills two-column */
-.cv-two-col{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2.5rem}
-.cv-tool-group{display:grid;grid-template-columns:100px 1fr;gap:.5rem;
-  padding:.55rem 0;border-bottom:1px solid rgba(255,255,255,.04);align-items:baseline}
-.cv-tool-group:first-of-type{border-top:1px solid rgba(255,255,255,.04)}
-.cv-tool-cat{font-family:var(--mono);font-size:7.5px;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--dim)}
-.cv-tool-val{font-family:var(--serif);font-size:.9rem;font-weight:300;color:var(--muted);line-height:1.5}
-
-/* Portfolio links grid */
-.cv-links-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:.5rem}
-.cv-plink{display:flex;flex-direction:column;gap:.25rem;padding:1rem 1.2rem;
-  background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);
-  text-decoration:none;transition:background .3s,border-color .3s}
-.cv-plink:hover{background:rgba(200,169,126,.06);border-color:rgba(200,169,126,.25)}
-.cv-plink-label{font-family:var(--mono);font-size:8px;letter-spacing:.25em;
-  text-transform:uppercase;color:var(--dim)}
-.cv-plink-url{font-family:var(--serif);font-size:.95rem;font-weight:300;color:var(--gold)}
-
-/* ── MOBILE: About + Writing + CV ── */
-@media(max-width:600px){
-  .ab-grid{grid-template-columns:1fr;gap:2rem}
-  .ab-sidebar{flex-direction:row;gap:0;border-top:1px solid rgba(255,255,255,.06);padding-top:1rem}
-  .ab-stat{padding:.75rem 1rem;border-bottom:none;border-right:1px solid rgba(255,255,255,.06);flex:1;text-align:center}
-  .ab-stat:last-child{border-right:none}
-  .ab-stat:first-child{border-top:none}
-  .ab-num{font-size:1.8rem}
-  .wr-item{grid-template-columns:1fr auto;gap:1rem}
-  .wr-meta{flex-direction:row;align-items:center;gap:.5rem;grid-column:1/-1;margin-bottom:-.5rem}
-  .wr-title{font-size:.92rem}
-  /* CV mobile */
-  .ab-stats-row{flex-wrap:wrap}
-  .ab-stats-row .ab-stat{min-width:30%;border-bottom:1px solid rgba(255,255,255,.07)}
-  .cv-role-header{flex-direction:column;gap:.2rem}
-  .cv-period{white-space:normal}
-  .cv-edu-row{grid-template-columns:1fr;gap:.2rem}
-  .cv-two-col{grid-template-columns:1fr;gap:0}
-  .cv-links-grid{grid-template-columns:1fr}
-  .cv-tool-group{grid-template-columns:80px 1fr}
+.hero-line{
+  font-size:clamp(1.2rem,2vw,1.8rem);
+  line-height:2;
+  color:var(--bright);
+  opacity:0;
+  animation:fadeUp 1s forwards;
 }
-#pnl{position:absolute;inset:0;z-index:50;pointer-events:none;
-  clip-path:circle(0% at var(--px,50%) var(--py,50%));
-  transition:clip-path .88s cubic-bezier(.18,0,.08,1);
-  overflow-y:auto;overflow-x:hidden;
-  scrollbar-width:thin;scrollbar-color:rgba(155,143,196,.2) transparent}
-#pnl.open{clip-path:circle(180% at var(--px,50%) var(--py,50%));pointer-events:all}
-#pi{max-width:1100px;margin:0 auto;padding:3rem 2.5rem 5rem}
-.pbk{font-family:var(--mono);font-size:8.5px;letter-spacing:.22em;text-transform:uppercase;
-  background:none;border:1px solid rgba(255,255,255,.14);color:var(--bright);
-  padding:.5rem 1.2rem;cursor:pointer;margin-bottom:2.5rem;
-  display:inline-flex;align-items:center;gap:.5rem;transition:border-color .3s}
-.pbk:hover{border-color:rgba(255,255,255,.45)}
-.plb{font-family:var(--mono);font-size:9px;letter-spacing:.35em;text-transform:uppercase;
-  margin-bottom:.3rem;display:flex;align-items:center;gap:.6rem}
-.plb::before{content:'';width:5px;height:5px;border-radius:50%;display:inline-block;background:currentColor}
-.pcp{font-family:var(--mono);font-size:7.5px;letter-spacing:.18em;color:var(--dim);
-  text-transform:uppercase;margin-bottom:1.8rem;margin-left:11px}
-.ptt{font-size:clamp(2rem,5vw,4rem);font-weight:300;line-height:1.1;margin-bottom:2rem;color:var(--bright)}
-.ptt em{font-style:italic}
-/* pbd: no max-width — inner components control their own widths */
-.pbd{font-size:1rem;font-weight:300;color:var(--muted);line-height:1.95}
-.pbd strong{color:var(--bright);font-weight:400}
 
-@keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-@keyframes blk{0%,100%{opacity:.06}50%{opacity:.3}}
+.hero-line:nth-child(1){animation-delay:.5s}
+.hero-line:nth-child(2){animation-delay:1.5s}
+.hero-line:nth-child(3){animation-delay:2.5s}
 
-/* ── MOBILE RESPONSIVE ── */
-@media (max-width:600px){
-  .obl{font-size:1rem;line-height:1.85}
-  #obbtn{font-size:9px;letter-spacing:.32em;padding:.8rem 2rem}
-  .lmk{font-size:8px;letter-spacing:.22em}
-  .lsb{font-size:6px;letter-spacing:.18em}
-  #sndbtn{font-size:6.5px;padding:.35rem .7rem}
-  .lgr{font-size:6.5px;letter-spacing:.12em}
-  #cmp{font-size:6px;letter-spacing:.15em}
-  #hint{font-size:6.5px;letter-spacing:.18em}
-  .nn{font-size:.9rem}
-  .nc{font-size:6px;letter-spacing:.22em}
-  .ns{display:none}
-  #pi{padding:1.8rem 1rem 4rem}
-  .ptt{font-size:1.8rem}
-  .pbk{font-size:7.5px;padding:.45rem 1rem}
-  /* Cards stack on mobile */
-  .cs-card{grid-template-columns:1fr}
-  .cs-card:first-child{border-radius:14px 14px 0 0}
-  .cs-card:last-child{border-radius:0 0 14px 14px}
-  .cs-visual{min-height:160px;padding:28px 20px;border-right:none;border-bottom:1px solid rgba(255,255,255,.06)}
-  .cs-glyph{width:90px;height:90px}
-  .cs-content{padding:24px 20px;gap:10px}
-  .cs-title{font-size:1.1rem;max-width:100%}
-  .cs-container{gap:2px}
+.hero-line em{
+  color:#9b8fc4;
+  font-style:italic;
+}
+
+#enterBtn{
+  margin-top:2rem;
+  padding:1rem 2.8rem;
+  border:1px solid rgba(200,169,126,.5);
+  background:transparent;
+  color:white;
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.35em;
+  text-transform:uppercase;
+  cursor:pointer;
+  opacity:0;
+  animation:fadeUp 1s forwards;
+  animation-delay:3.4s;
+  transition:.3s;
+}
+
+#enterBtn:hover{
+  border-color:var(--gold);
+  color:var(--gold);
+}
+
+#hud{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:5;
+}
+
+.logo{
+  position:absolute;
+  top:24px;
+  left:24px;
+}
+
+.logo h1{
+  font-size:10px;
+  letter-spacing:.35em;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-family:var(--mono);
+}
+
+.logo p{
+  font-size:8px;
+  letter-spacing:.15em;
+  color:var(--dim);
+  margin-top:5px;
+  font-family:var(--mono);
+}
+
+.label{
+  position:absolute;
+  transform:translate(-50%,-100%);
+  pointer-events:auto;
+  text-align:center;
+  opacity:0;
+  transition:.5s;
+  cursor:pointer;
+}
+
+.label.show{
+  opacity:1;
+}
+
+.label .cat{
+  font-size:8px;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  font-family:var(--mono);
+}
+
+.label .name{
+  font-size:1.2rem;
+}
+
+.label.energy{color:var(--gold)}
+.label.matter{color:var(--rose)}
+.label.fields{color:var(--teal)}
+
+.panel{
+  position:absolute;
+  inset:0;
+  background:#06050e;
+  z-index:20;
+  overflow:auto;
+  padding:40px;
+  display:none;
+}
+
+.panel.open{
+  display:block;
+}
+
+.closeBtn{
+  border:1px solid rgba(255,255,255,.2);
+  background:none;
+  color:white;
+  padding:.6rem 1rem;
+  cursor:pointer;
+  margin-bottom:2rem;
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+}
+
+.panelContent{
+  max-width:1000px;
+  margin:auto;
+}
+
+.panelTitle{
+  font-size:4rem;
+  font-weight:300;
+  margin-bottom:1rem;
+}
+
+.panelText{
+  font-size:1.1rem;
+  line-height:1.9;
+  color:rgba(255,255,255,.7);
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+  margin-top:3rem;
+}
+
+.card{
+  padding:2rem;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.02);
+  transition:.3s;
+}
+
+.card:hover{
+  border-color:rgba(200,169,126,.3);
+  transform:translateY(-4px);
+}
+
+.card h3{
+  margin-bottom:1rem;
+  font-size:1.3rem;
+  font-weight:400;
+}
+
+.card p{
+  line-height:1.8;
+  color:rgba(255,255,255,.65);
+}
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 </style>
 </head>
+
 <body>
-<div id="wrap">
-  <canvas id="c"></canvas>
-  <div id="wf"></div>
 
-  <div id="ob">
-    <p class="obl">You are inside <em>a system of thought.</em></p>
-    <p class="obl">Three forces hold the universe together<br>energy, matter, and the fields between them.</p>
-    <p class="obl">Choose one <em>to begin.</em></p>
-    <div class="odv"></div>
-    <button id="obbtn" onclick="enterUniverse()">Enter the universe</button>
+<canvas id="c"></canvas>
+
+<div id="overlay">
+  <p class="hero-line">You are inside <em>a system of thought.</em></p>
+  <p class="hero-line">Three forces hold the universe together —<br>energy, matter, and the fields between them.</p>
+  <p class="hero-line">Choose one <em>to begin.</em></p>
+
+  <button id="enterBtn">Enter the Universe</button>
+</div>
+
+<div id="hud">
+  <div class="logo">
+    <h1>My Whitespace</h1>
+    <p>Explore the three dimensions</p>
   </div>
 
-  <div id="hud">
-    <div id="logo"><div class="lmk">My Whitespace</div><div class="lsb">Explore the three dimensions</div></div>
-    <button id="sndbtn" onclick="toggleSound()">♪ Sound Off</button>
-    <div class="nlb" id="le" onclick="openByIdx(0)"><span class="nc">Energy</span><span class="nn">About Me</span><span class="ns">Designer · Thinker</span><div class="nl"></div></div>
-    <div class="nlb" id="lm" onclick="openByIdx(1)"><span class="nc">Matter</span><span class="nn">My Work</span><span class="ns">Brand · Type · Digital</span><div class="nl"></div></div>
-    <div class="nlb" id="lf" onclick="openByIdx(2)"><span class="nc">Fields</span><span class="nn">Writing</span><span class="ns">Essays · Philosophy</span><div class="nl"></div></div>
-    <div id="ntt"><div class="tnm" id="tnm"></div><div class="tds" id="tds"></div></div>
-    <div id="btt"><div class="brl" id="brl"></div><div class="bds" id="bds"></div></div>
-    <div id="lgd">
-      <div class="lgr"><div class="lgd2" style="background:var(--gold)"></div>Energy · About Me</div>
-      <div class="lgr"><div class="lgd2" style="background:var(--rose)"></div>Matter · Work</div>
-      <div class="lgr"><div class="lgd2" style="background:var(--teal)"></div>Fields · Writing</div>
-    </div>
-    <div id="cmp"><div id="caz">AZ 000°</div><div id="cel">EL +10°</div><div id="cds">DST 14.0</div></div>
-    <div id="hint">Explore the three dimensions</div>
+  <div class="label energy" id="label0">
+    <div class="cat">Energy</div>
+    <div class="name">About Me</div>
   </div>
 
-  <div id="pnl">
-    <div id="pi">
-      <button class="pbk" onclick="closePanel()">← return to universe</button>
-      <p class="plb" id="plb"></p><p class="pcp" id="pcp"></p>
-      <h2 class="ptt" id="ptt"></h2><div class="pbd" id="pbd"></div>
-    </div>
+  <div class="label matter" id="label1">
+    <div class="cat">Matter</div>
+    <div class="name">My Work</div>
+  </div>
+
+  <div class="label fields" id="label2">
+    <div class="cat">Fields</div>
+    <div class="name">Writing</div>
+  </div>
+</div>
+
+<div class="panel" id="panel">
+  <div class="panelContent">
+
+    <button class="closeBtn" id="closeBtn">
+      Return to Universe
+    </button>
+
+    <h1 class="panelTitle" id="panelTitle"></h1>
+
+    <div class="panelText" id="panelText"></div>
+
   </div>
 </div>
 
 <script>
-// ═══════════════════════════════════════════════════════════
-//  PURE CANVAS 2D COSMIC UNIVERSE — ZERO EXTERNAL DEPENDENCIES
-// ═══════════════════════════════════════════════════════════
-var cvs = document.getElementById('c');
-var ctx = cvs.getContext('2d');
-var W, H;
+const canvas = document.getElementById("c");
+const ctx = canvas.getContext("2d");
 
-function resize() {
-  W = window.innerWidth;
-  H = window.innerHeight;
-  cvs.width  = W;
-  cvs.height = H;
-  // FOV scales with screen width so glows/bodies stay proportional on all devices
-  FOV = Math.max(160, W * 0.43);
-  // Reposition bodies based on screen width
-  if (typeof bodies !== 'undefined') {
-    var sp = W < 600 ? 0.72 : 1.0; // mobile: 72% spread
-    bodies.forEach(function(b) {
-      b.x = b.baseX * sp;
-      b.y = b.baseY * sp;
-    });
-    // Wider initial camera pull-back on mobile so all 3 fit
-    tDist = W < 600 ? 18 : 14;
-    camDist = tDist;
-  }
+let w,h;
+
+function resize(){
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
 }
+
 resize();
-window.addEventListener('resize', function() { resize(); buildStars(); });
+window.addEventListener("resize",resize);
 
-// ─── 3D PROJECTION ────────────────────────────────────────
-// Camera orbits around origin
-var camAz = 0, camEl = 0.18, camDist = 14;
-var tAz = 0, tEl = 0.18, tDist = 14;
+const overlay = document.getElementById("overlay");
+const enterBtn = document.getElementById("enterBtn");
 
-// Responsive body spread — tighter on mobile
-function bodySpread() { return W < 600 ? 3.8 : 5.0; }
-function bodyStartDist() { return W < 600 ? 16 : 14; }
-// FOV is set dynamically in resize() below — scales with screen width
-var FOV = 520;
+let started = false;
 
-function project(x3, y3, z3) {
-  // rotate by azimuth
-  var cosA = Math.cos(-camAz), sinA = Math.sin(-camAz);
-  var rx = x3*cosA - z3*sinA;
-  var rz = x3*sinA + z3*cosA;
-  // rotate by elevation
-  var cosE = Math.cos(-camEl), sinE = Math.sin(-camEl);
-  var ry2 = y3*cosE - rz*sinE;
-  var rz2 = y3*sinE + rz*cosE;
-  // translate camera
-  rz2 += camDist;
-  // perspective divide
-  if (rz2 < 0.1) return null;
-  var scale = FOV / rz2;
-  return { x: W/2 + rx*scale, y: H/2 - ry2*scale, z: rz2, s: scale };
+enterBtn.addEventListener("click", enterUniverse);
+
+function enterUniverse(){
+
+  if(started) return;
+
+  started = true;
+
+  overlay.classList.add("hide");
+
+  setTimeout(()=>{
+    labels.forEach(l=>l.el.classList.add("show"));
+  },2000);
 }
 
-// ─── STARS ────────────────────────────────────────────────
-var stars = [];
-function buildStars() {
-  stars = [];
-  for (var i = 0; i < 1800; i++) {
-    var r = 30 + Math.random()*90;
-    var t = Math.random()*Math.PI*2;
-    var a = Math.acos(2*Math.random()-1);
-    stars.push({
-      x: r*Math.sin(a)*Math.cos(t),
-      y: r*Math.sin(a)*Math.sin(t),
-      z: r*Math.cos(a),
-      r: Math.random()*1.2+0.2,
-      b: Math.random()*0.7+0.2,
-      phase: Math.random()*Math.PI*2,
-      speed: Math.random()*0.02+0.005
-    });
-  }
-}
-buildStars();
+const stars = [];
 
-// ─── BODY DEFINITIONS ─────────────────────────────────────
-var bodies = [
-  {
-    // ENERGY ORB — blue electric
-    x:-5, y:1.2, z:0, baseX:-5, baseY:1.2,
-    color:'#7799ff', glow:'rgba(68,102,255,', glowRad: 2.2,
-    coreR: 0.75, coreColor:'#aaccff',
-    rings:[
-      {rx:0,   ry:0,   a:0,   da:0.014, r:1.35, w:0.04, col:'rgba(150,180,255,'},
-      {rx:1.05,ry:0.78,a:1.2, da:0.010, r:1.60, w:0.025,col:'rgba(130,160,255,'},
-      {rx:1.57,ry:0.63,a:2.4, da:0.017, r:1.42, w:0.020,col:'rgba(170,200,255,'},
-      {rx:0.63,ry:2.09,a:0.8, da:0.008, r:1.78, w:0.016,col:'rgba(120,150,255,'},
-      {rx:2.09,ry:0.63,a:1.8, da:0.020, r:1.28, w:0.028,col:'rgba(160,190,255,'},
-    ],
-    particles:[],
-    labelId:'le', lY:2.6, li:6, idx:0,
-    name:'Energy · About Me', desc:'Radiant, electric, personal',
-    focAz:Math.PI, focEl:.18, focR:8,
-    pCol:'#c8a97e', pBg:'radial-gradient(ellipse at 15% 8%,rgba(100,80,20,.28),transparent 55%),#06050e',
-    pLbl:'About Me', pCap:'UX/UI Designer · 5+ years · Enterprise SaaS & Beyond',
-    pTit:'UI/UX Designer',
-    pBdy:'<p class=\"work-intro\">I\'m a UI/UX designer with 5+ years of experience and a strong foundation in visual design. I started in graphic design and transitioned into UX to focus on solving real user problems. Currently I work on enterprise SaaS products — designing end-to-end workflows, dashboards that simplify complex data, and communication materials that drive user adoption.</p><div class=\"ab-stats-row\"><div class=\"ab-stat\"><div class=\"ab-num\">5+</div><div class=\"ab-lbl\">Years</div></div><div class=\"ab-stat\"><div class=\"ab-num\">12+</div><div class=\"ab-lbl\">Projects</div></div><div class=\"ab-stat\"><div class=\"ab-num\">3</div><div class=\"ab-lbl\">Industries</div></div></div><div class=\"cv-section\"><div class=\"cv-sec-label\">Experience</div><div class=\"cv-block\"><div class=\"cv-role-header\"><div class=\"cv-company\">Sarjak Container Lines Pvt. Ltd.</div><div class=\"cv-period\">May 2023 – Present &middot; 2 yrs 9 mo</div></div><div class=\"cv-role-title\">UX / UI Designer</div><ul class=\"cv-bullets\"><li>Designed end-to-end UX for a SaaS Document Parsing and Accounts Payable platform, transforming complex financial workflows into intuitive, user-centric interfaces.</li><li>Defined scalable document schemas and system logic to support automated invoice processing and improve data accuracy.</li><li>Mapped and optimised the complete Accounts Payable lifecycle — upload, extraction, validation, approval, and payout flows — reducing user friction.</li><li>Developed ILT materials and engaging visual content for user onboarding and system adoption using Vyond.</li><li>Led redesign of advanced chat features, improving real-time collaboration and user engagement.</li><li>Designed interactive BI dashboards for Inventory and Pricing using data visualisation and information hierarchy principles.</li><li><a class=\"cv-link\" href=\"https://www.linkedin.com/posts/arconcontainer_arcon-award-winners-ugcPost-7186304217073020929--eAz?utm_source=share&utm_medium=member_android\" target=\"_blank\">Received Dashing Debut Award</a> at Saksham Annual Meet, 2024.</li></ul></div><div class=\"cv-block\"><div class=\"cv-role-header\"><div class=\"cv-company\">Webtactic</div><div class=\"cv-period\">Jan 2022 – Mar 2023 &middot; 1 yr 3 mo</div></div><div class=\"cv-role-title\">Graphic &amp; UI Designer</div><ul class=\"cv-bullets\"><li>Delivered communication-driven design solutions including digital campaigns, brand assets, and marketing collaterals.</li><li>Conceptualised and designed a <a class=\"cv-link\" href=\"https://www.idobro.com/wp-content/uploads/2022/05/One-Pandemic-Multiple-Warriors-CTB_low-res-compressed.pdf\" target=\"_blank\">coffee table book for UNICEF</a>, applying strong information hierarchy and layout systems.</li><li>Translated UX insights into visually compelling, conversion-focused creatives across multiple channels.</li><li>Ensured consistency in visual branding, layout systems, and design standards across projects.</li></ul></div><div class=\"cv-block\"><div class=\"cv-role-header\"><div class=\"cv-company\">Gator Creative Studio</div><div class=\"cv-period\">Aug 2019 – Jul 2020 &middot; 1 yr</div></div><div class=\"cv-role-title\">Graphic Designer</div><ul class=\"cv-bullets\"><li>Designed creative assets and branding materials for clients across Pharmaceutical, Fertilizers, IT, and Manufacturing industries.</li><li>Developed visual concepts aligned with brand identity and business communication needs.</li></ul></div></div><div class=\"cv-section\"><div class=\"cv-sec-label\">Education</div><div class=\"cv-edu-row\"><div class=\"cv-edu-degree\">Bachelor of Commerce <span class=\"cv-grade\">(B Grade)</span></div><div class=\"cv-edu-inst\">K.J. Somaiya Clg. of Arts &amp; Commerce, Mumbai University &middot; 2013–2016</div></div><div class=\"cv-edu-row\"><div class=\"cv-edu-degree\">Class 12 <span class=\"cv-grade\">(74%)</span></div><div class=\"cv-edu-inst\">Indian School Al Wadi Al Kabir, CBSE &middot; 2012–2013</div></div><div class=\"cv-edu-row\"><div class=\"cv-edu-degree\">Class 10 <span class=\"cv-grade\">(89%)</span></div><div class=\"cv-edu-inst\">Indian School Al Wadi Al Kabir, CBSE &middot; 2010–2011</div></div></div><div class=\"cv-section\"><div class=\"cv-sec-label\">Certifications</div><div class=\"cv-cert-row\"><a class=\"cv-link\" href=\"https://www.coursera.org\" target=\"_blank\">Google UX Design Professional Certificate (98.33%)</a><span class=\"cv-cert-inst\">Coursera &middot; 2022</span></div><div class=\"cv-cert-row\"><div class=\"cv-cert-name\">Advance Program in Digital Media &amp; Design (B+ Grade)</div><span class=\"cv-cert-inst\">Maya Academy of Advanced Cinematics &middot; 2016–2018</span></div></div><div class=\"cv-two-col\"><div class=\"cv-section\"><div class=\"cv-sec-label\">Tools</div><div class=\"cv-tool-group\"><div class=\"cv-tool-cat\">Design</div><div class=\"cv-tool-val\">Figma, Adobe XD, Photoshop, Illustrator</div></div><div class=\"cv-tool-group\"><div class=\"cv-tool-cat\">Prototyping</div><div class=\"cv-tool-val\">Framer</div></div><div class=\"cv-tool-group\"><div class=\"cv-tool-cat\">Content</div><div class=\"cv-tool-val\">Adobe Premiere Pro</div></div><div class=\"cv-tool-group\"><div class=\"cv-tool-cat\">Productivity</div><div class=\"cv-tool-val\">Google Workspace, Microsoft Office</div></div></div><div class=\"cv-section\"><div class=\"cv-sec-label\">Core Skills</div><div class=\"cs-tags\" style=\"margin-top:.5rem\"><span class=\"cs-tag\">UX/UI Design</span><span class=\"cs-tag\">Interaction Design</span><span class=\"cs-tag\">Visual Design</span><span class=\"cs-tag\">Information Architecture</span><span class=\"cs-tag\">Design Systems</span><span class=\"cs-tag\">Communication Design</span><span class=\"cs-tag\">Instructional Design</span><span class=\"cs-tag\">Data Visualisation</span></div></div></div><div class=\"cv-section\"><div class=\"cv-sec-label\">Portfolio &amp; Links</div><div class=\"cv-links-grid\"><a class=\"cv-plink\" href=\"https://www.behance.net/gunjs\" target=\"_blank\"><span class=\"cv-plink-label\">Behance</span><span class=\"cv-plink-url\">behance.net/gunjs</span></a><a class=\"cv-plink\" href=\"https://www.instagram.com/mahanadesign/\" target=\"_blank\"><span class=\"cv-plink-label\">Instagram</span><span class=\"cv-plink-url\">instagram.com/mahanadesign</span></a><a class=\"cv-plink\" href=\"https://www.figma.com/@gunjsampat\" target=\"_blank\"><span class=\"cv-plink-label\">Figma Resources</span><span class=\"cv-plink-url\">figma.com/@gunjsampat</span></a><a class=\"cv-plink\" href=\"https://www.youtube.com/watch?v=uUFRVWpBomU\" target=\"_blank\"><span class=\"cv-plink-label\">YouTube</span><span class=\"cv-plink-url\">youtube.com</span></a></div></div>'
-  },
-  {
-    // DARK SUN — molten orange
-    x:5, y:1.2, z:0, baseX:5, baseY:1.2,
-    color:'#ff6600', glow:'rgba(255,80,0,', glowRad: 2.0,
-    coreR: 1.0, coreColor:'#ff8833',
-    rings:[
-      {rx:Math.PI/2,ry:0,a:0,   da:0.008, r:1.5, w:0.035,col:'rgba(255,140,40,'},
-      {rx:Math.PI/3,ry:0.5,a:1, da:0.012, r:1.8, w:0.025,col:'rgba(255,120,20,'},
-    ],
-    particles:[],
-    labelId:'lm', lY:2.8, li:8, idx:1,
-    name:'Matter · My Work', desc:'Solid, molten, crafted',
-    focAz:0, focEl:.18, focR:8,
-    pCol:'#c47a8a', pBg:'radial-gradient(ellipse at 85% 8%,rgba(110,35,20,.28),transparent 55%),#06050e',
-    pLbl:'Matter', pCap:'Matter is energy slowed down. Work is thought made solid.',
-    pTit:'My Work',
-    pBdy:'<p class="work-intro">I design systems that translate complex problems into intuitive experiences. From research to interaction design, each project reflects a balance between user needs, business goals, and thoughtful execution.</p><div class="cs-container"><a class="cs-card" href="https://www.behance.net/gallery/247712931/Designing-asmarter-wayto-build-case-studies" target="_blank" rel="noopener"><div class="cs-visual cs-v1"><div class="cs-glyph"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="60" cy="60" r="48" stroke="rgba(200,169,126,.25)" stroke-width="1"/><circle cx="60" cy="60" r="32" stroke="rgba(200,169,126,.4)" stroke-width="1"/><circle cx="60" cy="60" r="16" fill="rgba(200,169,126,.12)" stroke="rgba(200,169,126,.6)" stroke-width="1.5"/><line x1="60" y1="12" x2="60" y2="108" stroke="rgba(200,169,126,.15)" stroke-width="1"/><line x1="12" y1="60" x2="108" y2="60" stroke="rgba(200,169,126,.15)" stroke-width="1"/><line x1="26" y1="26" x2="94" y2="94" stroke="rgba(200,169,126,.1)" stroke-width="1"/><line x1="94" y1="26" x2="26" y2="94" stroke="rgba(200,169,126,.1)" stroke-width="1"/><circle cx="60" cy="60" r="4" fill="rgba(200,169,126,.9)"/></svg></div></div><div class="cs-content"><div class="cs-num">01</div><h3 class="cs-title">Designing a smarter way to build case studies</h3><div class="cs-tags"><span class="cs-tag">Case Studies</span><span class="cs-tag">UX Design</span><span class="cs-tag">No-Code</span></div><span class="cs-arrow">View project →</span></div></a><a class="cs-card" href="https://www.behance.net/gallery/239592605/Compliance-Command-Center" target="_blank" rel="noopener"><div class="cs-visual cs-v2"><div class="cs-glyph"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="22" y="22" width="76" height="76" rx="4" stroke="rgba(106,180,180,.25)" stroke-width="1"/><rect x="34" y="34" width="52" height="52" rx="3" stroke="rgba(106,180,180,.4)" stroke-width="1"/><rect x="46" y="46" width="28" height="28" rx="2" fill="rgba(106,180,180,.1)" stroke="rgba(106,180,180,.7)" stroke-width="1.5"/><line x1="22" y1="60" x2="46" y2="60" stroke="rgba(106,180,180,.3)" stroke-width="1"/><line x1="74" y1="60" x2="98" y2="60" stroke="rgba(106,180,180,.3)" stroke-width="1"/><line x1="60" y1="22" x2="60" y2="46" stroke="rgba(106,180,180,.3)" stroke-width="1"/><line x1="60" y1="74" x2="60" y2="98" stroke="rgba(106,180,180,.3)" stroke-width="1"/><circle cx="60" cy="60" r="5" fill="rgba(106,180,180,.9)"/></svg></div></div><div class="cs-content"><div class="cs-num">02</div><h3 class="cs-title">Compliance Command Center</h3><div class="cs-tags"><span class="cs-tag">SaaS</span><span class="cs-tag">B2B</span><span class="cs-tag">Monitoring</span><span class="cs-tag">Reporting</span></div><span class="cs-arrow">View project →</span></div></a><a class="cs-card" href="https://www.behance.net/gallery/235058759/Redesigning-Barclays-Credit-Card-Dispute-Resolution" target="_blank" rel="noopener"><div class="cs-visual cs-v3"><div class="cs-glyph"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60 18 L102 42 L102 78 L60 102 L18 78 L18 42 Z" stroke="rgba(155,143,196,.3)" stroke-width="1"/><path d="M60 32 L88 48 L88 72 L60 88 L32 72 L32 48 Z" stroke="rgba(155,143,196,.45)" stroke-width="1"/><path d="M60 46 L74 54 L74 66 L60 74 L46 66 L46 54 Z" fill="rgba(155,143,196,.1)" stroke="rgba(155,143,196,.75)" stroke-width="1.5"/><circle cx="60" cy="60" r="5" fill="rgba(155,143,196,.9)"/></svg></div></div><div class="cs-content"><div class="cs-num">03</div><h3 class="cs-title">Redesigning Barclays Credit Card Dispute Resolution</h3><div class="cs-tags"><span class="cs-tag">Payments</span><span class="cs-tag">Banking</span><span class="cs-tag">SaaS</span><span class="cs-tag">B2C</span><span class="cs-tag">Customer Support</span></div><span class="cs-arrow">View project →</span></div></a><a class="cs-card" href="https://www.behance.net/gallery/234822727/Redesigning-Passport-Seva" target="_blank" rel="noopener"><div class="cs-visual cs-v4"><div class="cs-glyph"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="60" cy="60" r="48" stroke="rgba(196,122,138,.2)" stroke-width="1"/><path d="M60 20 C80 30 90 50 90 60 C90 70 80 90 60 100 C40 90 30 70 30 60 C30 50 40 30 60 20 Z" stroke="rgba(196,122,138,.35)" stroke-width="1" fill="none"/><ellipse cx="60" cy="60" rx="18" ry="30" stroke="rgba(196,122,138,.55)" stroke-width="1.5" fill="rgba(196,122,138,.08)"/><line x1="12" y1="60" x2="108" y2="60" stroke="rgba(196,122,138,.18)" stroke-width="1"/><line x1="28" y1="36" x2="92" y2="36" stroke="rgba(196,122,138,.12)" stroke-width="1"/><line x1="28" y1="84" x2="92" y2="84" stroke="rgba(196,122,138,.12)" stroke-width="1"/><circle cx="60" cy="60" r="5" fill="rgba(196,122,138,.9)"/></svg></div></div><div class="cs-content"><div class="cs-num">04</div><h3 class="cs-title">Redesigning Passport Seva</h3><div class="cs-tags"><span class="cs-tag">Government</span><span class="cs-tag">B2C</span><span class="cs-tag">Self-Service</span></div><span class="cs-arrow">View project →</span></div></a></div>'
-  },
-  {
-    // BLACK HOLE — dark with orange accretion disk
-    x:0, y:-3.4, z:0, baseX:0, baseY:-3.4,
-    color:'#220011', glow:'rgba(180,60,220,', glowRad: 2.4,
-    coreR: 0.8, coreColor:'#050210',
-    rings:[
-      {rx:Math.PI*.17,ry:0.05,a:0,   da:0.009, r:2.2,  w:0.32, col:'rgba(220,110,30,'},
-      {rx:Math.PI*.17,ry:0.05,a:0.5, da:0.025, r:1.46, w:0.09, col:'rgba(255,200,100,'},
-      {rx:Math.PI*.17,ry:0.05,a:1.2, da:0.004, r:3.0,  w:0.055,col:'rgba(180,80,10,'},
-      {rx:Math.PI/2,  ry:0,   a:0,   da:0.002, r:1.65, w:0.012,col:'rgba(160,80,220,'},
-      {rx:Math.PI/2,  ry:0,   a:1.2, da:0.002, r:2.15, w:0.012,col:'rgba(140,60,200,'},
-    ],
-    particles:[],
-    labelId:'lf', lY:3.0, li:8, idx:2,
-    name:'Fields · Writing', desc:'Invisible yet shaping everything',
-    focAz:Math.PI*.5, focEl:-.35, focR:9,
-    pCol:'#6ab4b4', pBg:'radial-gradient(ellipse at 50% 4%,rgba(20,80,80,.28),transparent 55%),#06050e',
-    pLbl:'Fundamental Fields', pCap:'Fields permeate all space — thought permeates all things.',
-    pTit:'Words from <em>the nebula</em>',
-    pBdy:'<p class=\"work-intro\">Writing is where I test ideas before they become systems. These are essays on design thinking, process, and the invisible forces that shape how people experience the world.</p><div class=\"wr-list\"><a class=\"wr-item\" href=\"#\" onclick=\"return false\"><div class=\"wr-meta\"><span class=\"wr-date\">2025</span><span class=\"wr-tag\">Design</span></div><div class=\"wr-title\">On designing with restraint — lessons from deep space</div><div class=\"wr-arrow\">Read →</div></a><a class=\"wr-item\" href=\"#\" onclick=\"return false\"><div class=\"wr-meta\"><span class=\"wr-date\">2025</span><span class=\"wr-tag\">Systems</span></div><div class=\"wr-title\">What the cosmic web teaches us about information architecture</div><div class=\"wr-arrow\">Read →</div></a><a class=\"wr-item\" href=\"#\" onclick=\"return false\"><div class=\"wr-meta\"><span class=\"wr-date\">2024</span><span class=\"wr-tag\">Philosophy</span></div><div class=\"wr-title\">Whitespace is not emptiness — it is the shape of thought</div><div class=\"wr-arrow\">Read →</div></a><a class=\"wr-item\" href=\"#\" onclick=\"return false\"><div class=\"wr-meta\"><span class=\"wr-date\">2024</span><span class=\"wr-tag\">Process</span></div><div class=\"wr-title\">The Tao of the blank page: a designer\'s meditation on starting</div><div class=\"wr-arrow\">Read →</div></a><a class=\"wr-item\" href=\"#\" onclick=\"return false\"><div class=\"wr-meta\"><span class=\"wr-date\">2024</span><span class=\"wr-tag\">Research</span></div><div class=\"wr-title\">Why I redesigned my entire process around negative space</div><div class=\"wr-arrow\">Read →</div></a></div>'
-  }
+for(let i=0;i<1400;i++){
+
+  stars.push({
+    x:(Math.random()-0.5)*4000,
+    y:(Math.random()-0.5)*4000,
+    z:Math.random()*2000
+  });
+
+}
+
+let angle = 0;
+
+const nodes = [
+
+{
+  x:-280,
+  y:-40,
+  r:70,
+  color:"#7799ff",
+  label:"About Me",
+  cat:"Energy",
+  content:`
+    <p>
+      I'm a UI/UX designer with 5+ years of experience and a strong foundation in visual design. I started in graphic design and transitioned into UX to focus on solving real user problems. Currently I work on enterprise SaaS products — designing end-to-end workflows, dashboards that simplify complex data, and communication materials that drive user adoption.
+    </p>
+
+    <div class="cards">
+      <div class="card">
+        <h3>UX Design</h3>
+        <p>
+          Designing intuitive systems that reduce friction and improve decision making.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Visual Systems</h3>
+        <p>
+          Creating scalable design languages across products and brands.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Research</h3>
+        <p>
+          Turning user insights into meaningful interaction patterns.
+        </p>
+      </div>
+    </div>
+  `
+},
+
+{
+  x:280,
+  y:-40,
+  r:80,
+  color:"#ff6600",
+  label:"My Work",
+  cat:"Matter",
+  content:`
+    <p>
+      I build interfaces that balance aesthetics, usability,
+      and business goals across enterprise and consumer products.
+    </p>
+
+    <div class="cards">
+
+      <div class="card">
+        <h3>Compliance Command Center</h3>
+        <p>
+          Enterprise monitoring and reporting dashboard system.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Passport Seva Redesign</h3>
+        <p>
+          Simplifying government service workflows for accessibility.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Barclays Dispute Resolution</h3>
+        <p>
+          Improving dispute management experiences in banking systems.
+        </p>
+      </div>
+
+    </div>
+  `
+},
+
+{
+  x:0,
+  y:260,
+  r:75,
+  color:"#b36bff",
+  label:"Writing",
+  cat:"Fields",
+  content:`
+    <p>
+      Writing helps me explore the invisible systems behind design,
+      thought, and human behavior.
+    </p>
+
+    <div class="cards">
+
+      <div class="card">
+        <h3>Whitespace & Thought</h3>
+        <p>
+          Exploring how absence shapes perception and meaning.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Systems & Philosophy</h3>
+        <p>
+          Understanding interfaces as living structures.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Design Process</h3>
+        <p>
+          Essays on iteration, clarity, and creative momentum.
+        </p>
+      </div>
+
+    </div>
+  `
+}
+
 ];
 
-// Apply responsive positions now that bodies are defined
-resize();
-
-// Build particles for each body
-bodies.forEach(function(b) {
-  for (var i = 0; i < 120; i++) {
-    var r = b.coreR*1.2 + Math.random()*(b.glowRad*1.2);
-    var t = Math.random()*Math.PI*2;
-    var a = Math.acos(2*Math.random()-1);
-    b.particles.push({
-      ox: r*Math.sin(a)*Math.cos(t),
-      oy: r*Math.sin(a)*Math.sin(t),
-      oz: r*Math.cos(a),
-      phase: Math.random()*Math.PI*2,
-      speed: Math.random()*0.01+0.002,
-      size: Math.random()*1.5+0.5,
-      bright: Math.random()*0.6+0.3
-    });
-  }
-});
-
-// ─── BEAM DEFINITIONS ─────────────────────────────────────
-var beamDefs = [
-  {from:0, to:1, col:'rgba(170,130,200,', rel:'Energy → Matter', desc:'Thought becomes form. The electric mind crystallises into solid work.'},
-  {from:1, to:2, col:'rgba(200,100,70,',  rel:'Matter → Fields',  desc:'The made object radiates meaning — forces that pull readers in.'},
-  {from:2, to:0, col:'rgba(70,120,180,',  rel:'Fields → Energy',  desc:'Writing feeds back into being. The field regenerates the source.'}
+const labels = [
+  {el:document.getElementById("label0")},
+  {el:document.getElementById("label1")},
+  {el:document.getElementById("label2")}
 ];
 
-// ─── ANIMATION STATE ──────────────────────────────────────
-var tick = 0;
-var revealPhase = 0; // 0=nothing, 1=bodies+stars, 2=labels, 3=beams+tooltips
-var revealTime = 0;  // ticks since enterUniverse
-var hovered = -1; // body index or -1
-var hovBeam = -1;
-var autoIdle = false, idleTmr = null;
-var dragging = false, lastX = 0, lastY = 0;
-var scaleT = [1,1,1]; // target scale per body
-var scaleC = [1,1,1]; // current scale
+const panel = document.getElementById("panel");
+const panelTitle = document.getElementById("panelTitle");
+const panelText = document.getElementById("panelText");
 
-function resetIdle() {
-  if (autoIdle) { autoIdle = false; }
-  clearTimeout(idleTmr);
-  idleTmr = setTimeout(function(){ autoIdle = true; }, 7000);
-}
+nodes.forEach((node,index)=>{
 
-// ─── INPUT ────────────────────────────────────────────────
-cvs.addEventListener('mousedown', function(e){ dragging=true; lastX=e.clientX; lastY=e.clientY; cvs.classList.add('grab'); resetIdle(); });
-window.addEventListener('mouseup', function(){ dragging=false; cvs.classList.remove('grab'); });
-cvs.addEventListener('mousemove', function(e){
-  if(dragging){
-    tAz -= (e.clientX-lastX)*0.005;
-    tEl  = Math.max(-0.7, Math.min(1.1, tEl+(e.clientY-lastY)*0.004));
-    lastX=e.clientX; lastY=e.clientY; resetIdle();
-    document.getElementById('ntt').classList.remove('show');
-    document.getElementById('btt').classList.remove('show');
-    return;
-  }
-  if (revealPhase >= 3) handleHover(e.clientX, e.clientY);
-  else { hovered=-1; hovBeam=-1; }
+  labels[index].el.addEventListener("click",()=>{
+
+    panel.classList.add("open");
+
+    panelTitle.innerHTML = node.label;
+
+    panelText.innerHTML = node.content;
+
+  });
+
 });
-cvs.addEventListener('wheel', function(e){ e.preventDefault(); tDist=Math.max(5,Math.min(28,tDist+e.deltaY*0.02)); resetIdle(); },{passive:false});
-cvs.addEventListener('click', function(e){ handleClick(e.clientX, e.clientY); });
 
-// Touch
-cvs.addEventListener('touchstart',function(e){ if(e.touches.length===1){dragging=true;lastX=e.touches[0].clientX;lastY=e.touches[0].clientY;resetIdle();} e.preventDefault(); },{passive:false});
-window.addEventListener('touchend',function(){ dragging=false; });
-cvs.addEventListener('touchmove',function(e){
-  if(!dragging||e.touches.length!==1)return;
-  tAz-=(e.touches[0].clientX-lastX)*0.005;
-  tEl=Math.max(-0.7,Math.min(1.1,tEl+(e.touches[0].clientY-lastY)*0.004));
-  lastX=e.touches[0].clientX; lastY=e.touches[0].clientY; resetIdle();
-  e.preventDefault();
-},{passive:false});
-cvs.addEventListener('touchend',function(e){
-  if(e.changedTouches.length===1 && !dragging){
-    handleClick(e.changedTouches[0].clientX, e.changedTouches[0].clientY);
-  }
-},{passive:true});
+document.getElementById("closeBtn")
+.addEventListener("click",()=>{
 
-// ─── HIT TEST ─────────────────────────────────────────────
-function bodyScreenPos(b, offY) {
-  var p = project(b.x, b.y + (offY||0), b.z);
-  return p;
-}
+  panel.classList.remove("open");
 
-function hitTestBodies(mx, my) {
-  for (var i = bodies.length-1; i >= 0; i--) {
-    var p = bodyScreenPos(bodies[i]);
-    if (!p) continue;
-    var hitR = bodies[i].glowRad * p.s * scaleC[i];
-    // larger touch target on mobile
-    if (W < 600) hitR *= 1.6;
-    var dx = mx-p.x, dy = my-p.y;
-    if (dx*dx+dy*dy < hitR*hitR) return i;
-  }
-  return -1;
-}
+});
 
-function hitTestBeams(mx, my) {
-  for (var bi = 0; bi < beamDefs.length; bi++) {
-    var bd = beamDefs[bi];
-    var b0 = bodies[bd.from], b1 = bodies[bd.to];
-    var steps = 20;
-    for (var s = 0; s <= steps; s++) {
-      var t = s/steps;
-      var cx = b0.x+(b1.x-b0.x)*t;
-      var cy = b0.y+(b1.y-b0.y)*t + Math.sin(t*Math.PI)*0.9;
-      var cz = b0.z+(b1.z-b0.z)*t;
-      var p = project(cx,cy,cz);
-      if (!p) continue;
-      var dx=mx-p.x, dy=my-p.y;
-      if (dx*dx+dy*dy < 200) return bi;
+function drawStars(){
+
+  ctx.fillStyle="#06050e";
+  ctx.fillRect(0,0,w,h);
+
+  stars.forEach(s=>{
+
+    s.z -= 2;
+
+    if(s.z <= 0){
+      s.z = 2000;
     }
-  }
-  return -1;
-}
 
-function handleHover(mx, my) {
-  var bi = hitTestBodies(mx, my);
-  if (bi >= 0) {
-    hovered = bi; hovBeam = -1;
-    cvs.classList.add('point'); cvs.classList.remove('grab');
-    var b = bodies[bi];
-    document.getElementById('tnm').textContent = b.name;
-    document.getElementById('tnm').style.color = b.pCol;
-    document.getElementById('tds').textContent = b.desc;
-    var ntt = document.getElementById('ntt');
-    ntt.style.left = (mx+14)+'px'; ntt.style.top = (my-44)+'px';
-    ntt.classList.add('show');
-    document.getElementById('btt').classList.remove('show');
-    return;
-  }
-  var bm = hitTestBeams(mx, my);
-  if (bm >= 0) {
-    hovered = -1; hovBeam = bm;
-    cvs.classList.add('point'); cvs.classList.remove('grab');
-    document.getElementById('brl').textContent = beamDefs[bm].rel;
-    document.getElementById('bds').textContent = beamDefs[bm].desc;
-    var btt = document.getElementById('btt');
-    btt.style.left = (mx+14)+'px'; btt.style.top = (my-65)+'px';
-    btt.classList.add('show');
-    document.getElementById('ntt').classList.remove('show');
-    return;
-  }
-  hovered = -1; hovBeam = -1;
-  cvs.classList.remove('point');
-  document.getElementById('ntt').classList.remove('show');
-  document.getElementById('btt').classList.remove('show');
-}
+    const k = 128 / s.z;
 
-function handleClick(mx, my) {
-  var bi = hitTestBodies(mx, my);
-  if (bi >= 0) {
-    var b = bodies[bi];
-    tAz = b.focAz; tEl = b.focEl;
-    tDist = W < 600 ? b.focR + 3 : b.focR; // pull back more on mobile
-    var px = (mx/W*100).toFixed(1)+'%';
-    var py = (my/H*100).toFixed(1)+'%';
-    setTimeout(function(){ openPanel(b, px, py); }, 620);
-    resetIdle(); return;
-  }
-  var bm = hitTestBeams(mx, my);
-  if (bm >= 0) {
-    // flash beam - handled in draw
-    beamFlash = bm;
-    setTimeout(function(){ beamFlash = -1; }, 1200);
-  }
-}
+    const px = s.x * k + w/2;
+    const py = s.y * k + h/2;
 
-var beamFlash = -1;
+    if(px>=0 && px<=w && py>=0 && py<=h){
 
-// ─── PANEL ────────────────────────────────────────────────
-function openPanel(b, px, py) {
-  var p = document.getElementById('pnl');
-  p.style.background = b.pBg;
-  p.style.setProperty('--px', px); p.style.setProperty('--py', py);
-  document.getElementById('plb').textContent = b.pLbl;
-  document.getElementById('plb').style.color = b.pCol;
-  document.getElementById('pcp').textContent = b.pCap;
-  document.getElementById('ptt').innerHTML = b.pTit;
-  document.getElementById('pbd').innerHTML = b.pBdy;
-  // Work panel gets cosmic dark mode overlay
-  if (b.pLbl === 'Matter') {
-    p.classList.add('work-mode');
-  } else {
-    p.classList.remove('work-mode');
-  }
-  requestAnimationFrame(function(){
-    p.classList.add('open');
-    // scroll to top after transition begins
-    setTimeout(function(){ p.scrollTop = 0; }, 100);
-  });
-}
-function closePanel() {
-  var p = document.getElementById('pnl');
-  p.classList.remove('open');
-  p.classList.remove('work-mode');
-  setTimeout(function(){ p.scrollTop = 0; }, 900);
-}
-function openByIdx(idx) {
-  var b = bodies[idx];
-  tAz=b.focAz; tEl=b.focEl;
-  tDist = W < 600 ? b.focR + 3 : b.focR;
-  setTimeout(function(){
-    var p = bodyScreenPos(b);
-    var px = p ? (p.x/W*100).toFixed(1)+'%' : '50%';
-    var py = p ? (p.y/H*100).toFixed(1)+'%' : '50%';
-    openPanel(b, px, py);
-  }, 620);
-}
+      const size = (1-s.z/2000)*2;
 
-// ─── LABELS ───────────────────────────────────────────────
-function updateLabels() {
-  bodies.forEach(function(b) {
-    var p = bodyScreenPos(b, b.lY);
-    var el = document.getElementById(b.labelId);
-    if (!p || p.z < 0 || revealPhase < 2) { el.classList.remove('vis'); return; }
-    el.style.left = p.x+'px'; el.style.top = p.y+'px';
-    el.classList.add('vis');
-    // enable clicks only in phase 3
-    if (revealPhase >= 3) el.classList.add('interactive');
-    else el.classList.remove('interactive');
-  });
-}
-
-// ─── COMPASS ──────────────────────────────────────────────
-function updateCompass() {
-  var deg = Math.round(((camAz%(Math.PI*2))/(Math.PI*2)*360+360)%360);
-  document.getElementById('caz').textContent = 'AZ '+String(deg).padStart(3,'0')+'°';
-  document.getElementById('cel').textContent = 'EL '+Math.round(camEl*180/Math.PI)+'°';
-  document.getElementById('cds').textContent = 'DST '+camDist.toFixed(1);
-}
-
-// ─── DRAW HELPERS ─────────────────────────────────────────
-function drawGlow(p, r, col, alpha) {
-  var gr = ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,r);
-  gr.addColorStop(0, col+alpha+')');
-  gr.addColorStop(1, col+'0)');
-  ctx.beginPath();
-  ctx.arc(p.x, p.y, r, 0, Math.PI*2);
-  ctx.fillStyle = gr;
-  ctx.fill();
-}
-
-function drawRing(cx, cy, r, w, col, alpha, rx, ry, angOffset) {
-  // Draw ellipse to simulate 3D torus ring viewed from an angle
-  // rx,ry are tilt angles; we compute apparent aspect ratio
-  var tiltX = Math.abs(Math.cos(rx + camEl));
-  var tiltY = Math.abs(Math.cos(ry + camAz));
-  var aspect = Math.max(0.08, tiltX*0.5 + tiltY*0.5);
-  var rot = angOffset + camAz*0.3;
-  ctx.save();
-  ctx.translate(cx, cy);
-  ctx.rotate(rot);
-  ctx.beginPath();
-  ctx.ellipse(0, 0, r, r*aspect, 0, 0, Math.PI*2);
-  ctx.strokeStyle = col+alpha+')';
-  ctx.lineWidth = w;
-  ctx.stroke();
-  ctx.restore();
-}
-
-function drawStar(p, r, bright, phase) {
-  if (!p || p.z < 1) return;
-  var tw = Math.sin(tick*p.z*0.01 + phase)*0.5+0.5;
-  var a = bright*(0.4+0.6*tw);
-  ctx.beginPath();
-  ctx.arc(p.x, p.y, r, 0, Math.PI*2);
-  ctx.fillStyle = 'rgba(220,215,200,'+a+')';
-  ctx.fill();
-}
-
-// ─── MAIN DRAW ────────────────────────────────────────────
-function draw() {
-  ctx.clearRect(0, 0, W, H);
-
-  // Background gradient
-  var bg = ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.max(W,H)*0.8);
-  bg.addColorStop(0,  '#0b0920');
-  bg.addColorStop(0.5,'#08061a');
-  bg.addColorStop(1,  '#06050e');
-  ctx.fillStyle = bg;
-  ctx.fillRect(0,0,W,H);
-
-  // Stars
-  stars.forEach(function(s) {
-    var p = project(s.x, s.y, s.z);
-    if (!p || p.z < 1) return;
-    var sz = s.r * (FOV/(p.z+FOV*0.5)) * 0.5;
-    sz = Math.max(0.3, sz);
-    var tw = Math.sin(tick*s.speed + s.phase)*0.5+0.5;
-    var a = s.b*(0.35+0.65*tw);
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, sz, 0, Math.PI*2);
-    ctx.fillStyle = 'rgba(220,215,205,'+a.toFixed(2)+')';
-    ctx.fill();
-  });
-
-  // ── Draw beams — phase 3 only
-  if (revealPhase >= 3) {
-  beamDefs.forEach(function(bd, bIdx) {
-    var b0=bodies[bd.from], b1=bodies[bd.to];
-    var isHov = bIdx===hovBeam || bIdx===beamFlash;
-    var baseA = isHov ? 0.5 : 0.15;
-    ctx.beginPath();
-    var first=true;
-    for(var s=0;s<=40;s++){
-      var t=s/40;
-      var bx=b0.x+(b1.x-b0.x)*t;
-      var by=b0.y+(b1.y-b0.y)*t+Math.sin(t*Math.PI)*0.9;
-      var bz=b0.z+(b1.z-b0.z)*t;
-      var p=project(bx,by,bz);
-      if(!p) continue;
-      if(first){ctx.moveTo(p.x,p.y);first=false;}
-      else ctx.lineTo(p.x,p.y);
-    }
-    ctx.strokeStyle = bd.col+baseA+')';
-    ctx.lineWidth = isHov ? 1.8 : 0.9;
-    ctx.stroke();
-  });
-  } // end revealPhase >= 3 beams
-
-  // ── Draw bodies (back to front by Z)
-  var sorted = [0,1,2].sort(function(a,b){
-    var pa=project(bodies[a].x,bodies[a].y,bodies[a].z);
-    var pb=project(bodies[b].x,bodies[b].y,bodies[b].z);
-    return (pb?pb.z:0)-(pa?pa.z:0);
-  });
-
-  sorted.forEach(function(i) {
-    var b = bodies[i];
-    var p = project(b.x, b.y, b.z);
-    if (!p) return;
-    var sc = scaleC[i];
-    var isHov = i===hovered;
-
-    // outer glow
-    var glowR = b.glowRad * p.s * sc;
-    drawGlow(p, glowR*1.4, b.glow, isHov?0.16:0.08);
-    drawGlow(p, glowR,     b.glow, isHov?0.28:0.14);
-
-    // rings
-    b.rings.forEach(function(ring, ri) {
-      ring.a += ring.da * (isHov ? 1.5 : 1);
-      var rPx = ring.r * p.s * sc;
-      var wPx = Math.max(0.5, ring.w * p.s * sc);
-      var a = isHov ? 0.75 : 0.45;
-      drawRing(p.x, p.y, rPx, wPx, ring.col, a, ring.rx, ring.ry, ring.a);
-    });
-
-    // particles
-    b.particles.forEach(function(pt) {
-      pt.phase += pt.speed;
-      // slowly orbit around body
-      var ox = pt.ox*Math.cos(pt.phase*0.3) - pt.oz*Math.sin(pt.phase*0.3);
-      var oy = pt.oy;
-      var oz = pt.ox*Math.sin(pt.phase*0.3) + pt.oz*Math.cos(pt.phase*0.3);
-      var pp = project(b.x+ox*sc, b.y+oy*sc, b.z+oz*sc);
-      if (!pp || pp.z < 0.5) return;
-      var sz = Math.max(0.5, pt.size * (FOV/(pp.z+FOV*0.5)) * 0.5);
-      var a = pt.bright*(isHov?0.9:0.55)*(Math.sin(pt.phase*2+pt.phase)*0.4+0.6);
+      ctx.fillStyle="rgba(255,255,255,.8)";
       ctx.beginPath();
-      ctx.arc(pp.x, pp.y, sz, 0, Math.PI*2);
-      ctx.fillStyle = b.glow+a.toFixed(2)+')';
+      ctx.arc(px,py,size,0,Math.PI*2);
       ctx.fill();
-    });
 
-    // core sphere — draw as glowing disc with gradient
-    var cR = b.coreR * p.s * sc;
-    cR = Math.max(2, cR);
-
-    if (i === 2) {
-      // Black hole: dark core
-      var bhGr = ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,cR);
-      bhGr.addColorStop(0,   '#010108');
-      bhGr.addColorStop(0.7, '#030215');
-      bhGr.addColorStop(1,   'rgba(20,5,30,0)');
-      ctx.beginPath(); ctx.arc(p.x,p.y,cR,0,Math.PI*2);
-      ctx.fillStyle = bhGr; ctx.fill();
-    } else {
-      // Glowing core
-      var cGr = ctx.createRadialGradient(p.x-cR*0.25,p.y-cR*0.25,0,p.x,p.y,cR);
-      cGr.addColorStop(0,   '#ffffff');
-      cGr.addColorStop(0.2, b.coreColor);
-      cGr.addColorStop(0.7, b.color);
-      cGr.addColorStop(1,   b.glow+'0)');
-      ctx.beginPath(); ctx.arc(p.x,p.y,cR,0,Math.PI*2);
-      ctx.fillStyle = cGr; ctx.fill();
-
-      // Specular highlight
-      var spec = ctx.createRadialGradient(p.x-cR*0.3,p.y-cR*0.35,0,p.x-cR*0.2,p.y-cR*0.2,cR*0.5);
-      spec.addColorStop(0,'rgba(255,255,255,0.45)');
-      spec.addColorStop(1,'rgba(255,255,255,0)');
-      ctx.beginPath(); ctx.arc(p.x,p.y,cR,0,Math.PI*2);
-      ctx.fillStyle = spec; ctx.fill();
     }
+
   });
+
 }
 
-// ─── SOUND ────────────────────────────────────────────────
-var actx=null, sndOn=false, sndNodes={}, activeSnd=null;
-var sndDef={0:{f:110,t:'sine',g:.036},1:{f:80,t:'sawtooth',g:.020},2:{f:55,t:'sine',g:.030}};
-function toggleSound(){
-  if(!actx){try{actx=new(window.AudioContext||window.webkitAudioContext)();}catch(e){return;}}
-  sndOn=!sndOn;
-  document.getElementById('sndbtn').textContent=sndOn?'♪ Sound On':'♪ Sound Off';
-  if(!sndOn) stopSnd();
-}
-function playSnd(id){
-  if(!sndOn||!actx||activeSnd===id) return; stopSnd();
-  if(!sndNodes[id]){try{var o=actx.createOscillator(),g=actx.createGain();o.type=sndDef[id].t;o.frequency.value=sndDef[id].f;g.gain.value=0;o.connect(g);g.connect(actx.destination);o.start();sndNodes[id]={o:o,g:g};}catch(e){return;}}
-  sndNodes[id].g.gain.cancelScheduledValues(actx.currentTime);
-  sndNodes[id].g.gain.linearRampToValueAtTime(sndDef[id].g,actx.currentTime+.4);
-  activeSnd=id;
-}
-function stopSnd(){
-  if(!actx)return;
-  Object.keys(sndNodes).forEach(function(k){try{sndNodes[k].g.gain.cancelScheduledValues(actx.currentTime);sndNodes[k].g.gain.linearRampToValueAtTime(0,actx.currentTime+.5);}catch(e){}});
-  activeSnd=null;
-}
+function drawConnections(){
 
-// ─── ENTER UNIVERSE ───────────────────────────────────────
-var _entered = false;
-function enterUniverse() {
-  if(_entered) return; _entered=true;
-  var ob=document.getElementById('ob'), fl=document.getElementById('wf');
-  ob.style.pointerEvents='none';
-  fl.classList.add('on');
-  requestAnimationFrame(function(){ ob.classList.add('gone'); });
-  setTimeout(function(){ fl.classList.remove('on'); },150);
-  setTimeout(function(){
-    ob.style.display='none';
-    revealPhase = 1; // Phase 1: stars + bodies only
-    autoIdle=true; resetIdle();
-    setTimeout(function(){ autoIdle=false; resetIdle(); },3500);
+  ctx.strokeStyle="rgba(255,255,255,.08)";
+  ctx.lineWidth=1;
 
-    // Phase 2: fade in labels after 3 seconds
-    setTimeout(function(){ revealPhase = 2; }, 3000);
+  for(let i=0;i<nodes.length;i++){
 
-    // Phase 3: enable beams + tooltips after 5.5 seconds
-    setTimeout(function(){ revealPhase = 3; }, 5500);
-  },1050);
-}
-window.addEventListener('keydown',function(e){if((e.key===' '||e.key==='Enter')&&!_entered)enterUniverse();});
+    for(let j=i+1;j<nodes.length;j++){
 
-// ─── MAIN LOOP ────────────────────────────────────────────
-function loop() {
-  requestAnimationFrame(loop);
-  tick += 0.01;
+      const a = nodes[i];
+      const b = nodes[j];
 
-  // Idle auto-orbit
-  if(autoIdle && !dragging){
-    tAz += 0.003;
-    tEl  = 0.18 + 0.08*Math.sin(tick*0.28);
-    tDist= 14 + 0.6*Math.sin(tick*0.16);
+      ctx.beginPath();
+
+      ctx.moveTo(w/2+a.x,h/2+a.y);
+
+      ctx.quadraticCurveTo(
+        w/2,
+        h/2-100,
+        w/2+b.x,
+        h/2+b.y
+      );
+
+      ctx.stroke();
+
+    }
+
   }
 
-  // Smooth camera lerp
-  camAz   += (tAz   - camAz)  * 0.07;
-  camEl   += (tEl   - camEl)  * 0.07;
-  camDist += (tDist - camDist)* 0.07;
-
-  // Scale targets
-  for(var i=0;i<3;i++){
-    scaleT[i] = i===hovered ? 1.18 : 1.0;
-    scaleC[i] += (scaleT[i]-scaleC[i])*0.09;
-  }
-
-  // Sound
-  if(hovered>=0 && sndOn) playSnd(hovered);
-  else if(hovered<0) stopSnd();
-
-  draw();
-  updateLabels();
-  updateCompass();
 }
 
-loop();
-resetIdle();
+function drawNodes(){
+
+  nodes.forEach((node,index)=>{
+
+    const pulse = Math.sin(angle+index)*4;
+
+    const x = w/2 + node.x;
+    const y = h/2 + node.y;
+
+    const grad = ctx.createRadialGradient(
+      x,y,0,
+      x,y,node.r+30+pulse
+    );
+
+    grad.addColorStop(0,node.color);
+    grad.addColorStop(1,"transparent");
+
+    ctx.beginPath();
+    ctx.fillStyle = grad;
+    ctx.arc(x,y,node.r+30+pulse,0,Math.PI*2);
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.fillStyle=node.color;
+    ctx.arc(x,y,node.r,0,Math.PI*2);
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.fillStyle="rgba(255,255,255,.9)";
+    ctx.arc(x-node.r*.2,y-node.r*.2,node.r*.2,0,Math.PI*2);
+    ctx.fill();
+
+    labels[index].el.style.left = x+"px";
+    labels[index].el.style.top = (y-node.r-40)+"px";
+
+  });
+
+}
+
+function animate(){
+
+  requestAnimationFrame(animate);
+
+  angle += .01;
+
+  drawStars();
+
+  if(started){
+
+    drawConnections();
+
+    drawNodes();
+
+  }
+
+}
+
+animate();
 </script>
+
 </body>
 </html>
