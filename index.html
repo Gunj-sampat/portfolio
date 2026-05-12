@@ -11,7 +11,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#06050e;font-family:
 :root{
   --gold:#c8a97e;--rose:#c47a8a;--teal:#6ab4b4;--lilac:#9b8fc4;
   --bright:#f0ece4;--muted:rgba(220,210,200,.55);--dim:rgba(200,190,180,.3);
-  --mono:'DM Mono',monospace;
+  --mono:'DM Mono',monospace;--serif:'Cormorant Garamond',Georgia,serif;
 }
 #wrap{position:relative;width:100vw;height:100vh;overflow:hidden}
 #c{position:absolute;top:0;left:0;display:block;cursor:grab}
@@ -78,7 +78,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#06050e;font-family:
 #lm{color:var(--rose)}#lm .nl{background:var(--rose)}
 #lf{color:var(--teal)}#lf .nl{background:var(--teal)}
 
-/* TOOLTIPS — hidden until phase 3 */
+/* TOOLTIPS */
 #ntt,#btt{position:absolute;z-index:30;pointer-events:none;background:rgba(6,5,14,.95);
   border:1px solid rgba(255,255,255,.1);padding:.55rem .85rem;opacity:0;
   transition:opacity .22s;font-family:var(--mono);max-width:210px}
@@ -88,9 +88,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#06050e;font-family:
 .brl{font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--lilac);margin-bottom:3px}
 .bds{font-size:.9rem;font-weight:300;color:var(--bright);line-height:1.5}
 
-/* ══ ABOUT PANEL — PREMIUM REDESIGN ══════════════════════════ */
-
-/* Hero split */
+/* ══ ABOUT PANEL ══ */
 .ao-hero{display:grid;grid-template-columns:1fr 280px;gap:4rem;align-items:center;
   padding:0 0 3.5rem;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:3.5rem}
 .ao-hero-left{display:flex;flex-direction:column}
@@ -111,8 +109,6 @@ html,body{width:100%;height:100%;overflow:hidden;background:#06050e;font-family:
   padding:.75rem 1.8rem;text-decoration:none;
   transition:border-color .3s,color .3s,letter-spacing .3s,transform .2s;display:inline-flex;align-items:center}
 .ao-btn-ghost:hover{border-color:rgba(255,255,255,.6);letter-spacing:.34em;transform:translateY(-2px)}
-
-/* Avatar */
 .ao-avatar-wrap{display:flex;flex-direction:column;align-items:center;gap:1rem}
 .ao-avatar{width:200px;height:200px;border-radius:50%;overflow:hidden}
 .ao-avatar svg{display:block;width:100%;height:100%}
@@ -121,8 +117,6 @@ html,body{width:100%;height:100%;overflow:hidden;background:#06050e;font-family:
 .ao-avail-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;
   box-shadow:0 0 6px rgba(74,222,128,.7);animation:pulse-dot 2s infinite}
 @keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.45}}
-
-/* Stats bar */
 .ao-stats{display:flex;align-items:center;justify-content:space-between;
   padding:2rem 0;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:3.5rem}
 .ao-stat-item{display:flex;flex-direction:column;align-items:center;gap:.35rem;flex:1}
@@ -131,51 +125,34 @@ html,body{width:100%;height:100%;overflow:hidden;background:#06050e;font-family:
 .ao-sl{font-family:var(--mono);font-size:7.5px;letter-spacing:.2em;
   text-transform:uppercase;color:var(--dim);text-align:center}
 .ao-sdiv{width:1px;height:44px;background:rgba(255,255,255,.07)}
-
-/* Two-column layout */
 .ao-twocol{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;margin-bottom:3.5rem}
 .ao-twocol.mt3{margin-top:3.5rem}
-
-/* Section label */
 .ao-sec-lbl{font-family:var(--mono);font-size:8px;letter-spacing:.4em;text-transform:uppercase;
   color:var(--gold);margin-bottom:1.4rem;display:flex;align-items:center;gap:.8rem}
 .ao-sec-lbl::after{content:'';flex:1;height:1px;background:rgba(200,169,126,.15)}
-
-/* Bio */
 .ao-bio{font-family:var(--serif);font-size:1rem;font-weight:300;color:var(--muted);line-height:1.9}
 .ao-bio.mt{margin-top:1rem}
-
-/* Skill chips */
 .ao-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:1.6rem}
 .ao-chip{font-family:var(--mono);font-size:7.5px;letter-spacing:.14em;text-transform:uppercase;
   color:rgba(200,190,180,.55);border:1px solid rgba(200,190,180,.18);padding:.28rem .75rem;
   border-radius:999px;transition:color .3s,border-color .3s,background .3s}
-.ao-chip:hover{color:var(--gold);border-color:rgba(200,169,126,.5);
-  background:rgba(200,169,126,.06)}
-
-/* Toolkit */
+.ao-chip:hover{color:var(--gold);border-color:rgba(200,169,126,.5);background:rgba(200,169,126,.06)}
 .ao-tools{display:flex;flex-direction:column}
 .ao-tr{display:grid;grid-template-columns:80px 1fr;gap:.75rem;
   padding:.65rem 0;border-bottom:1px solid rgba(255,255,255,.05);align-items:baseline}
 .ao-tr:first-child{border-top:1px solid rgba(255,255,255,.05)}
-.ao-tc{font-family:var(--mono);font-size:7.5px;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--dim)}
+.ao-tc{font-family:var(--mono);font-size:7.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
 .ao-tv{font-family:var(--serif);font-size:.9rem;font-weight:300;color:var(--muted);line-height:1.5}
-
-/* Experience */
 .ao-section{margin-bottom:3.5rem}
 .ao-exp-list{display:flex;flex-direction:column;gap:0}
 .ao-exp{display:grid;grid-template-columns:220px 1fr;gap:3rem;
-  padding:2.2rem 0;border-bottom:1px solid rgba(255,255,255,.06);
-  transition:background .3s}
+  padding:2.2rem 0;border-bottom:1px solid rgba(255,255,255,.06);transition:background .3s}
 .ao-exp:first-child{border-top:1px solid rgba(255,255,255,.06)}
 .ao-exp:hover{background:rgba(255,255,255,.015)}
 .ao-exp-l{display:flex;flex-direction:column;gap:.35rem;padding-top:.1rem}
 .ao-exp-co{font-family:var(--serif);font-size:1.05rem;font-weight:400;color:var(--bright)}
-.ao-exp-role{font-family:var(--mono);font-size:8px;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--rose)}
-.ao-exp-per{font-family:var(--mono);font-size:7.5px;letter-spacing:.1em;
-  color:var(--dim);margin-top:.2rem;line-height:1.5}
+.ao-exp-role{font-family:var(--mono);font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--rose)}
+.ao-exp-per{font-family:var(--mono);font-size:7.5px;letter-spacing:.1em;color:var(--dim);margin-top:.2rem;line-height:1.5}
 .ao-pts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.6rem}
 .ao-pts li{font-family:var(--serif);font-size:.96rem;font-weight:300;
   color:var(--muted);line-height:1.75;padding-left:1.1rem;position:relative}
@@ -183,28 +160,18 @@ html,body{width:100%;height:100%;overflow:hidden;background:#06050e;font-family:
 .ao-lnk{color:var(--gold);text-decoration:none;
   border-bottom:1px solid rgba(200,169,126,.28);transition:border-color .2s,color .2s}
 .ao-lnk:hover{color:#e0c090;border-color:rgba(200,169,126,.8)}
-
-/* Education */
 .ao-edu-list{display:flex;flex-direction:column}
 .ao-edu{padding:.9rem 0;border-bottom:1px solid rgba(255,255,255,.05)}
 .ao-edu:first-child{border-top:1px solid rgba(255,255,255,.05)}
-.ao-edu-deg{font-family:var(--serif);font-size:1rem;font-weight:300;color:var(--bright);
-  margin-bottom:.2rem}
-.ao-grade{font-family:var(--mono);font-size:8px;letter-spacing:.1em;color:var(--gold);
-  margin-left:.4rem}
+.ao-edu-deg{font-family:var(--serif);font-size:1rem;font-weight:300;color:var(--bright);margin-bottom:.2rem}
+.ao-grade{font-family:var(--mono);font-size:8px;letter-spacing:.1em;color:var(--gold);margin-left:.4rem}
 .ao-edu-inst{font-family:var(--serif);font-size:.88rem;font-weight:300;color:var(--muted)}
-.ao-edu-yr{font-family:var(--mono);font-size:7.5px;letter-spacing:.12em;
-  color:var(--dim);margin-top:.15rem}
-
-/* Certifications */
+.ao-edu-yr{font-family:var(--mono);font-size:7.5px;letter-spacing:.12em;color:var(--dim);margin-top:.15rem}
 .ao-cert-list{display:flex;flex-direction:column}
 .ao-cert{padding:.9rem 0;border-bottom:1px solid rgba(255,255,255,.05)}
 .ao-cert:first-child{border-top:1px solid rgba(255,255,255,.05)}
 .ao-cert-nm{font-family:var(--serif);font-size:1rem;font-weight:300;color:var(--bright)}
-.ao-cert-meta{font-family:var(--mono);font-size:7.5px;letter-spacing:.1em;
-  color:var(--dim);margin-top:.3rem}
-
-/* Portfolio links */
+.ao-cert-meta{font-family:var(--mono);font-size:7.5px;letter-spacing:.1em;color:var(--dim);margin-top:.3rem}
 .ao-links{margin-top:3.5rem;padding-top:3rem;border-top:1px solid rgba(255,255,255,.07)}
 .ao-links-row{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:.5rem}
 .ao-pl{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.4rem;
@@ -214,48 +181,64 @@ html,body{width:100%;height:100%;overflow:hidden;background:#06050e;font-family:
 .ao-pl::before{content:'';position:absolute;inset:0;
   background:radial-gradient(ellipse at 0% 50%,rgba(200,169,126,.07),transparent 65%);
   opacity:0;transition:opacity .35s}
-.ao-pl:hover{background:rgba(200,169,126,.05);border-color:rgba(200,169,126,.28);
-  transform:translateY(-2px)}
+.ao-pl:hover{background:rgba(200,169,126,.05);border-color:rgba(200,169,126,.28);transform:translateY(-2px)}
 .ao-pl:hover::before{opacity:1}
-.ao-pl-icon{font-family:var(--serif);font-size:1.2rem;font-weight:400;color:var(--gold);
-  min-width:28px;text-align:center;line-height:1}
+.ao-pl-icon{font-family:var(--serif);font-size:1.2rem;font-weight:400;color:var(--gold);min-width:28px;text-align:center;line-height:1}
 .ao-pl-info{display:flex;flex-direction:column;gap:.2rem;flex:1}
-.ao-pl-lbl{font-family:var(--mono);font-size:8px;letter-spacing:.22em;
-  text-transform:uppercase;color:var(--dim)}
+.ao-pl-lbl{font-family:var(--mono);font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim)}
 .ao-pl-url{font-family:var(--serif);font-size:.95rem;font-weight:300;color:var(--gold)}
 .ao-pl-arr{font-size:1rem;color:var(--dim);transition:color .3s,transform .3s}
 .ao-pl:hover .ao-pl-arr{color:var(--gold);transform:translate(2px,-2px)}
-
-/* Col shorthand */
 .ao-col{}
-/* ── MOBILE: About + Writing ── */
-@media(max-width:600px){
-  /* About hero */
-  .ao-hero{grid-template-columns:1fr;gap:2.5rem;padding-bottom:2.5rem}
-  .ao-hero-right{justify-content:flex-start}
-  .ao-avatar{width:140px;height:140px}
-  .ao-name{font-size:3rem}
-  .ao-hero-cta{flex-direction:column;gap:.75rem}
-  .ao-btn-primary,.ao-btn-ghost{justify-content:center;padding:.7rem 1.4rem}
-  /* Stats */
-  .ao-stats{flex-wrap:wrap;gap:1.5rem;justify-content:flex-start}
-  .ao-sdiv{display:none}
-  .ao-stat-item{align-items:flex-start;min-width:calc(50% - .75rem)}
-  /* Two-col */
-  .ao-twocol{grid-template-columns:1fr;gap:2.5rem}
-  /* Exp */
-  .ao-exp{grid-template-columns:1fr;gap:1rem}
-  .ao-exp-l{flex-direction:row;flex-wrap:wrap;align-items:baseline;gap:.5rem}
-  .ao-exp-co{flex:0 0 100%}
-  /* Links grid */
-  .ao-links-row{grid-template-columns:1fr}
-  /* Toolkit */
-  .ao-tr{grid-template-columns:75px 1fr}
-  /* Writing */
-  .wr-item{grid-template-columns:1fr auto;gap:1rem}
-  .wr-meta{flex-direction:row;align-items:center;gap:.5rem;grid-column:1/-1;margin-bottom:-.5rem}
-  .wr-title{font-size:.92rem}
-}
+
+/* ══ WORK PANEL ══ */
+.work-intro{font-family:var(--serif);font-size:1.05rem;font-weight:300;color:var(--muted);
+  line-height:1.9;margin-bottom:3rem;max-width:62ch}
+.cs-container{display:flex;flex-direction:column;gap:2px}
+.cs-card{display:grid;grid-template-columns:280px 1fr;text-decoration:none;
+  background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);
+  transition:background .35s,border-color .35s,transform .25s;overflow:hidden;position:relative}
+.cs-card:first-child{border-radius:14px 14px 0 0}
+.cs-card:last-child{border-radius:0 0 14px 14px}
+.cs-card:hover{background:rgba(255,255,255,.045);border-color:rgba(255,255,255,.14);transform:translateX(3px)}
+.cs-visual{display:flex;align-items:center;justify-content:center;
+  min-height:180px;padding:36px 28px;border-right:1px solid rgba(255,255,255,.06)}
+.cs-v1{background:radial-gradient(ellipse at 40% 40%,rgba(200,169,126,.06),transparent 65%)}
+.cs-v2{background:radial-gradient(ellipse at 40% 40%,rgba(106,180,180,.06),transparent 65%)}
+.cs-v3{background:radial-gradient(ellipse at 40% 40%,rgba(155,143,196,.06),transparent 65%)}
+.cs-v4{background:radial-gradient(ellipse at 40% 40%,rgba(196,122,138,.06),transparent 65%)}
+.cs-glyph{width:110px;height:110px}
+.cs-glyph svg{width:100%;height:100%}
+.cs-content{padding:32px 36px;display:flex;flex-direction:column;gap:12px;justify-content:center}
+.cs-num{font-family:var(--mono);font-size:8px;letter-spacing:.3em;color:var(--dim);text-transform:uppercase}
+.cs-title{font-family:var(--serif);font-size:1.35rem;font-weight:300;color:var(--bright);line-height:1.3;max-width:38ch}
+.cs-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
+.cs-tag{font-family:var(--mono);font-size:7px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(200,190,180,.45);border:1px solid rgba(200,190,180,.14);
+  padding:.22rem .65rem;border-radius:999px}
+.cs-arrow{font-family:var(--mono);font-size:8px;letter-spacing:.18em;color:var(--rose);
+  text-transform:uppercase;margin-top:6px;transition:letter-spacing .3s}
+.cs-card:hover .cs-arrow{letter-spacing:.28em}
+
+/* ══ WRITING PANEL ══ */
+.wr-list{display:flex;flex-direction:column;gap:0;margin-top:2rem}
+.wr-item{display:grid;grid-template-columns:auto 1fr auto;gap:1.5rem;align-items:center;
+  padding:1.6rem 0;border-bottom:1px solid rgba(255,255,255,.05);text-decoration:none;
+  transition:background .25s}
+.wr-item:first-child{border-top:1px solid rgba(255,255,255,.05)}
+.wr-item:hover{background:rgba(255,255,255,.012)}
+.wr-meta{display:flex;flex-direction:column;gap:4px;align-items:flex-end;min-width:54px}
+.wr-date{font-family:var(--mono);font-size:7.5px;letter-spacing:.12em;color:var(--dim)}
+.wr-tag{font-family:var(--mono);font-size:6.5px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--teal);opacity:.7}
+.wr-title{font-family:var(--serif);font-size:1.08rem;font-weight:300;color:var(--muted);line-height:1.6;
+  transition:color .25s}
+.wr-item:hover .wr-title{color:var(--bright)}
+.wr-arrow{font-family:var(--mono);font-size:7.5px;letter-spacing:.15em;color:var(--dim);
+  white-space:nowrap;transition:color .25s,transform .25s}
+.wr-item:hover .wr-arrow{color:var(--teal);transform:translateX(3px)}
+
+/* PANEL BASE */
 #pnl{position:absolute;inset:0;z-index:50;pointer-events:none;
   clip-path:circle(0% at var(--px,50%) var(--py,50%));
   transition:clip-path .88s cubic-bezier(.18,0,.08,1);
@@ -275,15 +258,14 @@ html,body{width:100%;height:100%;overflow:hidden;background:#06050e;font-family:
   text-transform:uppercase;margin-bottom:1.8rem;margin-left:11px}
 .ptt{font-size:clamp(2rem,5vw,4rem);font-weight:300;line-height:1.1;margin-bottom:2rem;color:var(--bright)}
 .ptt em{font-style:italic}
-/* pbd: no max-width — inner components control their own widths */
 .pbd{font-size:1rem;font-weight:300;color:var(--muted);line-height:1.95}
 .pbd strong{color:var(--bright);font-weight:400}
 
 @keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 @keyframes blk{0%,100%{opacity:.06}50%{opacity:.3}}
 
-/* ── MOBILE RESPONSIVE ── */
-@media (max-width:600px){
+/* ── MOBILE ── */
+@media(max-width:600px){
   .obl{font-size:1rem;line-height:1.85}
   #obbtn{font-size:9px;letter-spacing:.32em;padding:.8rem 2rem}
   .lmk{font-size:8px;letter-spacing:.22em}
@@ -298,7 +280,23 @@ html,body{width:100%;height:100%;overflow:hidden;background:#06050e;font-family:
   #pi{padding:1.8rem 1rem 4rem}
   .ptt{font-size:1.8rem}
   .pbk{font-size:7.5px;padding:.45rem 1rem}
-  /* Cards stack on mobile */
+  /* About hero */
+  .ao-hero{grid-template-columns:1fr;gap:2.5rem;padding-bottom:2.5rem}
+  .ao-hero-right{justify-content:flex-start}
+  .ao-avatar{width:140px;height:140px}
+  .ao-name{font-size:3rem}
+  .ao-hero-cta{flex-direction:column;gap:.75rem}
+  .ao-btn-primary,.ao-btn-ghost{justify-content:center;padding:.7rem 1.4rem}
+  .ao-stats{flex-wrap:wrap;gap:1.5rem;justify-content:flex-start}
+  .ao-sdiv{display:none}
+  .ao-stat-item{align-items:flex-start;min-width:calc(50% - .75rem)}
+  .ao-twocol{grid-template-columns:1fr;gap:2.5rem}
+  .ao-exp{grid-template-columns:1fr;gap:1rem}
+  .ao-exp-l{flex-direction:row;flex-wrap:wrap;align-items:baseline;gap:.5rem}
+  .ao-exp-co{flex:0 0 100%}
+  .ao-links-row{grid-template-columns:1fr}
+  .ao-tr{grid-template-columns:75px 1fr}
+  /* Work cards */
   .cs-card{grid-template-columns:1fr}
   .cs-card:first-child{border-radius:14px 14px 0 0}
   .cs-card:last-child{border-radius:0 0 14px 14px}
@@ -307,6 +305,10 @@ html,body{width:100%;height:100%;overflow:hidden;background:#06050e;font-family:
   .cs-content{padding:24px 20px;gap:10px}
   .cs-title{font-size:1.1rem;max-width:100%}
   .cs-container{gap:2px}
+  /* Writing */
+  .wr-item{grid-template-columns:1fr auto;gap:1rem}
+  .wr-meta{flex-direction:row;align-items:center;gap:.5rem;grid-column:1/-1;margin-bottom:-.5rem}
+  .wr-title{font-size:.92rem}
 }
 </style>
 </head>
@@ -317,7 +319,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#06050e;font-family:
 
   <div id="ob">
     <p class="obl">You are inside <em>a system of thought.</em></p>
-    <p class="obl">Three forces hold the universe together —<br>energy, matter, and the fields between them.</p>
+    <p class="obl">Three forces hold the universe together &mdash;<br>energy, matter, and the fields between them.</p>
     <p class="obl">Choose one <em>to begin.</em></p>
     <div class="odv"></div>
     <button id="obbtn" onclick="enterUniverse()">Enter the universe</button>
@@ -325,24 +327,24 @@ html,body{width:100%;height:100%;overflow:hidden;background:#06050e;font-family:
 
   <div id="hud">
     <div id="logo"><div class="lmk">My Whitespace</div><div class="lsb">Explore the three dimensions</div></div>
-    <button id="sndbtn" onclick="toggleSound()">♪ Sound Off</button>
-    <div class="nlb" id="le" onclick="openByIdx(0)"><span class="nc">Energy</span><span class="nn">About Me</span><span class="ns">Designer · Thinker</span><div class="nl"></div></div>
-    <div class="nlb" id="lm" onclick="openByIdx(1)"><span class="nc">Matter</span><span class="nn">My Work</span><span class="ns">Brand · Type · Digital</span><div class="nl"></div></div>
-    <div class="nlb" id="lf" onclick="openByIdx(2)"><span class="nc">Fields</span><span class="nn">Writing</span><span class="ns">Essays · Philosophy</span><div class="nl"></div></div>
+    <button id="sndbtn" onclick="toggleSound()">&#9834; Sound Off</button>
+    <div class="nlb" id="le" onclick="openByIdx(0)"><span class="nc">Energy</span><span class="nn">About Me</span><span class="ns">Designer &middot; Thinker</span><div class="nl"></div></div>
+    <div class="nlb" id="lm" onclick="openByIdx(1)"><span class="nc">Matter</span><span class="nn">My Work</span><span class="ns">Brand &middot; Type &middot; Digital</span><div class="nl"></div></div>
+    <div class="nlb" id="lf" onclick="openByIdx(2)"><span class="nc">Fields</span><span class="nn">Writing</span><span class="ns">Essays &middot; Philosophy</span><div class="nl"></div></div>
     <div id="ntt"><div class="tnm" id="tnm"></div><div class="tds" id="tds"></div></div>
     <div id="btt"><div class="brl" id="brl"></div><div class="bds" id="bds"></div></div>
     <div id="lgd">
-      <div class="lgr"><div class="lgd2" style="background:var(--gold)"></div>Energy · About Me</div>
-      <div class="lgr"><div class="lgd2" style="background:var(--rose)"></div>Matter · Work</div>
-      <div class="lgr"><div class="lgd2" style="background:var(--teal)"></div>Fields · Writing</div>
+      <div class="lgr"><div class="lgd2" style="background:var(--gold)"></div>Energy &middot; About Me</div>
+      <div class="lgr"><div class="lgd2" style="background:var(--rose)"></div>Matter &middot; Work</div>
+      <div class="lgr"><div class="lgd2" style="background:var(--teal)"></div>Fields &middot; Writing</div>
     </div>
-    <div id="cmp"><div id="caz">AZ 000°</div><div id="cel">EL +10°</div><div id="cds">DST 14.0</div></div>
+    <div id="cmp"><div id="caz">AZ 000&deg;</div><div id="cel">EL +10&deg;</div><div id="cds">DST 14.0</div></div>
     <div id="hint">Explore the three dimensions</div>
   </div>
 
   <div id="pnl">
     <div id="pi">
-      <button class="pbk" onclick="closePanel()">← return to universe</button>
+      <button class="pbk" onclick="closePanel()">&larr; return to universe</button>
       <p class="plb" id="plb"></p><p class="pcp" id="pcp"></p>
       <h2 class="ptt" id="ptt"></h2><div class="pbd" id="pbd"></div>
     </div>
@@ -362,16 +364,13 @@ function resize() {
   H = window.innerHeight;
   cvs.width  = W;
   cvs.height = H;
-  // FOV scales with screen width so glows/bodies stay proportional on all devices
   FOV = Math.max(160, W * 0.43);
-  // Reposition bodies based on screen width
   if (typeof bodies !== 'undefined') {
-    var sp = W < 600 ? 0.72 : 1.0; // mobile: 72% spread
+    var sp = W < 600 ? 0.72 : 1.0;
     bodies.forEach(function(b) {
       b.x = b.baseX * sp;
       b.y = b.baseY * sp;
     });
-    // Wider initial camera pull-back on mobile so all 3 fit
     tDist = W < 600 ? 18 : 14;
     camDist = tDist;
   }
@@ -380,28 +379,18 @@ resize();
 window.addEventListener('resize', function() { resize(); buildStars(); });
 
 // ─── 3D PROJECTION ────────────────────────────────────────
-// Camera orbits around origin
 var camAz = 0, camEl = 0.18, camDist = 14;
 var tAz = 0, tEl = 0.18, tDist = 14;
-
-// Responsive body spread — tighter on mobile
-function bodySpread() { return W < 600 ? 3.8 : 5.0; }
-function bodyStartDist() { return W < 600 ? 16 : 14; }
-// FOV is set dynamically in resize() below — scales with screen width
 var FOV = 520;
 
 function project(x3, y3, z3) {
-  // rotate by azimuth
   var cosA = Math.cos(-camAz), sinA = Math.sin(-camAz);
   var rx = x3*cosA - z3*sinA;
   var rz = x3*sinA + z3*cosA;
-  // rotate by elevation
   var cosE = Math.cos(-camEl), sinE = Math.sin(-camEl);
   var ry2 = y3*cosE - rz*sinE;
   var rz2 = y3*sinE + rz*cosE;
-  // translate camera
   rz2 += camDist;
-  // perspective divide
   if (rz2 < 0.1) return null;
   var scale = FOV / rz2;
   return { x: W/2 + rx*scale, y: H/2 - ry2*scale, z: rz2, s: scale };
@@ -428,10 +417,191 @@ function buildStars() {
 }
 buildStars();
 
+// ─── PANEL HTML STRINGS ───────────────────────────────────
+// Stored as functions to avoid JS string escaping issues
+function aboutHTML() {
+  return '<div class="ao-hero">'
+    + '<div class="ao-hero-left">'
+    + '<div class="ao-eyebrow">UI/UX Designer &nbsp;&middot;&nbsp; Mumbai, India</div>'
+    + '<h1 class="ao-name">Gunj<br>Sampat</h1>'
+    + '<p class="ao-tagline">Transforming complexity into clarity. Designing systems people actually want to use.</p>'
+    + '<div class="ao-hero-cta">'
+    + '<a class="ao-btn-primary" href="https://www.behance.net/gunjs" target="_blank">View Work &nbsp;&#8599;</a>'
+    + '<a class="ao-btn-ghost" href="mailto:hello@gunjsampat.com">Get in Touch</a>'
+    + '</div></div>'
+    + '<div class="ao-hero-right"><div class="ao-avatar-wrap">'
+    + '<div class="ao-avatar"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">'
+    + '<defs><radialGradient id="avG" cx="40%" cy="35%" r="65%">'
+    + '<stop offset="0%" stop-color="rgba(200,169,126,.5)"/>'
+    + '<stop offset="100%" stop-color="rgba(6,5,14,0)"/></radialGradient></defs>'
+    + '<circle cx="100" cy="100" r="97" fill="rgba(18,14,35,.95)" stroke="rgba(200,169,126,.18)" stroke-width="1"/>'
+    + '<circle cx="100" cy="100" r="97" fill="url(#avG)"/>'
+    + '<text x="100" y="122" text-anchor="middle" font-family="Cormorant Garamond,Georgia,serif" font-size="80" font-weight="300" fill="rgba(200,169,126,.88)">G</text>'
+    + '<circle cx="100" cy="100" r="97" fill="none" stroke="rgba(200,169,126,.12)" stroke-width="1" stroke-dasharray="3 9"/>'
+    + '</svg></div>'
+    + '<div class="ao-avail"><span class="ao-avail-dot"></span>Open to opportunities</div>'
+    + '</div></div></div>'
+    + '<div class="ao-stats">'
+    + '<div class="ao-stat-item"><span class="ao-sn">5+</span><span class="ao-sl">Years Experience</span></div>'
+    + '<div class="ao-sdiv"></div>'
+    + '<div class="ao-stat-item"><span class="ao-sn">12+</span><span class="ao-sl">Projects Shipped</span></div>'
+    + '<div class="ao-sdiv"></div>'
+    + '<div class="ao-stat-item"><span class="ao-sn">3</span><span class="ao-sl">Industries</span></div>'
+    + '<div class="ao-sdiv"></div>'
+    + '<div class="ao-stat-item"><span class="ao-sn">98%</span><span class="ao-sl">Google UX Cert</span></div>'
+    + '</div>'
+    + '<div class="ao-twocol">'
+    + '<div class="ao-col"><div class="ao-sec-lbl">About</div>'
+    + '<p class="ao-bio">I\'m a UI/UX designer with 5+ years of experience and a strong foundation in visual design. I started in graphic design and transitioned into UX to focus on solving real user problems.</p>'
+    + '<p class="ao-bio mt">Currently working on enterprise SaaS products, designing end-to-end workflows and dashboards that simplify complex data and support better decision-making.</p>'
+    + '<div class="ao-chips">'
+    + '<span class="ao-chip">UX/UI Design</span><span class="ao-chip">Interaction Design</span>'
+    + '<span class="ao-chip">Design Systems</span><span class="ao-chip">Visual Design</span>'
+    + '<span class="ao-chip">Information Architecture</span><span class="ao-chip">Data Visualisation</span>'
+    + '<span class="ao-chip">Instructional Design</span></div></div>'
+    + '<div class="ao-col"><div class="ao-sec-lbl">Toolkit</div>'
+    + '<div class="ao-tools">'
+    + '<div class="ao-tr"><span class="ao-tc">Design</span><span class="ao-tv">Figma &middot; Adobe XD &middot; Photoshop &middot; Illustrator</span></div>'
+    + '<div class="ao-tr"><span class="ao-tc">Prototype</span><span class="ao-tv">Framer</span></div>'
+    + '<div class="ao-tr"><span class="ao-tc">Content</span><span class="ao-tv">Adobe Premiere Pro &middot; Vyond</span></div>'
+    + '<div class="ao-tr"><span class="ao-tc">Collab</span><span class="ao-tv">Google Workspace &middot; Microsoft Office</span></div>'
+    + '</div></div></div>'
+    + '<div class="ao-section"><div class="ao-sec-lbl">Experience</div>'
+    + '<div class="ao-exp-list">'
+    + '<div class="ao-exp"><div class="ao-exp-l">'
+    + '<div class="ao-exp-co">Sarjak Container Lines Pvt. Ltd.</div>'
+    + '<div class="ao-exp-role">UX / UI Designer</div>'
+    + '<div class="ao-exp-per">May 2023 &ndash; Present &nbsp;&middot;&nbsp; 2 yrs 9 mo</div>'
+    + '</div><div class="ao-exp-r"><ul class="ao-pts">'
+    + '<li>Designed end-to-end UX for a SaaS Document Parsing and Accounts Payable platform, transforming complex financial workflows into intuitive, user-centric interfaces.</li>'
+    + '<li>Defined scalable document schemas and system logic to support automated invoice processing and improve data accuracy.</li>'
+    + '<li>Mapped and optimised the complete AP lifecycle &mdash; upload, extraction, validation, approval, payout &mdash; reducing user friction.</li>'
+    + '<li>Designed interactive BI dashboards for Inventory &amp; Pricing using data visualisation and information hierarchy principles.</li>'
+    + '<li>Developed ILT materials and visual content for user onboarding and system adoption using Vyond.</li>'
+    + '<li><a class="ao-lnk" href="https://www.linkedin.com/posts/arconcontainer_arcon-award-winners-ugcPost-7186304217073020929--eAz?utm_source=share&utm_medium=member_android" target="_blank">Dashing Debut Award</a> &mdash; Saksham Annual Meet, 2024.</li>'
+    + '</ul></div></div>'
+    + '<div class="ao-exp"><div class="ao-exp-l">'
+    + '<div class="ao-exp-co">Webtactic</div>'
+    + '<div class="ao-exp-role">Graphic &amp; UI Designer</div>'
+    + '<div class="ao-exp-per">Jan 2022 &ndash; Mar 2023 &nbsp;&middot;&nbsp; 1 yr 3 mo</div>'
+    + '</div><div class="ao-exp-r"><ul class="ao-pts">'
+    + '<li>Delivered communication-driven design solutions including digital campaigns, brand assets, and marketing collaterals.</li>'
+    + '<li>Conceptualised a <a class="ao-lnk" href="https://www.idobro.com/wp-content/uploads/2022/05/One-Pandemic-Multiple-Warriors-CTB_low-res-compressed.pdf" target="_blank">coffee table book for UNICEF</a> applying strong information hierarchy and layout systems.</li>'
+    + '<li>Translated UX insights into visually compelling, conversion-focused creatives across multiple channels.</li>'
+    + '</ul></div></div>'
+    + '<div class="ao-exp"><div class="ao-exp-l">'
+    + '<div class="ao-exp-co">Gator Creative Studio</div>'
+    + '<div class="ao-exp-role">Graphic Designer</div>'
+    + '<div class="ao-exp-per">Aug 2019 &ndash; Jul 2020 &nbsp;&middot;&nbsp; 1 yr</div>'
+    + '</div><div class="ao-exp-r"><ul class="ao-pts">'
+    + '<li>Designed creative assets and branding materials for clients across Pharma, IT, and Manufacturing industries.</li>'
+    + '<li>Developed visual concepts aligned with brand identity and business communication needs.</li>'
+    + '</ul></div></div>'
+    + '</div></div>'
+    + '<div class="ao-twocol mt3">'
+    + '<div><div class="ao-sec-lbl">Education</div>'
+    + '<div class="ao-edu-list">'
+    + '<div class="ao-edu"><div class="ao-edu-deg">Bachelor of Commerce <span class="ao-grade">(B Grade)</span></div>'
+    + '<div class="ao-edu-inst">K.J. Somaiya Clg. of Arts &amp; Commerce, Mumbai University</div>'
+    + '<div class="ao-edu-yr">2013 &ndash; 2016</div></div>'
+    + '<div class="ao-edu"><div class="ao-edu-deg">Class 12 <span class="ao-grade">(74%)</span></div>'
+    + '<div class="ao-edu-inst">Indian School Al Wadi Al Kabir, CBSE</div>'
+    + '<div class="ao-edu-yr">2012 &ndash; 2013</div></div>'
+    + '<div class="ao-edu"><div class="ao-edu-deg">Class 10 <span class="ao-grade">(89%)</span></div>'
+    + '<div class="ao-edu-inst">Indian School Al Wadi Al Kabir, CBSE</div>'
+    + '<div class="ao-edu-yr">2010 &ndash; 2011</div></div>'
+    + '</div></div>'
+    + '<div><div class="ao-sec-lbl">Certifications</div>'
+    + '<div class="ao-cert-list">'
+    + '<div class="ao-cert"><a class="ao-lnk" href="https://www.coursera.org" target="_blank">Google UX Design Professional Certificate</a>'
+    + '<div class="ao-cert-meta">Coursera &nbsp;&middot;&nbsp; 98.33% &nbsp;&middot;&nbsp; 2022</div></div>'
+    + '<div class="ao-cert"><div class="ao-cert-nm">Advance Program in Digital Media &amp; Design</div>'
+    + '<div class="ao-cert-meta">Maya Academy of Advanced Cinematics &nbsp;&middot;&nbsp; B+ &nbsp;&middot;&nbsp; 2016&ndash;2018</div></div>'
+    + '</div></div></div>'
+    + '<div class="ao-links"><div class="ao-sec-lbl">Find me on</div>'
+    + '<div class="ao-links-row">'
+    + '<a class="ao-pl" href="https://www.behance.net/gunjs" target="_blank"><span class="ao-pl-icon">B&#x0113;</span><span class="ao-pl-info"><span class="ao-pl-lbl">Behance</span><span class="ao-pl-url">behance.net/gunjs</span></span><span class="ao-pl-arr">&#8599;</span></a>'
+    + '<a class="ao-pl" href="https://www.instagram.com/mahanadesign/" target="_blank"><span class="ao-pl-icon">Ig</span><span class="ao-pl-info"><span class="ao-pl-lbl">Instagram</span><span class="ao-pl-url">@mahanadesign</span></span><span class="ao-pl-arr">&#8599;</span></a>'
+    + '<a class="ao-pl" href="https://www.figma.com/@gunjsampat" target="_blank"><span class="ao-pl-icon">Fg</span><span class="ao-pl-info"><span class="ao-pl-lbl">Figma Resources</span><span class="ao-pl-url">@gunjsampat</span></span><span class="ao-pl-arr">&#8599;</span></a>'
+    + '<a class="ao-pl" href="https://www.youtube.com/watch?v=uUFRVWpBomU" target="_blank"><span class="ao-pl-icon">&#9654;</span><span class="ao-pl-info"><span class="ao-pl-lbl">YouTube</span><span class="ao-pl-url">youtube.com</span></span><span class="ao-pl-arr">&#8599;</span></a>'
+    + '</div></div>';
+}
+
+function workHTML() {
+  return '<p class="work-intro">I design systems that translate complex problems into intuitive experiences. From research to interaction design, each project reflects a balance between user needs, business goals, and thoughtful execution.</p>'
+    + '<div class="cs-container">'
+    + '<a class="cs-card" href="https://www.behance.net/gallery/247712931/Designing-asmarter-wayto-build-case-studies" target="_blank" rel="noopener">'
+    + '<div class="cs-visual cs-v1"><div class="cs-glyph"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">'
+    + '<circle cx="60" cy="60" r="48" stroke="rgba(200,169,126,.25)" stroke-width="1"/>'
+    + '<circle cx="60" cy="60" r="32" stroke="rgba(200,169,126,.4)" stroke-width="1"/>'
+    + '<circle cx="60" cy="60" r="16" fill="rgba(200,169,126,.12)" stroke="rgba(200,169,126,.6)" stroke-width="1.5"/>'
+    + '<line x1="60" y1="12" x2="60" y2="108" stroke="rgba(200,169,126,.15)" stroke-width="1"/>'
+    + '<line x1="12" y1="60" x2="108" y2="60" stroke="rgba(200,169,126,.15)" stroke-width="1"/>'
+    + '<line x1="26" y1="26" x2="94" y2="94" stroke="rgba(200,169,126,.1)" stroke-width="1"/>'
+    + '<line x1="94" y1="26" x2="26" y2="94" stroke="rgba(200,169,126,.1)" stroke-width="1"/>'
+    + '<circle cx="60" cy="60" r="4" fill="rgba(200,169,126,.9)"/>'
+    + '</svg></div></div>'
+    + '<div class="cs-content"><div class="cs-num">01</div>'
+    + '<h3 class="cs-title">Designing a smarter way to build case studies</h3>'
+    + '<div class="cs-tags"><span class="cs-tag">Case Studies</span><span class="cs-tag">UX Design</span><span class="cs-tag">No-Code</span></div>'
+    + '<span class="cs-arrow">View project &rarr;</span></div></a>'
+    + '<a class="cs-card" href="https://www.behance.net/gallery/239592605/Compliance-Command-Center" target="_blank" rel="noopener">'
+    + '<div class="cs-visual cs-v2"><div class="cs-glyph"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">'
+    + '<rect x="22" y="22" width="76" height="76" rx="4" stroke="rgba(106,180,180,.25)" stroke-width="1"/>'
+    + '<rect x="34" y="34" width="52" height="52" rx="3" stroke="rgba(106,180,180,.4)" stroke-width="1"/>'
+    + '<rect x="46" y="46" width="28" height="28" rx="2" fill="rgba(106,180,180,.1)" stroke="rgba(106,180,180,.7)" stroke-width="1.5"/>'
+    + '<line x1="22" y1="60" x2="46" y2="60" stroke="rgba(106,180,180,.3)" stroke-width="1"/>'
+    + '<line x1="74" y1="60" x2="98" y2="60" stroke="rgba(106,180,180,.3)" stroke-width="1"/>'
+    + '<line x1="60" y1="22" x2="60" y2="46" stroke="rgba(106,180,180,.3)" stroke-width="1"/>'
+    + '<line x1="60" y1="74" x2="60" y2="98" stroke="rgba(106,180,180,.3)" stroke-width="1"/>'
+    + '<circle cx="60" cy="60" r="5" fill="rgba(106,180,180,.9)"/>'
+    + '</svg></div></div>'
+    + '<div class="cs-content"><div class="cs-num">02</div>'
+    + '<h3 class="cs-title">Compliance Command Center</h3>'
+    + '<div class="cs-tags"><span class="cs-tag">SaaS</span><span class="cs-tag">B2B</span><span class="cs-tag">Monitoring</span><span class="cs-tag">Reporting</span></div>'
+    + '<span class="cs-arrow">View project &rarr;</span></div></a>'
+    + '<a class="cs-card" href="https://www.behance.net/gallery/235058759/Redesigning-Barclays-Credit-Card-Dispute-Resolution" target="_blank" rel="noopener">'
+    + '<div class="cs-visual cs-v3"><div class="cs-glyph"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">'
+    + '<path d="M60 18 L102 42 L102 78 L60 102 L18 78 L18 42 Z" stroke="rgba(155,143,196,.3)" stroke-width="1"/>'
+    + '<path d="M60 32 L88 48 L88 72 L60 88 L32 72 L32 48 Z" stroke="rgba(155,143,196,.45)" stroke-width="1"/>'
+    + '<path d="M60 46 L74 54 L74 66 L60 74 L46 66 L46 54 Z" fill="rgba(155,143,196,.1)" stroke="rgba(155,143,196,.75)" stroke-width="1.5"/>'
+    + '<circle cx="60" cy="60" r="5" fill="rgba(155,143,196,.9)"/>'
+    + '</svg></div></div>'
+    + '<div class="cs-content"><div class="cs-num">03</div>'
+    + '<h3 class="cs-title">Redesigning Barclays Credit Card Dispute Resolution</h3>'
+    + '<div class="cs-tags"><span class="cs-tag">Payments</span><span class="cs-tag">Banking</span><span class="cs-tag">SaaS</span><span class="cs-tag">B2C</span><span class="cs-tag">Customer Support</span></div>'
+    + '<span class="cs-arrow">View project &rarr;</span></div></a>'
+    + '<a class="cs-card" href="https://www.behance.net/gallery/234822727/Redesigning-Passport-Seva" target="_blank" rel="noopener">'
+    + '<div class="cs-visual cs-v4"><div class="cs-glyph"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">'
+    + '<circle cx="60" cy="60" r="48" stroke="rgba(196,122,138,.2)" stroke-width="1"/>'
+    + '<path d="M60 20 C80 30 90 50 90 60 C90 70 80 90 60 100 C40 90 30 70 30 60 C30 50 40 30 60 20 Z" stroke="rgba(196,122,138,.35)" stroke-width="1" fill="none"/>'
+    + '<ellipse cx="60" cy="60" rx="18" ry="30" stroke="rgba(196,122,138,.55)" stroke-width="1.5" fill="rgba(196,122,138,.08)"/>'
+    + '<line x1="12" y1="60" x2="108" y2="60" stroke="rgba(196,122,138,.18)" stroke-width="1"/>'
+    + '<line x1="28" y1="36" x2="92" y2="36" stroke="rgba(196,122,138,.12)" stroke-width="1"/>'
+    + '<line x1="28" y1="84" x2="92" y2="84" stroke="rgba(196,122,138,.12)" stroke-width="1"/>'
+    + '<circle cx="60" cy="60" r="5" fill="rgba(196,122,138,.9)"/>'
+    + '</svg></div></div>'
+    + '<div class="cs-content"><div class="cs-num">04</div>'
+    + '<h3 class="cs-title">Redesigning Passport Seva</h3>'
+    + '<div class="cs-tags"><span class="cs-tag">Government</span><span class="cs-tag">B2C</span><span class="cs-tag">Self-Service</span></div>'
+    + '<span class="cs-arrow">View project &rarr;</span></div></a>'
+    + '</div>';
+}
+
+function writingHTML() {
+  return '<p class="work-intro">Writing is where I test ideas before they become systems. These are essays on design thinking, process, and the invisible forces that shape how people experience the world.</p>'
+    + '<div class="wr-list">'
+    + '<a class="wr-item" href="#" onclick="return false"><div class="wr-meta"><span class="wr-date">2025</span><span class="wr-tag">Design</span></div><div class="wr-title">On designing with restraint &mdash; lessons from deep space</div><div class="wr-arrow">Read &rarr;</div></a>'
+    + '<a class="wr-item" href="#" onclick="return false"><div class="wr-meta"><span class="wr-date">2025</span><span class="wr-tag">Systems</span></div><div class="wr-title">What the cosmic web teaches us about information architecture</div><div class="wr-arrow">Read &rarr;</div></a>'
+    + '<a class="wr-item" href="#" onclick="return false"><div class="wr-meta"><span class="wr-date">2024</span><span class="wr-tag">Philosophy</span></div><div class="wr-title">Whitespace is not emptiness &mdash; it is the shape of thought</div><div class="wr-arrow">Read &rarr;</div></a>'
+    + '<a class="wr-item" href="#" onclick="return false"><div class="wr-meta"><span class="wr-date">2024</span><span class="wr-tag">Process</span></div><div class="wr-title">The Tao of the blank page: a designer\'s meditation on starting</div><div class="wr-arrow">Read &rarr;</div></a>'
+    + '<a class="wr-item" href="#" onclick="return false"><div class="wr-meta"><span class="wr-date">2024</span><span class="wr-tag">Research</span></div><div class="wr-title">Why I redesigned my entire process around negative space</div><div class="wr-arrow">Read &rarr;</div></a>'
+    + '</div>';
+}
+
 // ─── BODY DEFINITIONS ─────────────────────────────────────
 var bodies = [
   {
-    // ENERGY ORB — blue electric
     x:-5, y:1.2, z:0, baseX:-5, baseY:1.2,
     color:'#7799ff', glow:'rgba(68,102,255,', glowRad: 2.2,
     coreR: 0.75, coreColor:'#aaccff',
@@ -444,15 +614,14 @@ var bodies = [
     ],
     particles:[],
     labelId:'le', lY:2.6, li:6, idx:0,
-    name:'Energy · About Me', desc:'Radiant, electric, personal',
+    name:'Energy \u00b7 About Me', desc:'Radiant, electric, personal',
     focAz:Math.PI, focEl:.18, focR:8,
     pCol:'#c8a97e', pBg:'radial-gradient(ellipse at 15% 8%,rgba(100,80,20,.28),transparent 55%),#06050e',
-    pLbl:'About Me', pCap:'UX/UI Designer · 5+ years · Enterprise SaaS & Beyond',
+    pLbl:'About Me', pCap:'UX/UI Designer \u00b7 5+ years \u00b7 Enterprise SaaS & Beyond',
     pTit:'UI/UX Designer',
-    pBdy:'<div class=\"ao-hero\"><div class=\"ao-hero-left\"><div class=\"ao-eyebrow\">UI/UX Designer &nbsp;&middot;&nbsp; Mumbai, India</div><h1 class=\"ao-name\">Gunj<br>Sampat</h1><p class=\"ao-tagline\">Transforming complexity into clarity. Designing systems people actually want to use.</p><div class=\"ao-hero-cta\"><a class=\"ao-btn-primary\" href=\"https://www.behance.net/gunjs\" target=\"_blank\">View Work &nbsp;&#8599;</a><a class=\"ao-btn-ghost\" href=\"mailto:hello@gunjsampat.com\">Get in Touch</a></div></div><div class=\"ao-hero-right\"><div class=\"ao-avatar-wrap\"><div class=\"ao-avatar\"><svg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\"><defs><radialGradient id=\"avG\" cx=\"40%\" cy=\"35%\" r=\"65%\"><stop offset=\"0%\" stop-color=\"rgba(200,169,126,.5)\"/><stop offset=\"100%\" stop-color=\"rgba(6,5,14,0)\"/></radialGradient></defs><circle cx=\"100\" cy=\"100\" r=\"97\" fill=\"rgba(18,14,35,.95)\" stroke=\"rgba(200,169,126,.18)\" stroke-width=\"1\"/><circle cx=\"100\" cy=\"100\" r=\"97\" fill=\"url(#avG)\"/><text x=\"100\" y=\"122\" text-anchor=\"middle\" font-family=\"Cormorant Garamond,Georgia,serif\" font-size=\"80\" font-weight=\"300\" fill=\"rgba(200,169,126,.88)\">G</text><circle cx=\"100\" cy=\"100\" r=\"97\" fill=\"none\" stroke=\"rgba(200,169,126,.12)\" stroke-width=\"1\" stroke-dasharray=\"3 9\"/></svg></div><div class=\"ao-avail\"><span class=\"ao-avail-dot\"></span>Open to opportunities</div></div></div></div><div class=\"ao-stats\"><div class=\"ao-stat-item\"><span class=\"ao-sn\">5+</span><span class=\"ao-sl\">Years Experience</span></div><div class=\"ao-sdiv\"></div><div class=\"ao-stat-item\"><span class=\"ao-sn\">12+</span><span class=\"ao-sl\">Projects Shipped</span></div><div class=\"ao-sdiv\"></div><div class=\"ao-stat-item\"><span class=\"ao-sn\">3</span><span class=\"ao-sl\">Industries</span></div><div class=\"ao-sdiv\"></div><div class=\"ao-stat-item\"><span class=\"ao-sn\">98%</span><span class=\"ao-sl\">Google UX Cert</span></div></div><div class=\"ao-twocol\"><div class=\"ao-col\"><div class=\"ao-sec-lbl\">About</div><p class=\"ao-bio\">I'm a UI/UX designer with 5+ years of experience and a strong foundation in visual design. I started in graphic design and transitioned into UX to focus on solving real user problems.</p><p class=\"ao-bio mt\">Currently working on enterprise SaaS products, designing end-to-end workflows and dashboards that simplify complex data and support better decision-making.</p><div class=\"ao-chips\"><span class=\"ao-chip\">UX/UI Design</span><span class=\"ao-chip\">Interaction Design</span><span class=\"ao-chip\">Design Systems</span><span class=\"ao-chip\">Visual Design</span><span class=\"ao-chip\">Information Architecture</span><span class=\"ao-chip\">Data Visualisation</span><span class=\"ao-chip\">Instructional Design</span></div></div><div class=\"ao-col\"><div class=\"ao-sec-lbl\">Toolkit</div><div class=\"ao-tools\"><div class=\"ao-tr\"><span class=\"ao-tc\">Design</span><span class=\"ao-tv\">Figma &middot; Adobe XD &middot; Photoshop &middot; Illustrator</span></div><div class=\"ao-tr\"><span class=\"ao-tc\">Prototype</span><span class=\"ao-tv\">Framer</span></div><div class=\"ao-tr\"><span class=\"ao-tc\">Content</span><span class=\"ao-tv\">Adobe Premiere Pro &middot; Vyond</span></div><div class=\"ao-tr\"><span class=\"ao-tc\">Collab</span><span class=\"ao-tv\">Google Workspace &middot; Microsoft Office</span></div></div></div></div><div class=\"ao-section\"><div class=\"ao-sec-lbl\">Experience</div><div class=\"ao-exp-list\"><div class=\"ao-exp\"><div class=\"ao-exp-l\"><div class=\"ao-exp-co\">Sarjak Container Lines Pvt. Ltd.</div><div class=\"ao-exp-role\">UX / UI Designer</div><div class=\"ao-exp-per\">May 2023 &ndash; Present &nbsp;&middot;&nbsp; 2 yrs 9 mo</div></div><div class=\"ao-exp-r\"><ul class=\"ao-pts\"><li>Designed end-to-end UX for a SaaS Document Parsing and Accounts Payable platform, transforming complex financial workflows into intuitive, user-centric interfaces.</li><li>Defined scalable document schemas and system logic to support automated invoice processing and improve data accuracy.</li><li>Mapped and optimised the complete AP lifecycle &mdash; upload, extraction, validation, approval, payout &mdash; reducing user friction.</li><li>Designed interactive BI dashboards for Inventory &amp; Pricing using data visualisation and information hierarchy principles.</li><li>Developed ILT materials and visual content for user onboarding and system adoption using Vyond.</li><li><a class=\"ao-lnk\" href=\"https://www.linkedin.com/posts/arconcontainer_arcon-award-winners-ugcPost-7186304217073020929--eAz?utm_source=share&utm_medium=member_android\" target=\"_blank\">Dashing Debut Award</a> &mdash; Saksham Annual Meet, 2024.</li></ul></div></div><div class=\"ao-exp\"><div class=\"ao-exp-l\"><div class=\"ao-exp-co\">Webtactic</div><div class=\"ao-exp-role\">Graphic &amp; UI Designer</div><div class=\"ao-exp-per\">Jan 2022 &ndash; Mar 2023 &nbsp;&middot;&nbsp; 1 yr 3 mo</div></div><div class=\"ao-exp-r\"><ul class=\"ao-pts\"><li>Delivered communication-driven design solutions including digital campaigns, brand assets, and marketing collaterals.</li><li>Conceptualised a <a class=\"ao-lnk\" href=\"https://www.idobro.com/wp-content/uploads/2022/05/One-Pandemic-Multiple-Warriors-CTB_low-res-compressed.pdf\" target=\"_blank\">coffee table book for UNICEF</a> applying strong information hierarchy and layout systems.</li><li>Translated UX insights into visually compelling, conversion-focused creatives across multiple channels.</li></ul></div></div><div class=\"ao-exp\"><div class=\"ao-exp-l\"><div class=\"ao-exp-co\">Gator Creative Studio</div><div class=\"ao-exp-role\">Graphic Designer</div><div class=\"ao-exp-per\">Aug 2019 &ndash; Jul 2020 &nbsp;&middot;&nbsp; 1 yr</div></div><div class=\"ao-exp-r\"><ul class=\"ao-pts\"><li>Designed creative assets and branding materials for clients across Pharma, IT, and Manufacturing industries.</li><li>Developed visual concepts aligned with brand identity and business communication needs.</li></ul></div></div></div></div><div class=\"ao-twocol mt3\"><div><div class=\"ao-sec-lbl\">Education</div><div class=\"ao-edu-list\"><div class=\"ao-edu\"><div class=\"ao-edu-deg\">Bachelor of Commerce <span class=\"ao-grade\">(B Grade)</span></div><div class=\"ao-edu-inst\">K.J. Somaiya Clg. of Arts &amp; Commerce, Mumbai University</div><div class=\"ao-edu-yr\">2013 &ndash; 2016</div></div><div class=\"ao-edu\"><div class=\"ao-edu-deg\">Class 12 <span class=\"ao-grade\">(74%)</span></div><div class=\"ao-edu-inst\">Indian School Al Wadi Al Kabir, CBSE</div><div class=\"ao-edu-yr\">2012 &ndash; 2013</div></div><div class=\"ao-edu\"><div class=\"ao-edu-deg\">Class 10 <span class=\"ao-grade\">(89%)</span></div><div class=\"ao-edu-inst\">Indian School Al Wadi Al Kabir, CBSE</div><div class=\"ao-edu-yr\">2010 &ndash; 2011</div></div></div></div><div><div class=\"ao-sec-lbl\">Certifications</div><div class=\"ao-cert-list\"><div class=\"ao-cert\"><a class=\"ao-lnk\" href=\"https://www.coursera.org\" target=\"_blank\">Google UX Design Professional Certificate</a><div class=\"ao-cert-meta\">Coursera &nbsp;&middot;&nbsp; 98.33% &nbsp;&middot;&nbsp; 2022</div></div><div class=\"ao-cert\"><div class=\"ao-cert-nm\">Advance Program in Digital Media &amp; Design</div><div class=\"ao-cert-meta\">Maya Academy of Advanced Cinematics &nbsp;&middot;&nbsp; B+ &nbsp;&middot;&nbsp; 2016&ndash;2018</div></div></div></div></div><div class=\"ao-links\"><div class=\"ao-sec-lbl\">Find me on</div><div class=\"ao-links-row\"><a class=\"ao-pl\" href=\"https://www.behance.net/gunjs\" target=\"_blank\"><span class=\"ao-pl-icon\">B&#x0113;</span><span class=\"ao-pl-info\"><span class=\"ao-pl-lbl\">Behance</span><span class=\"ao-pl-url\">behance.net/gunjs</span></span><span class=\"ao-pl-arr\">&#8599;</span></a><a class=\"ao-pl\" href=\"https://www.instagram.com/mahanadesign/\" target=\"_blank\"><span class=\"ao-pl-icon\">Ig</span><span class=\"ao-pl-info\"><span class=\"ao-pl-lbl\">Instagram</span><span class=\"ao-pl-url\">@mahanadesign</span></span><span class=\"ao-pl-arr\">&#8599;</span></a><a class=\"ao-pl\" href=\"https://www.figma.com/@gunjsampat\" target=\"_blank\"><span class=\"ao-pl-icon\">Fg</span><span class=\"ao-pl-info\"><span class=\"ao-pl-lbl\">Figma Resources</span><span class=\"ao-pl-url\">@gunjsampat</span></span><span class=\"ao-pl-arr\">&#8599;</span></a><a class=\"ao-pl\" href=\"https://www.youtube.com/watch?v=uUFRVWpBomU\" target=\"_blank\"><span class=\"ao-pl-icon\">&#9654;</span><span class=\"ao-pl-info\"><span class=\"ao-pl-lbl\">YouTube</span><span class=\"ao-pl-url\">youtube.com</span></span><span class=\"ao-pl-arr\">&#8599;</span></a></div></div>'
+    pBdyFn: aboutHTML
   },
   {
-    // DARK SUN — molten orange
     x:5, y:1.2, z:0, baseX:5, baseY:1.2,
     color:'#ff6600', glow:'rgba(255,80,0,', glowRad: 2.0,
     coreR: 1.0, coreColor:'#ff8833',
@@ -462,15 +631,14 @@ var bodies = [
     ],
     particles:[],
     labelId:'lm', lY:2.8, li:8, idx:1,
-    name:'Matter · My Work', desc:'Solid, molten, crafted',
+    name:'Matter \u00b7 My Work', desc:'Solid, molten, crafted',
     focAz:0, focEl:.18, focR:8,
     pCol:'#c47a8a', pBg:'radial-gradient(ellipse at 85% 8%,rgba(110,35,20,.28),transparent 55%),#06050e',
     pLbl:'Matter', pCap:'Matter is energy slowed down. Work is thought made solid.',
     pTit:'My Work',
-    pBdy:'<p class="work-intro">I design systems that translate complex problems into intuitive experiences. From research to interaction design, each project reflects a balance between user needs, business goals, and thoughtful execution.</p><div class="cs-container"><a class="cs-card" href="https://www.behance.net/gallery/247712931/Designing-asmarter-wayto-build-case-studies" target="_blank" rel="noopener"><div class="cs-visual cs-v1"><div class="cs-glyph"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="60" cy="60" r="48" stroke="rgba(200,169,126,.25)" stroke-width="1"/><circle cx="60" cy="60" r="32" stroke="rgba(200,169,126,.4)" stroke-width="1"/><circle cx="60" cy="60" r="16" fill="rgba(200,169,126,.12)" stroke="rgba(200,169,126,.6)" stroke-width="1.5"/><line x1="60" y1="12" x2="60" y2="108" stroke="rgba(200,169,126,.15)" stroke-width="1"/><line x1="12" y1="60" x2="108" y2="60" stroke="rgba(200,169,126,.15)" stroke-width="1"/><line x1="26" y1="26" x2="94" y2="94" stroke="rgba(200,169,126,.1)" stroke-width="1"/><line x1="94" y1="26" x2="26" y2="94" stroke="rgba(200,169,126,.1)" stroke-width="1"/><circle cx="60" cy="60" r="4" fill="rgba(200,169,126,.9)"/></svg></div></div><div class="cs-content"><div class="cs-num">01</div><h3 class="cs-title">Designing a smarter way to build case studies</h3><div class="cs-tags"><span class="cs-tag">Case Studies</span><span class="cs-tag">UX Design</span><span class="cs-tag">No-Code</span></div><span class="cs-arrow">View project →</span></div></a><a class="cs-card" href="https://www.behance.net/gallery/239592605/Compliance-Command-Center" target="_blank" rel="noopener"><div class="cs-visual cs-v2"><div class="cs-glyph"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="22" y="22" width="76" height="76" rx="4" stroke="rgba(106,180,180,.25)" stroke-width="1"/><rect x="34" y="34" width="52" height="52" rx="3" stroke="rgba(106,180,180,.4)" stroke-width="1"/><rect x="46" y="46" width="28" height="28" rx="2" fill="rgba(106,180,180,.1)" stroke="rgba(106,180,180,.7)" stroke-width="1.5"/><line x1="22" y1="60" x2="46" y2="60" stroke="rgba(106,180,180,.3)" stroke-width="1"/><line x1="74" y1="60" x2="98" y2="60" stroke="rgba(106,180,180,.3)" stroke-width="1"/><line x1="60" y1="22" x2="60" y2="46" stroke="rgba(106,180,180,.3)" stroke-width="1"/><line x1="60" y1="74" x2="60" y2="98" stroke="rgba(106,180,180,.3)" stroke-width="1"/><circle cx="60" cy="60" r="5" fill="rgba(106,180,180,.9)"/></svg></div></div><div class="cs-content"><div class="cs-num">02</div><h3 class="cs-title">Compliance Command Center</h3><div class="cs-tags"><span class="cs-tag">SaaS</span><span class="cs-tag">B2B</span><span class="cs-tag">Monitoring</span><span class="cs-tag">Reporting</span></div><span class="cs-arrow">View project →</span></div></a><a class="cs-card" href="https://www.behance.net/gallery/235058759/Redesigning-Barclays-Credit-Card-Dispute-Resolution" target="_blank" rel="noopener"><div class="cs-visual cs-v3"><div class="cs-glyph"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60 18 L102 42 L102 78 L60 102 L18 78 L18 42 Z" stroke="rgba(155,143,196,.3)" stroke-width="1"/><path d="M60 32 L88 48 L88 72 L60 88 L32 72 L32 48 Z" stroke="rgba(155,143,196,.45)" stroke-width="1"/><path d="M60 46 L74 54 L74 66 L60 74 L46 66 L46 54 Z" fill="rgba(155,143,196,.1)" stroke="rgba(155,143,196,.75)" stroke-width="1.5"/><circle cx="60" cy="60" r="5" fill="rgba(155,143,196,.9)"/></svg></div></div><div class="cs-content"><div class="cs-num">03</div><h3 class="cs-title">Redesigning Barclays Credit Card Dispute Resolution</h3><div class="cs-tags"><span class="cs-tag">Payments</span><span class="cs-tag">Banking</span><span class="cs-tag">SaaS</span><span class="cs-tag">B2C</span><span class="cs-tag">Customer Support</span></div><span class="cs-arrow">View project →</span></div></a><a class="cs-card" href="https://www.behance.net/gallery/234822727/Redesigning-Passport-Seva" target="_blank" rel="noopener"><div class="cs-visual cs-v4"><div class="cs-glyph"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="60" cy="60" r="48" stroke="rgba(196,122,138,.2)" stroke-width="1"/><path d="M60 20 C80 30 90 50 90 60 C90 70 80 90 60 100 C40 90 30 70 30 60 C30 50 40 30 60 20 Z" stroke="rgba(196,122,138,.35)" stroke-width="1" fill="none"/><ellipse cx="60" cy="60" rx="18" ry="30" stroke="rgba(196,122,138,.55)" stroke-width="1.5" fill="rgba(196,122,138,.08)"/><line x1="12" y1="60" x2="108" y2="60" stroke="rgba(196,122,138,.18)" stroke-width="1"/><line x1="28" y1="36" x2="92" y2="36" stroke="rgba(196,122,138,.12)" stroke-width="1"/><line x1="28" y1="84" x2="92" y2="84" stroke="rgba(196,122,138,.12)" stroke-width="1"/><circle cx="60" cy="60" r="5" fill="rgba(196,122,138,.9)"/></svg></div></div><div class="cs-content"><div class="cs-num">04</div><h3 class="cs-title">Redesigning Passport Seva</h3><div class="cs-tags"><span class="cs-tag">Government</span><span class="cs-tag">B2C</span><span class="cs-tag">Self-Service</span></div><span class="cs-arrow">View project →</span></div></a></div>'
+    pBdyFn: workHTML
   },
   {
-    // BLACK HOLE — dark with orange accretion disk
     x:0, y:-3.4, z:0, baseX:0, baseY:-3.4,
     color:'#220011', glow:'rgba(180,60,220,', glowRad: 2.4,
     coreR: 0.8, coreColor:'#050210',
@@ -483,19 +651,19 @@ var bodies = [
     ],
     particles:[],
     labelId:'lf', lY:3.0, li:8, idx:2,
-    name:'Fields · Writing', desc:'Invisible yet shaping everything',
+    name:'Fields \u00b7 Writing', desc:'Invisible yet shaping everything',
     focAz:Math.PI*.5, focEl:-.35, focR:9,
     pCol:'#6ab4b4', pBg:'radial-gradient(ellipse at 50% 4%,rgba(20,80,80,.28),transparent 55%),#06050e',
-    pLbl:'Fundamental Fields', pCap:'Fields permeate all space — thought permeates all things.',
+    pLbl:'Fundamental Fields', pCap:'Fields permeate all space \u2014 thought permeates all things.',
     pTit:'Words from <em>the nebula</em>',
-    pBdy:'<p class=\"work-intro\">Writing is where I test ideas before they become systems. These are essays on design thinking, process, and the invisible forces that shape how people experience the world.</p><div class=\"wr-list\"><a class=\"wr-item\" href=\"#\" onclick=\"return false\"><div class=\"wr-meta\"><span class=\"wr-date\">2025</span><span class=\"wr-tag\">Design</span></div><div class=\"wr-title\">On designing with restraint — lessons from deep space</div><div class=\"wr-arrow\">Read →</div></a><a class=\"wr-item\" href=\"#\" onclick=\"return false\"><div class=\"wr-meta\"><span class=\"wr-date\">2025</span><span class=\"wr-tag\">Systems</span></div><div class=\"wr-title\">What the cosmic web teaches us about information architecture</div><div class=\"wr-arrow\">Read →</div></a><a class=\"wr-item\" href=\"#\" onclick=\"return false\"><div class=\"wr-meta\"><span class=\"wr-date\">2024</span><span class=\"wr-tag\">Philosophy</span></div><div class=\"wr-title\">Whitespace is not emptiness — it is the shape of thought</div><div class=\"wr-arrow\">Read →</div></a><a class=\"wr-item\" href=\"#\" onclick=\"return false\"><div class=\"wr-meta\"><span class=\"wr-date\">2024</span><span class=\"wr-tag\">Process</span></div><div class=\"wr-title\">The Tao of the blank page: a designer\'s meditation on starting</div><div class=\"wr-arrow\">Read →</div></a><a class=\"wr-item\" href=\"#\" onclick=\"return false\"><div class=\"wr-meta\"><span class=\"wr-date\">2024</span><span class=\"wr-tag\">Research</span></div><div class=\"wr-title\">Why I redesigned my entire process around negative space</div><div class=\"wr-arrow\">Read →</div></a></div>'
+    pBdyFn: writingHTML
   }
 ];
 
-// Apply responsive positions now that bodies are defined
+// Apply responsive positions
 resize();
 
-// Build particles for each body
+// Build particles
 bodies.forEach(function(b) {
   for (var i = 0; i < 120; i++) {
     var r = b.coreR*1.2 + Math.random()*(b.glowRad*1.2);
@@ -515,21 +683,20 @@ bodies.forEach(function(b) {
 
 // ─── BEAM DEFINITIONS ─────────────────────────────────────
 var beamDefs = [
-  {from:0, to:1, col:'rgba(170,130,200,', rel:'Energy → Matter', desc:'Thought becomes form. The electric mind crystallises into solid work.'},
-  {from:1, to:2, col:'rgba(200,100,70,',  rel:'Matter → Fields',  desc:'The made object radiates meaning — forces that pull readers in.'},
-  {from:2, to:0, col:'rgba(70,120,180,',  rel:'Fields → Energy',  desc:'Writing feeds back into being. The field regenerates the source.'}
+  {from:0, to:1, col:'rgba(170,130,200,', rel:'Energy \u2192 Matter', desc:'Thought becomes form. The electric mind crystallises into solid work.'},
+  {from:1, to:2, col:'rgba(200,100,70,',  rel:'Matter \u2192 Fields',  desc:'The made object radiates meaning \u2014 forces that pull readers in.'},
+  {from:2, to:0, col:'rgba(70,120,180,',  rel:'Fields \u2192 Energy',  desc:'Writing feeds back into being. The field regenerates the source.'}
 ];
 
 // ─── ANIMATION STATE ──────────────────────────────────────
 var tick = 0;
-var revealPhase = 0; // 0=nothing, 1=bodies+stars, 2=labels, 3=beams+tooltips
-var revealTime = 0;  // ticks since enterUniverse
-var hovered = -1; // body index or -1
+var revealPhase = 0;
+var hovered = -1;
 var hovBeam = -1;
 var autoIdle = false, idleTmr = null;
 var dragging = false, lastX = 0, lastY = 0;
-var scaleT = [1,1,1]; // target scale per body
-var scaleC = [1,1,1]; // current scale
+var scaleT = [1,1,1];
+var scaleC = [1,1,1];
 
 function resetIdle() {
   if (autoIdle) { autoIdle = false; }
@@ -555,7 +722,6 @@ cvs.addEventListener('mousemove', function(e){
 cvs.addEventListener('wheel', function(e){ e.preventDefault(); tDist=Math.max(5,Math.min(28,tDist+e.deltaY*0.02)); resetIdle(); },{passive:false});
 cvs.addEventListener('click', function(e){ handleClick(e.clientX, e.clientY); });
 
-// Touch
 cvs.addEventListener('touchstart',function(e){ if(e.touches.length===1){dragging=true;lastX=e.touches[0].clientX;lastY=e.touches[0].clientY;resetIdle();} e.preventDefault(); },{passive:false});
 window.addEventListener('touchend',function(){ dragging=false; });
 cvs.addEventListener('touchmove',function(e){
@@ -573,8 +739,7 @@ cvs.addEventListener('touchend',function(e){
 
 // ─── HIT TEST ─────────────────────────────────────────────
 function bodyScreenPos(b, offY) {
-  var p = project(b.x, b.y + (offY||0), b.z);
-  return p;
+  return project(b.x, b.y + (offY||0), b.z);
 }
 
 function hitTestBodies(mx, my) {
@@ -582,7 +747,6 @@ function hitTestBodies(mx, my) {
     var p = bodyScreenPos(bodies[i]);
     if (!p) continue;
     var hitR = bodies[i].glowRad * p.s * scaleC[i];
-    // larger touch target on mobile
     if (W < 600) hitR *= 1.6;
     var dx = mx-p.x, dy = my-p.y;
     if (dx*dx+dy*dy < hitR*hitR) return i;
@@ -597,10 +761,10 @@ function hitTestBeams(mx, my) {
     var steps = 20;
     for (var s = 0; s <= steps; s++) {
       var t = s/steps;
-      var cx = b0.x+(b1.x-b0.x)*t;
-      var cy = b0.y+(b1.y-b0.y)*t + Math.sin(t*Math.PI)*0.9;
-      var cz = b0.z+(b1.z-b0.z)*t;
-      var p = project(cx,cy,cz);
+      var bx = b0.x+(b1.x-b0.x)*t;
+      var by = b0.y+(b1.y-b0.y)*t + Math.sin(t*Math.PI)*0.9;
+      var bz = b0.z+(b1.z-b0.z)*t;
+      var p = project(bx,by,bz);
       if (!p) continue;
       var dx=mx-p.x, dy=my-p.y;
       if (dx*dx+dy*dy < 200) return bi;
@@ -647,7 +811,7 @@ function handleClick(mx, my) {
   if (bi >= 0) {
     var b = bodies[bi];
     tAz = b.focAz; tEl = b.focEl;
-    tDist = W < 600 ? b.focR + 3 : b.focR; // pull back more on mobile
+    tDist = W < 600 ? b.focR + 3 : b.focR;
     var px = (mx/W*100).toFixed(1)+'%';
     var py = (my/H*100).toFixed(1)+'%';
     setTimeout(function(){ openPanel(b, px, py); }, 620);
@@ -655,7 +819,6 @@ function handleClick(mx, my) {
   }
   var bm = hitTestBeams(mx, my);
   if (bm >= 0) {
-    // flash beam - handled in draw
     beamFlash = bm;
     setTimeout(function(){ beamFlash = -1; }, 1200);
   }
@@ -672,23 +835,15 @@ function openPanel(b, px, py) {
   document.getElementById('plb').style.color = b.pCol;
   document.getElementById('pcp').textContent = b.pCap;
   document.getElementById('ptt').innerHTML = b.pTit;
-  document.getElementById('pbd').innerHTML = b.pBdy;
-  // Work panel gets cosmic dark mode overlay
-  if (b.pLbl === 'Matter') {
-    p.classList.add('work-mode');
-  } else {
-    p.classList.remove('work-mode');
-  }
+  document.getElementById('pbd').innerHTML = b.pBdyFn();
   requestAnimationFrame(function(){
     p.classList.add('open');
-    // scroll to top after transition begins
     setTimeout(function(){ p.scrollTop = 0; }, 100);
   });
 }
 function closePanel() {
   var p = document.getElementById('pnl');
   p.classList.remove('open');
-  p.classList.remove('work-mode');
   setTimeout(function(){ p.scrollTop = 0; }, 900);
 }
 function openByIdx(idx) {
@@ -711,7 +866,6 @@ function updateLabels() {
     if (!p || p.z < 0 || revealPhase < 2) { el.classList.remove('vis'); return; }
     el.style.left = p.x+'px'; el.style.top = p.y+'px';
     el.classList.add('vis');
-    // enable clicks only in phase 3
     if (revealPhase >= 3) el.classList.add('interactive');
     else el.classList.remove('interactive');
   });
@@ -720,8 +874,8 @@ function updateLabels() {
 // ─── COMPASS ──────────────────────────────────────────────
 function updateCompass() {
   var deg = Math.round(((camAz%(Math.PI*2))/(Math.PI*2)*360+360)%360);
-  document.getElementById('caz').textContent = 'AZ '+String(deg).padStart(3,'0')+'°';
-  document.getElementById('cel').textContent = 'EL '+Math.round(camEl*180/Math.PI)+'°';
+  document.getElementById('caz').textContent = 'AZ '+String(deg).padStart(3,'0')+'\u00b0';
+  document.getElementById('cel').textContent = 'EL '+Math.round(camEl*180/Math.PI)+'\u00b0';
   document.getElementById('cds').textContent = 'DST '+camDist.toFixed(1);
 }
 
@@ -737,8 +891,6 @@ function drawGlow(p, r, col, alpha) {
 }
 
 function drawRing(cx, cy, r, w, col, alpha, rx, ry, angOffset) {
-  // Draw ellipse to simulate 3D torus ring viewed from an angle
-  // rx,ry are tilt angles; we compute apparent aspect ratio
   var tiltX = Math.abs(Math.cos(rx + camEl));
   var tiltY = Math.abs(Math.cos(ry + camAz));
   var aspect = Math.max(0.08, tiltX*0.5 + tiltY*0.5);
@@ -754,21 +906,10 @@ function drawRing(cx, cy, r, w, col, alpha, rx, ry, angOffset) {
   ctx.restore();
 }
 
-function drawStar(p, r, bright, phase) {
-  if (!p || p.z < 1) return;
-  var tw = Math.sin(tick*p.z*0.01 + phase)*0.5+0.5;
-  var a = bright*(0.4+0.6*tw);
-  ctx.beginPath();
-  ctx.arc(p.x, p.y, r, 0, Math.PI*2);
-  ctx.fillStyle = 'rgba(220,215,200,'+a+')';
-  ctx.fill();
-}
-
 // ─── MAIN DRAW ────────────────────────────────────────────
 function draw() {
   ctx.clearRect(0, 0, W, H);
 
-  // Background gradient
   var bg = ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.max(W,H)*0.8);
   bg.addColorStop(0,  '#0b0920');
   bg.addColorStop(0.5,'#08061a');
@@ -776,7 +917,6 @@ function draw() {
   ctx.fillStyle = bg;
   ctx.fillRect(0,0,W,H);
 
-  // Stars
   stars.forEach(function(s) {
     var p = project(s.x, s.y, s.z);
     if (!p || p.z < 1) return;
@@ -790,31 +930,29 @@ function draw() {
     ctx.fill();
   });
 
-  // ── Draw beams — phase 3 only
   if (revealPhase >= 3) {
-  beamDefs.forEach(function(bd, bIdx) {
-    var b0=bodies[bd.from], b1=bodies[bd.to];
-    var isHov = bIdx===hovBeam || bIdx===beamFlash;
-    var baseA = isHov ? 0.5 : 0.15;
-    ctx.beginPath();
-    var first=true;
-    for(var s=0;s<=40;s++){
-      var t=s/40;
-      var bx=b0.x+(b1.x-b0.x)*t;
-      var by=b0.y+(b1.y-b0.y)*t+Math.sin(t*Math.PI)*0.9;
-      var bz=b0.z+(b1.z-b0.z)*t;
-      var p=project(bx,by,bz);
-      if(!p) continue;
-      if(first){ctx.moveTo(p.x,p.y);first=false;}
-      else ctx.lineTo(p.x,p.y);
-    }
-    ctx.strokeStyle = bd.col+baseA+')';
-    ctx.lineWidth = isHov ? 1.8 : 0.9;
-    ctx.stroke();
-  });
-  } // end revealPhase >= 3 beams
+    beamDefs.forEach(function(bd, bIdx) {
+      var b0=bodies[bd.from], b1=bodies[bd.to];
+      var isHov = bIdx===hovBeam || bIdx===beamFlash;
+      var baseA = isHov ? 0.5 : 0.15;
+      ctx.beginPath();
+      var first=true;
+      for(var s=0;s<=40;s++){
+        var t=s/40;
+        var bx=b0.x+(b1.x-b0.x)*t;
+        var by=b0.y+(b1.y-b0.y)*t+Math.sin(t*Math.PI)*0.9;
+        var bz=b0.z+(b1.z-b0.z)*t;
+        var p=project(bx,by,bz);
+        if(!p) continue;
+        if(first){ctx.moveTo(p.x,p.y);first=false;}
+        else ctx.lineTo(p.x,p.y);
+      }
+      ctx.strokeStyle = bd.col+baseA+')';
+      ctx.lineWidth = isHov ? 1.8 : 0.9;
+      ctx.stroke();
+    });
+  }
 
-  // ── Draw bodies (back to front by Z)
   var sorted = [0,1,2].sort(function(a,b){
     var pa=project(bodies[a].x,bodies[a].y,bodies[a].z);
     var pb=project(bodies[b].x,bodies[b].y,bodies[b].z);
@@ -828,13 +966,11 @@ function draw() {
     var sc = scaleC[i];
     var isHov = i===hovered;
 
-    // outer glow
     var glowR = b.glowRad * p.s * sc;
     drawGlow(p, glowR*1.4, b.glow, isHov?0.16:0.08);
     drawGlow(p, glowR,     b.glow, isHov?0.28:0.14);
 
-    // rings
-    b.rings.forEach(function(ring, ri) {
+    b.rings.forEach(function(ring) {
       ring.a += ring.da * (isHov ? 1.5 : 1);
       var rPx = ring.r * p.s * sc;
       var wPx = Math.max(0.5, ring.w * p.s * sc);
@@ -842,10 +978,8 @@ function draw() {
       drawRing(p.x, p.y, rPx, wPx, ring.col, a, ring.rx, ring.ry, ring.a);
     });
 
-    // particles
     b.particles.forEach(function(pt) {
       pt.phase += pt.speed;
-      // slowly orbit around body
       var ox = pt.ox*Math.cos(pt.phase*0.3) - pt.oz*Math.sin(pt.phase*0.3);
       var oy = pt.oy;
       var oz = pt.ox*Math.sin(pt.phase*0.3) + pt.oz*Math.cos(pt.phase*0.3);
@@ -859,12 +993,9 @@ function draw() {
       ctx.fill();
     });
 
-    // core sphere — draw as glowing disc with gradient
-    var cR = b.coreR * p.s * sc;
-    cR = Math.max(2, cR);
+    var cR = Math.max(2, b.coreR * p.s * sc);
 
     if (i === 2) {
-      // Black hole: dark core
       var bhGr = ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,cR);
       bhGr.addColorStop(0,   '#010108');
       bhGr.addColorStop(0.7, '#030215');
@@ -872,7 +1003,6 @@ function draw() {
       ctx.beginPath(); ctx.arc(p.x,p.y,cR,0,Math.PI*2);
       ctx.fillStyle = bhGr; ctx.fill();
     } else {
-      // Glowing core
       var cGr = ctx.createRadialGradient(p.x-cR*0.25,p.y-cR*0.25,0,p.x,p.y,cR);
       cGr.addColorStop(0,   '#ffffff');
       cGr.addColorStop(0.2, b.coreColor);
@@ -881,7 +1011,6 @@ function draw() {
       ctx.beginPath(); ctx.arc(p.x,p.y,cR,0,Math.PI*2);
       ctx.fillStyle = cGr; ctx.fill();
 
-      // Specular highlight
       var spec = ctx.createRadialGradient(p.x-cR*0.3,p.y-cR*0.35,0,p.x-cR*0.2,p.y-cR*0.2,cR*0.5);
       spec.addColorStop(0,'rgba(255,255,255,0.45)');
       spec.addColorStop(1,'rgba(255,255,255,0)');
@@ -897,7 +1026,7 @@ var sndDef={0:{f:110,t:'sine',g:.036},1:{f:80,t:'sawtooth',g:.020},2:{f:55,t:'si
 function toggleSound(){
   if(!actx){try{actx=new(window.AudioContext||window.webkitAudioContext)();}catch(e){return;}}
   sndOn=!sndOn;
-  document.getElementById('sndbtn').textContent=sndOn?'♪ Sound On':'♪ Sound Off';
+  document.getElementById('sndbtn').textContent=sndOn?'\u266a Sound On':'\u266a Sound Off';
   if(!sndOn) stopSnd();
 }
 function playSnd(id){
@@ -924,14 +1053,10 @@ function enterUniverse() {
   setTimeout(function(){ fl.classList.remove('on'); },150);
   setTimeout(function(){
     ob.style.display='none';
-    revealPhase = 1; // Phase 1: stars + bodies only
+    revealPhase = 1;
     autoIdle=true; resetIdle();
     setTimeout(function(){ autoIdle=false; resetIdle(); },3500);
-
-    // Phase 2: fade in labels after 3 seconds
     setTimeout(function(){ revealPhase = 2; }, 3000);
-
-    // Phase 3: enable beams + tooltips after 5.5 seconds
     setTimeout(function(){ revealPhase = 3; }, 5500);
   },1050);
 }
@@ -942,25 +1067,21 @@ function loop() {
   requestAnimationFrame(loop);
   tick += 0.01;
 
-  // Idle auto-orbit
   if(autoIdle && !dragging){
     tAz += 0.003;
     tEl  = 0.18 + 0.08*Math.sin(tick*0.28);
     tDist= 14 + 0.6*Math.sin(tick*0.16);
   }
 
-  // Smooth camera lerp
   camAz   += (tAz   - camAz)  * 0.07;
   camEl   += (tEl   - camEl)  * 0.07;
   camDist += (tDist - camDist)* 0.07;
 
-  // Scale targets
   for(var i=0;i<3;i++){
     scaleT[i] = i===hovered ? 1.18 : 1.0;
     scaleC[i] += (scaleT[i]-scaleC[i])*0.09;
   }
 
-  // Sound
   if(hovered>=0 && sndOn) playSnd(hovered);
   else if(hovered<0) stopSnd();
 
