@@ -865,6 +865,7 @@ function aboutHTML() {
   return [
     '<div class="ao-hero">',
       '<div>',
+        '<p class="ao-eyebrow">UI/UX Designer &nbsp;&middot;&nbsp; Mumbai, India</p>',
         '<h1 class="ao-name">Gunj<br>Sampat</h1>',
         '<p class="ao-tagline">Transforming complexity into clarity. Designing systems people actually want to use.</p>',
         '<nav class="ao-cta" aria-label="Contact and portfolio links">',
@@ -974,7 +975,7 @@ function aboutHTML() {
       '<section aria-labelledby="h-cert">',
         '<h3 class="sec-lbl" id="h-cert">Certifications</h3>',
         '<ul class="cert-list">',
-          '<li class="cert-item"><div class="cert-nm">Google UX Design Professional Certificate</div><div class="cert-meta">Coursera &nbsp;·&nbsp; 98.33% &nbsp;·&nbsp; <time>2022</time></div></li>',
+          '<li class="cert-item"><div class="cert-nm"><a class="lnk" href="https://www.coursera.org" target="_blank" rel="noopener noreferrer">Google UX Design Professional Certificate</a></div><div class="cert-meta">Coursera &nbsp;·&nbsp; 98.33% &nbsp;·&nbsp; <time>2022</time></div></li>',
           '<li class="cert-item"><div class="cert-nm">Advance Program in Digital Media &amp; Design</div><div class="cert-meta">Maya Academy of Advanced Cinematics &nbsp;·&nbsp; B+ &nbsp;·&nbsp; <time>2016</time>–<time>2018</time></div></li>',
         '</ul>',
       '</section>',
@@ -1061,8 +1062,8 @@ var bodies = [
     name:'Energy · About Me',desc:'Radiant, electric, personal',
     focAz:Math.PI,focEl:.18,focR:8,
     pCol:'#d4b483',pBg:'radial-gradient(ellipse at 15% 8%,rgba(100,80,20,.28),transparent 55%),#06050e',
-    pLbl:'About Me',pCap:'UX/UI Designer · 5+ years · Enterprise SaaS & Beyond · Mumbai, India ',
-    },
+    pLbl:'About Me',pCap:'UX/UI Designer · 5+ years · Enterprise SaaS & Beyond',
+    pTit:'UI/UX Designer',pBdyFn:aboutHTML },
 
   { x:5,y:1.2,z:0,baseX:5,baseY:1.2,
     color:'#ff6600',glow:'rgba(255,80,0,',glowRad:2.0,coreR:1.0,coreColor:'#ff8833',
