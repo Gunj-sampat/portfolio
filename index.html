@@ -99,37 +99,25 @@ img,svg,video,canvas{display:block;max-width:100%}
 .sec-lbl::after{content:'';flex:1;height:1px;background:rgba(212,180,131,.18)}
 
 /* ABOUT */
-.ao-hero{display:grid;grid-template-columns:1fr auto;gap:clamp(var(--sp8),5vw,var(--sp16));align-items:center;padding-bottom:clamp(var(--sp8),4vw,3.5rem);border-bottom:1px solid var(--border);margin-bottom:clamp(var(--sp8),4vw,3.5rem)}
-.ao-eyebrow{font-family:var(--mono);font-size:var(--text-xs);letter-spacing:.38em;text-transform:uppercase;color:var(--gold);margin-bottom:var(--sp5);opacity:.85}
+.ao-hero{display:grid;grid-template-columns:1fr;gap:clamp(var(--sp8),5vw,var(--sp16));padding-bottom:clamp(var(--sp8),4vw,3.5rem);border-bottom:1px solid var(--border);margin-bottom:clamp(var(--sp8),4vw,3.5rem)}
 .ao-name{font-family:var(--serif);font-size:clamp(2.5rem,8vw,5.5rem);font-weight:300;line-height:.92;letter-spacing:-.02em;color:var(--bright);margin-bottom:var(--sp5)}
 .ao-tagline{font-family:var(--serif);font-size:clamp(var(--text-base),2vw,var(--text-md));font-weight:300;color:var(--muted);line-height:1.75;max-width:46ch;margin-bottom:var(--sp8)}
 .ao-cta{display:flex;gap:var(--sp4);flex-wrap:wrap}
-.btn-primary{font-family:var(--mono);font-size:var(--text-xs);letter-spacing:.26em;text-transform:uppercase;color:var(--bg);background:var(--gold);padding:.875rem 1.75rem;min-height:var(--touch);text-decoration:none;display:inline-flex;align-items:center;justify-content:center;transition:background .3s,letter-spacing .3s,transform .2s;border-radius:2px;font-weight:500}
+.btn-primary{font-family:var(--mono);font-size:var(--text-xs);letter-spacing:.26em;text-transform:uppercase;color:var(--bg);background:var(--gold);padding:.875rem 1.75rem;min-height:var(--touch);text-decoration:none;display:inline-flex;align-items:center;justify-content:center;transition:background .3s,letter-spacing .3s,transform .2s;border-radius:2px;font-weight:500;cursor:pointer;border:none}
 .btn-primary:hover{background:var(--gold-bright);letter-spacing:.32em;transform:translateY(-2px)}
 .btn-ghost{font-family:var(--mono);font-size:var(--text-xs);letter-spacing:.26em;text-transform:uppercase;color:var(--bright);background:transparent;border:1px solid rgba(255,255,255,.22);padding:.875rem 1.75rem;min-height:var(--touch);text-decoration:none;display:inline-flex;align-items:center;justify-content:center;transition:border-color .3s,letter-spacing .3s,transform .2s;border-radius:2px}
 .btn-ghost:hover{border-color:rgba(255,255,255,.65);letter-spacing:.32em;transform:translateY(-2px)}
-.ao-avatar-wrap{display:flex;flex-direction:column;align-items:center;gap:var(--sp4)}
-.ao-avatar{width:clamp(8rem,16vw,13rem);height:clamp(8rem,16vw,13rem);border-radius:50%;overflow:hidden;flex-shrink:0}
-.ao-avatar svg{width:100%;height:100%}
-.ao-avail{display:flex;align-items:center;gap:var(--sp2);font-family:var(--mono);font-size:var(--text-xs);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
-.avail-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px rgba(74,222,128,.8);animation:pulseDot 2s infinite;flex-shrink:0}
-@keyframes pulseDot{0%,100%{opacity:1}50%{opacity:.4}}
 .ao-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp4);padding:clamp(var(--sp6),3vw,2rem) 0;border-bottom:1px solid var(--border);margin-bottom:clamp(var(--sp8),4vw,3.5rem)}
 .stat-item{display:flex;flex-direction:column;align-items:center;gap:var(--sp2);padding:var(--sp4);border-right:1px solid var(--border)}
 .stat-item:last-child{border-right:none}
 .stat-n{font-family:var(--serif);font-size:clamp(var(--text-2xl),4vw,2.75rem);font-weight:300;color:var(--gold);letter-spacing:-.04em;line-height:1}
 .stat-l{font-family:var(--mono);font-size:var(--text-xs);letter-spacing:.16em;text-transform:uppercase;color:var(--dim);text-align:center;line-height:1.4}
-.ao-twocol{display:grid;grid-template-columns:1fr 1fr;gap:clamp(var(--sp8),5vw,3.5rem);margin-bottom:clamp(var(--sp8),4vw,3.5rem)}
+.ao-bio-section{margin-bottom:clamp(var(--sp8),4vw,3.5rem)}
 .ao-bio{font-family:var(--serif);font-size:clamp(var(--text-base),1.6vw,var(--text-md));font-weight:300;color:var(--muted);line-height:1.9}
 .ao-bio+.ao-bio{margin-top:var(--sp4)}
 .ao-chips{display:flex;flex-wrap:wrap;gap:var(--sp2);margin-top:var(--sp5);list-style:none;padding:0}
 .ao-chip{font-family:var(--mono);font-size:var(--text-xs);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border:1px solid rgba(200,190,180,.2);padding:.3rem .75rem;border-radius:999px;transition:color .3s,border-color .3s,background .3s;line-height:1}
 .ao-chip:hover{color:var(--gold);border-color:rgba(212,180,131,.5);background:rgba(212,180,131,.06)}
-.ao-tools{display:flex;flex-direction:column}
-.ao-tr{display:grid;grid-template-columns:5.5rem 1fr;gap:var(--sp4);padding:var(--sp3) 0;border-bottom:1px solid rgba(255,255,255,.06);align-items:baseline}
-.ao-tr:first-child{border-top:1px solid rgba(255,255,255,.06)}
-.ao-tc{font-family:var(--mono);font-size:var(--text-xs);letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
-.ao-tv{font-family:var(--serif);font-size:clamp(var(--text-base),1.4vw,var(--text-md));font-weight:300;color:var(--muted);line-height:1.5}
 .exp-list{display:flex;flex-direction:column;list-style:none;padding:0}
 .exp-item{display:grid;grid-template-columns:14rem 1fr;gap:clamp(var(--sp6),3vw,3rem);padding:clamp(var(--sp5),2.5vw,2.2rem) 0;border-bottom:1px solid rgba(255,255,255,.06);transition:background .3s}
 .exp-item:first-child{border-top:1px solid rgba(255,255,255,.06)}
@@ -143,15 +131,6 @@ img,svg,video,canvas{display:block;max-width:100%}
 .exp-pts li::before{content:'·';position:absolute;left:0;color:var(--rose);opacity:.7;font-size:1.1em}
 .lnk{color:var(--gold);text-decoration:underline;text-decoration-color:rgba(212,180,131,.35);text-underline-offset:3px;transition:text-decoration-color .25s,color .25s}
 .lnk:hover{color:var(--gold-bright);text-decoration-color:var(--gold-bright)}
-.edu-list,.cert-list{display:flex;flex-direction:column;list-style:none;padding:0}
-.edu-item,.cert-item{padding:var(--sp4) 0;border-bottom:1px solid rgba(255,255,255,.06)}
-.edu-item:first-child,.cert-item:first-child{border-top:1px solid rgba(255,255,255,.06)}
-.edu-deg{font-family:var(--serif);font-size:clamp(var(--text-base),1.4vw,var(--text-md));font-weight:300;color:var(--bright);margin-bottom:var(--sp1)}
-.edu-grade{font-family:var(--mono);font-size:var(--text-xs);letter-spacing:.08em;color:var(--gold);margin-left:var(--sp2)}
-.edu-inst{font-family:var(--serif);font-size:clamp(var(--text-sm),1.2vw,var(--text-base));font-weight:300;color:var(--muted)}
-.edu-yr{font-family:var(--mono);font-size:var(--text-xs);letter-spacing:.1em;color:var(--dim);margin-top:var(--sp1)}
-.cert-nm{font-family:var(--serif);font-size:clamp(var(--text-base),1.4vw,var(--text-md));font-weight:300;color:var(--bright)}
-.cert-meta{font-family:var(--mono);font-size:var(--text-xs);letter-spacing:.08em;color:var(--dim);margin-top:var(--sp2)}
 .ao-links{margin-top:clamp(var(--sp8),4vw,3.5rem);padding-top:clamp(var(--sp8),4vw,3rem);border-top:1px solid var(--border)}
 .links-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:var(--sp3)}
 .social-link{display:flex;align-items:center;gap:var(--sp4);padding:var(--sp5);min-height:var(--touch);background:var(--surface);border:1px solid rgba(255,255,255,.07);text-decoration:none;transition:background .35s,border-color .35s,transform .25s;position:relative;overflow:hidden}
@@ -204,12 +183,10 @@ img,svg,video,canvas{display:block;max-width:100%}
 @keyframes blink{0%,100%{opacity:.07}50%{opacity:.32}}
 
 @media(min-width:87.5em){html{font-size:18px}#pi{max-width:75rem}}
-@media(max-width:64em){.ao-avatar{width:10rem;height:10rem}.exp-item{grid-template-columns:11rem 1fr;gap:var(--sp6)}.cs-card{grid-template-columns:11rem 1fr}}
+@media(max-width:64em){.exp-item{grid-template-columns:11rem 1fr;gap:var(--sp6)}.cs-card{grid-template-columns:11rem 1fr}}
 @media(max-width:48em){
   html{font-size:15px}.lsb{display:none}#hint{display:none}.lgr{font-size:.6rem}.ns{display:none}
-  .ao-hero{grid-template-columns:1fr;gap:var(--sp8)}.ao-avatar-wrap{flex-direction:row;align-items:center}.ao-avatar{width:8rem;height:8rem}
   .ao-stats{grid-template-columns:repeat(2,1fr)}.stat-item:nth-child(2){border-right:none}.stat-item:nth-child(3){border-top:1px solid var(--border)}.stat-item:nth-child(4){border-right:none}
-  .ao-twocol{grid-template-columns:1fr}
   .exp-item{grid-template-columns:1fr;gap:var(--sp4)}.exp-l{flex-direction:row;flex-wrap:wrap;align-items:baseline;gap:var(--sp3)}.exp-co{flex:0 0 100%}
   .links-grid{grid-template-columns:1fr}
   .cs-card{grid-template-columns:1fr}.cs-visual{border-right:none;border-bottom:1px solid rgba(255,255,255,.07);min-height:9rem}
@@ -223,7 +200,6 @@ img,svg,video,canvas{display:block;max-width:100%}
   #pi{padding:var(--sp5) var(--sp4) 4rem}.ptt{font-size:var(--text-2xl)}
   .ao-name{font-size:2.5rem}.ao-cta{flex-direction:column}.btn-primary,.btn-ghost{width:100%;justify-content:center}
   .ao-stats{grid-template-columns:repeat(2,1fr)}.stat-item{border-right:none;border-bottom:1px solid var(--border);padding:var(--sp3)}.stat-item:nth-last-child(-n+2){border-bottom:none}
-  .ao-tr{grid-template-columns:4.5rem 1fr}
   .wr-item{grid-template-columns:1fr auto}.wr-meta{flex-direction:row;align-items:center;gap:var(--sp2);grid-column:1/-1;margin-bottom:-.5rem}.wr-title{font-size:var(--text-base)}
   .cs-card{grid-template-columns:1fr}
 }
@@ -332,26 +308,20 @@ function aboutHTML(){
   return [
     '<div class="ao-hero">',
       '<div>',
-        '<p class="ao-eyebrow">UI/UX Designer &nbsp;&middot;&nbsp; Mumbai, India</p>',
-        '<h1 class="ao-name">Gunj Sampat</h1>',
         '<p class="ao-tagline">Transforming complexity into clarity. Designing systems people actually want to use.</p>',
         '<nav class="ao-cta">',
-          '<a class="btn-primary" href="https://www.behance.net/gunjs" target="_blank" rel="noopener noreferrer">View Work &#8599;</a>',
+          '<button class="btn-primary" onclick="closePanel();setTimeout(function(){openByIdx(1);},300)">View Work &#8599;</button>',
           '<a class="btn-ghost" href="mailto:hello@gunjsampat.com">Get in Touch</a>',
         '</nav>',
       '</div>',
-      '<div class="ao-avatar-wrap">',
-        '<div class="ao-avatar" role="img" aria-label="Gunj Sampat monogram">',
-          '<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">',
-            '<defs><radialGradient id="avG" cx="40%" cy="35%" r="65%"><stop offset="0%" stop-color="rgba(212,180,131,.5)"/><stop offset="100%" stop-color="rgba(6,5,14,0)"/></radialGradient></defs>',
-            '<circle cx="100" cy="100" r="97" fill="rgba(18,14,35,.95)" stroke="rgba(212,180,131,.18)" stroke-width="1"/>',
-            '<circle cx="100" cy="100" r="97" fill="url(#avG)"/>',
-            '<text x="100" y="122" text-anchor="middle" font-family="Cormorant Garamond,Georgia,serif" font-size="80" font-weight="300" fill="rgba(212,180,131,.9)">G</text>',
-            '<circle cx="100" cy="100" r="97" fill="none" stroke="rgba(212,180,131,.14)" stroke-width="1" stroke-dasharray="3 9"/>',
-          '</svg>',
-        '</div>',
-        '<div class="ao-avail"><span class="avail-dot" aria-hidden="true"></span>Open to opportunities</div>',
-      '</div>',
+    '</div>',
+    '<div class="ao-bio-section">',
+      '<h3 class="sec-lbl">About</h3>',
+      '<p class="ao-bio">I\'m a UI/UX designer with 5+ years of experience and a strong foundation in visual design. I started in graphic design and transitioned into UX to focus on solving real user problems.</p>',
+      '<p class="ao-bio">Currently working on enterprise SaaS products, designing end-to-end workflows and dashboards that simplify complex data and support better decision-making.</p>',
+      '<ul class="ao-chips">',
+        ['UX/UI Design','Interaction Design','Design Systems','Visual Design','Information Architecture','Data Visualisation','Instructional Design'].map(function(s){return '<li class="ao-chip">'+s+'</li>';}).join(''),
+      '</ul>',
     '</div>',
     '<dl class="ao-stats">',
       '<div class="stat-item"><dt class="stat-l">Years Experience</dt><dd class="stat-n">5+</dd></div>',
@@ -359,23 +329,6 @@ function aboutHTML(){
       '<div class="stat-item"><dt class="stat-l">Industries</dt><dd class="stat-n">3</dd></div>',
       '<div class="stat-item"><dt class="stat-l">Google UX Cert</dt><dd class="stat-n">98%</dd></div>',
     '</dl>',
-    '<div class="ao-twocol">',
-      '<div>',
-        '<h3 class="sec-lbl">About</h3>',
-        '<p class="ao-bio">I\'m a UI/UX designer with 5+ years of experience and a strong foundation in visual design. I started in graphic design and transitioned into UX to focus on solving real user problems.</p>',
-        '<p class="ao-bio">Currently working on enterprise SaaS products, designing end-to-end workflows and dashboards that simplify complex data and support better decision-making.</p>',
-        '<ul class="ao-chips">',
-          ['UX/UI Design','Interaction Design','Design Systems','Visual Design','Information Architecture','Data Visualisation','Instructional Design'].map(function(s){return '<li class="ao-chip">'+s+'</li>';}).join(''),
-        '</ul>',
-      '</div>',
-      '<div>',
-        '<h3 class="sec-lbl">Toolkit</h3>',
-        '<dl class="ao-tools">',
-          [['Design','Figma · Adobe XD · Photoshop · Illustrator'],['Prototype','Framer'],['Content','Adobe Premiere Pro · Vyond'],['Collab','Google Workspace · Microsoft Office']]
-          .map(function(r){return '<div class="ao-tr"><dt class="ao-tc">'+r[0]+'</dt><dd class="ao-tv">'+r[1]+'</dd></div>';}).join(''),
-        '</dl>',
-      '</div>',
-    '</div>',
     '<section aria-labelledby="h-exp"><h3 class="sec-lbl" id="h-exp">Experience</h3>',
     '<ol class="exp-list">',
       '<li class="exp-item"><div class="exp-l"><div class="exp-co">Sarjak Container Lines Pvt. Ltd.</div><div class="exp-role">UX / UI Designer</div><div class="exp-per">May 2023 &ndash; Present &nbsp;&middot;&nbsp; 2 yrs+</div></div>',
@@ -385,17 +338,6 @@ function aboutHTML(){
       '<li class="exp-item"><div class="exp-l"><div class="exp-co">Gator Creative Studio</div><div class="exp-role">Graphic Designer</div><div class="exp-per">Aug 2019 &ndash; Jul 2020 &nbsp;&middot;&nbsp; 1 yr</div></div>',
       '<ul class="exp-pts"><li>Designed creative assets and branding materials for clients across Pharma, IT, and Manufacturing industries.</li><li>Developed visual concepts aligned with brand identity and business communication needs.</li></ul></li>',
     '</ol></section>',
-    '<div class="ao-twocol" style="margin-top:clamp(2rem,4vw,3.5rem)">',
-      '<section aria-labelledby="h-edu"><h3 class="sec-lbl" id="h-edu">Education</h3><ul class="edu-list">',
-        '<li class="edu-item"><div class="edu-deg">Bachelor of Commerce <span class="edu-grade">(B Grade)</span></div><div class="edu-inst">K.J. Somaiya Clg. of Arts &amp; Commerce, Mumbai University</div><div class="edu-yr">2013&ndash;2016</div></li>',
-        '<li class="edu-item"><div class="edu-deg">Class 12 <span class="edu-grade">(74%)</span></div><div class="edu-inst">Indian School Al Wadi Al Kabir, CBSE</div><div class="edu-yr">2012&ndash;2013</div></li>',
-        '<li class="edu-item"><div class="edu-deg">Class 10 <span class="edu-grade">(89%)</span></div><div class="edu-inst">Indian School Al Wadi Al Kabir, CBSE</div><div class="edu-yr">2010&ndash;2011</div></li>',
-      '</ul></section>',
-      '<section aria-labelledby="h-cert"><h3 class="sec-lbl" id="h-cert">Certifications</h3><ul class="cert-list">',
-        '<li class="cert-item"><div class="cert-nm"><a class="lnk" href="https://www.coursera.org" target="_blank" rel="noopener noreferrer">Google UX Design Professional Certificate</a></div><div class="cert-meta">Coursera &nbsp;&middot;&nbsp; 98.33% &nbsp;&middot;&nbsp; 2022</div></li>',
-        '<li class="cert-item"><div class="cert-nm">Advance Program in Digital Media &amp; Design</div><div class="cert-meta">Maya Academy of Advanced Cinematics &nbsp;&middot;&nbsp; B+ &nbsp;&middot;&nbsp; 2016&ndash;2018</div></li>',
-      '</ul></section>',
-    '</div>',
     '<section class="ao-links" aria-labelledby="h-social"><h3 class="sec-lbl" id="h-social">Find me on</h3>',
     '<nav class="links-grid">',
       [['B&#x0113;','Behance','behance.net/gunjs','https://www.behance.net/gunjs'],
@@ -461,7 +403,7 @@ var bodies=[
    rings:[{rx:0,ry:0,a:0,da:.014,r:1.35,w:.04,col:'rgba(150,180,255,'},{rx:1.05,ry:.78,a:1.2,da:.010,r:1.60,w:.025,col:'rgba(130,160,255,'},{rx:1.57,ry:.63,a:2.4,da:.017,r:1.42,w:.020,col:'rgba(170,200,255,'},{rx:.63,ry:2.09,a:.8,da:.008,r:1.78,w:.016,col:'rgba(120,150,255,'},{rx:2.09,ry:.63,a:1.8,da:.020,r:1.28,w:.028,col:'rgba(160,190,255,'}],
    particles:[],labelId:'le',lY:2.6,idx:0,name:'Energy · About Me',desc:'Radiant, electric, personal',
    focAz:Math.PI,focEl:.18,focR:8,pCol:'#d4b483',pBg:'radial-gradient(ellipse at 15% 8%,rgba(100,80,20,.28),transparent 55%),#06050e',
-   pLbl:'About Me',pCap:'UX/UI Designer · 5+ years · Enterprise SaaS & Beyond',pTit:'UI/UX Designer',pBdyFn:aboutHTML},
+   pLbl:'About Me',pCap:'UX/UI Designer · 5+ years · Enterprise SaaS & Beyond',pTit:'Gunj <em>Sampat</em>',pBdyFn:aboutHTML},
   {x:5,y:1.2,z:0,baseX:5,baseY:1.2,color:'#ff6600',glow:'rgba(255,80,0,',glowRad:2.0,coreR:1.0,coreColor:'#ff8833',
    rings:[{rx:Math.PI/2,ry:0,a:0,da:.008,r:1.5,w:.035,col:'rgba(255,140,40,'},{rx:Math.PI/3,ry:.5,a:1,da:.012,r:1.8,w:.025,col:'rgba(255,120,20,'}],
    particles:[],labelId:'lm',lY:2.8,idx:1,name:'Matter · My Work',desc:'Solid, molten, crafted',
