@@ -147,12 +147,14 @@ img,svg,video,canvas{display:block;max-width:100%}
 
 /* WORK */
 .work-intro{font-family:var(--sans);font-size:clamp(var(--text-base),1.8vw,var(--text-md));font-weight:300;color:var(--muted);line-height:1.9;margin-bottom:clamp(var(--sp8),4vw,3rem);max-width:64ch}
-.cs-container{display:flex;flex-direction:column;gap:3px;list-style:none;padding:0}
-.cs-card{display:grid;grid-template-columns:clamp(12rem,22vw,18rem) 1fr;text-decoration:none;background:var(--surface);border:1px solid rgba(255,255,255,.07);transition:background .35s,border-color .35s,transform .25s;overflow:hidden}
-.cs-card:first-child{border-radius:12px 12px 0 0}
-.cs-card:last-child{border-radius:0 0 12px 12px}
+.cs-container{display:flex;flex-direction:column;gap:1.25rem;list-style:none;padding:0}
+.cs-card{display:grid;grid-template-columns:clamp(12rem,22vw,18rem) 1fr;text-decoration:none;background:var(--surface);border:1px solid rgba(255,255,255,.07);transition:background .35s,border-color .35s,transform .25s;overflow:hidden;border-radius:12px}
+.cs-card:first-child{border-radius:12px}
+.cs-card:last-child{border-radius:12px}
 .cs-card:hover{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.16);transform:translateX(4px)}
-.cs-visual{display:flex;align-items:center;justify-content:center;padding:clamp(1.5rem,3vw,2.25rem) clamp(1.25rem,2.5vw,1.75rem);border-right:1px solid rgba(255,255,255,.07);min-height:8rem}
+.cs-visual{display:flex;align-items:center;justify-content:center;border-right:1px solid rgba(255,255,255,.07);min-height:10rem;overflow:hidden;position:relative}
+.cs-visual img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transition:transform .5s ease}
+.cs-card:hover .cs-visual img{transform:scale(1.04)}
 .cs-v1{background:radial-gradient(ellipse at 40% 40%,rgba(212,180,131,.07),transparent 65%)}
 .cs-v2{background:radial-gradient(ellipse at 40% 40%,rgba(126,201,201,.07),transparent 65%)}
 .cs-v3{background:radial-gradient(ellipse at 40% 40%,rgba(176,164,216,.07),transparent 65%)}
@@ -190,7 +192,7 @@ img,svg,video,canvas{display:block;max-width:100%}
   .ao-stats{grid-template-columns:repeat(2,1fr)}.stat-item:nth-child(2){border-right:none}.stat-item:nth-child(3){border-top:1px solid var(--border)}.stat-item:nth-child(4){border-right:none}
   .exp-item{grid-template-columns:1fr;gap:var(--sp4)}.exp-l{flex-direction:row;flex-wrap:wrap;align-items:baseline;gap:var(--sp3)}.exp-co{flex:0 0 100%}
   .links-grid{grid-template-columns:1fr}
-  .cs-card{grid-template-columns:1fr}.cs-visual{border-right:none;border-bottom:1px solid rgba(255,255,255,.07);min-height:9rem}
+  .cs-card{grid-template-columns:1fr}.cs-visual{border-right:none;border-bottom:1px solid rgba(255,255,255,.07);min-height:12rem}
   .wr-item{grid-template-columns:3rem 1fr auto;gap:var(--sp4)}
 }
 @media(max-width:30em){
@@ -357,24 +359,24 @@ function aboutHTML(){
 
 function workHTML(){
   var cards=[
-    ['01','Designing a smarter way to build case studies',['Case Studies','UX Design','No-Code'],'cs-v1',
+    ['01','Designing a smarter way to build case studies',['Case Studies','UX Design','No-Code'],
      'https://www.behance.net/gallery/247712931/Designing-asmarter-wayto-build-case-studies',
-     '<circle cx="60" cy="60" r="48" stroke="rgba(212,180,131,.25)" stroke-width="1"/><circle cx="60" cy="60" r="32" stroke="rgba(212,180,131,.4)" stroke-width="1"/><circle cx="60" cy="60" r="16" fill="rgba(212,180,131,.12)" stroke="rgba(212,180,131,.6)" stroke-width="1.5"/><line x1="60" y1="12" x2="60" y2="108" stroke="rgba(212,180,131,.15)" stroke-width="1"/><line x1="12" y1="60" x2="108" y2="60" stroke="rgba(212,180,131,.15)" stroke-width="1"/><circle cx="60" cy="60" r="4" fill="rgba(212,180,131,.9)"/>'],
-    ['02','Compliance Command Center',['SaaS','B2B','Monitoring','Reporting'],'cs-v2',
+     'https://mir-s3-cdn-cf.behance.net/project_modules/1400/9bc63b247712931.69e12d8c5ae38.png'],
+    ['02','Compliance Command Center',['SaaS','B2B','Monitoring','Reporting'],
      'https://www.behance.net/gallery/239592605/Compliance-Command-Center',
-     '<rect x="22" y="22" width="76" height="76" rx="4" stroke="rgba(126,201,201,.25)" stroke-width="1"/><rect x="34" y="34" width="52" height="52" rx="3" stroke="rgba(126,201,201,.4)" stroke-width="1"/><rect x="46" y="46" width="28" height="28" rx="2" fill="rgba(126,201,201,.1)" stroke="rgba(126,201,201,.7)" stroke-width="1.5"/><line x1="22" y1="60" x2="46" y2="60" stroke="rgba(126,201,201,.3)" stroke-width="1"/><line x1="74" y1="60" x2="98" y2="60" stroke="rgba(126,201,201,.3)" stroke-width="1"/><circle cx="60" cy="60" r="5" fill="rgba(126,201,201,.9)"/>'],
-    ['03','Redesigning Barclays Credit Card Dispute Resolution',['Payments','Banking','SaaS','B2C'],'cs-v3',
+     'https://mir-s3-cdn-cf.behance.net/project_modules/1400/4f1012239592605.692d29cd13404.jpg'],
+    ['03','Redesigning Barclays Credit Card Dispute Resolution',['Payments','Banking','SaaS','B2C'],
      'https://www.behance.net/gallery/235058759/Redesigning-Barclays-Credit-Card-Dispute-Resolution',
-     '<path d="M60 18 L102 42 L102 78 L60 102 L18 78 L18 42 Z" stroke="rgba(176,164,216,.3)" stroke-width="1"/><path d="M60 32 L88 48 L88 72 L60 88 L32 72 L32 48 Z" stroke="rgba(176,164,216,.45)" stroke-width="1"/><path d="M60 46 L74 54 L74 66 L60 74 L46 66 L46 54 Z" fill="rgba(176,164,216,.1)" stroke="rgba(176,164,216,.75)" stroke-width="1.5"/><circle cx="60" cy="60" r="5" fill="rgba(176,164,216,.9)"/>'],
-    ['04','Redesigning Passport Seva',['Government','B2C','Self-Service'],'cs-v4',
+     'https://mir-s3-cdn-cf.behance.net/project_modules/1400/a9b0ee235058759.68cfdf297e115.jpg'],
+    ['04','Redesigning Passport Seva',['Government','B2C','Self-Service'],
      'https://www.behance.net/gallery/234822727/Redesigning-Passport-Seva',
-     '<circle cx="60" cy="60" r="48" stroke="rgba(212,137,154,.2)" stroke-width="1"/><path d="M60 20 C80 30 90 50 90 60 C90 70 80 90 60 100 C40 90 30 70 30 60 C30 50 40 30 60 20 Z" stroke="rgba(212,137,154,.35)" stroke-width="1" fill="none"/><ellipse cx="60" cy="60" rx="18" ry="30" stroke="rgba(212,137,154,.55)" stroke-width="1.5" fill="rgba(212,137,154,.08)"/><line x1="12" y1="60" x2="108" y2="60" stroke="rgba(212,137,154,.18)" stroke-width="1"/><circle cx="60" cy="60" r="5" fill="rgba(212,137,154,.9)"/>']
+     'https://mir-s3-cdn-cf.behance.net/project_modules/1400/8c3092234822727.68cad4f4e22fa.jpg']
   ];
   return '<p class="work-intro">I design systems that translate complex problems into intuitive experiences. From research to interaction design, each project reflects a balance between user needs, business goals, and thoughtful execution.</p>'
     +'<ul class="cs-container">'
     +cards.map(function(c){
-      return '<li><a class="cs-card" href="'+c[4]+'" target="_blank" rel="noopener noreferrer">'
-        +'<div class="cs-visual '+c[3]+'" aria-hidden="true"><div class="cs-glyph"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">'+c[5]+'</svg></div></div>'
+      return '<li><a class="cs-card" href="'+c[3]+'" target="_blank" rel="noopener noreferrer">'
+        +'<div class="cs-visual"><img src="'+c[4]+'" alt="'+c[1]+' project thumbnail" loading="lazy"/></div>'
         +'<div class="cs-content"><div class="cs-num">'+c[0]+'</div><h3 class="cs-title">'+c[1]+'</h3>'
         +'<ul class="cs-tags">'+c[2].map(function(t){return '<li class="cs-tag">'+t+'</li>';}).join('')+'</ul>'
         +'<span class="cs-arrow">View project &rarr;</span></div></a></li>';
