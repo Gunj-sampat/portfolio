@@ -314,7 +314,7 @@ function aboutHTML(){
         '<p class="ao-tagline">Transforming complexity into clarity. Designing systems people actually want to use.</p>',
         '<nav class="ao-cta">',
           '<button class="btn-primary" onclick="closePanel();setTimeout(function(){openByIdx(1);},300)">View Work &#8599;</button>',
-          '<a class="btn-ghost" href="mailto:gunjsampat@gmail.com">Get in Touch</a>',
+          '<a class="btn-ghost" href="mailto:hello@gunjsampat.com">Get in Touch</a>',
         '</nav>',
       '</div>',
     '</div>',
@@ -616,22 +616,47 @@ function draw(){
   });
 }
 
-var actx=null,sndOn=false,sndNodes={},activeSnd=null;
-var sndDef={0:{f:110,t:'sine',g:.036},1:{f:80,t:'sawtooth',g:.02},2:{f:55,t:'sine',g:.03}};
+var actx=null,sndOn=false,ambientNodes=null;
+
+function buildAmbient(){
+  if(!actx||ambientNodes) return;
+  try{
+    var master=actx.createGain(); master.gain.value=0; master.connect(actx.destination);
+    var o1=actx.createOscillator(); o1.type='sine'; o1.frequency.value=55;
+    var g1=actx.createGain(); g1.gain.value=0.06; o1.connect(g1); g1.connect(master); o1.start();
+    var o2=actx.createOscillator(); o2.type='sine'; o2.frequency.value=110;
+    var g2=actx.createGain(); g2.gain.value=0.035; o2.connect(g2); g2.connect(master); o2.start();
+    var o3=actx.createOscillator(); o3.type='sine'; o3.frequency.value=165;
+    var lfo=actx.createOscillator(); lfo.type='sine'; lfo.frequency.value=0.12;
+    var lfoGain=actx.createGain(); lfoGain.gain.value=0.018;
+    lfo.connect(lfoGain); lfoGain.connect(g2.gain);
+    var g3=actx.createGain(); g3.gain.value=0.02; o3.connect(g3); g3.connect(master);
+    o3.start(); lfo.start();
+    var o4=actx.createOscillator(); o4.type='triangle'; o4.frequency.value=220;
+    var g4=actx.createGain(); g4.gain.value=0.012; o4.connect(g4); g4.connect(master); o4.start();
+    ambientNodes={master:master};
+  }catch(e){ ambientNodes=null; }
+}
+
 function toggleSound(){
-  if(!actx){try{actx=new(window.AudioContext||window.webkitAudioContext)();}catch(e){return;}}
-  sndOn=!sndOn;var btn=document.getElementById('sndbtn');
-  btn.textContent=sndOn?'\u266a Sound On':'\u266a Sound Off';btn.setAttribute('aria-pressed',sndOn?'true':'false');
-  if(!sndOn)stopSnd();
+  if(!actx){
+    try{ actx=new(window.AudioContext||window.webkitAudioContext)(); }catch(e){ return; }
+  }
+  if(actx.state==='suspended') actx.resume();
+  sndOn=!sndOn;
+  var btn=document.getElementById('sndbtn');
+  btn.textContent=sndOn?'\u266a Sound On':'\u266a Sound Off';
+  btn.setAttribute('aria-pressed',sndOn?'true':'false');
+  buildAmbient();
+  if(ambientNodes){
+    var now=actx.currentTime;
+    ambientNodes.master.gain.cancelScheduledValues(now);
+    ambientNodes.master.gain.linearRampToValueAtTime(sndOn?1:0, now+(sndOn?1.2:0.8));
+  }
 }
-function playSnd(id){
-  if(!sndOn||!actx||activeSnd===id)return;stopSnd();
-  if(!sndNodes[id]){try{var o=actx.createOscillator(),g=actx.createGain();o.type=sndDef[id].t;o.frequency.value=sndDef[id].f;g.gain.value=0;o.connect(g);g.connect(actx.destination);o.start();sndNodes[id]={o:o,g:g};}catch(e){return;}}
-  sndNodes[id].g.gain.cancelScheduledValues(actx.currentTime);sndNodes[id].g.gain.linearRampToValueAtTime(sndDef[id].g,actx.currentTime+.4);activeSnd=id;
-}
-function stopSnd(){
-  if(!actx)return;Object.keys(sndNodes).forEach(function(k){try{sndNodes[k].g.gain.cancelScheduledValues(actx.currentTime);sndNodes[k].g.gain.linearRampToValueAtTime(0,actx.currentTime+.5);}catch(e){}});activeSnd=null;
-}
+
+function playSnd(id){}
+function stopSnd(){}
 
 var _entered=false;
 function enterUniverse(){
