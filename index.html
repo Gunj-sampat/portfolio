@@ -129,7 +129,7 @@ img,svg,video,canvas{display:block;max-width:100%}
 .exp-per{font-family:var(--mono);font-size:var(--text-xs);letter-spacing:.08em;color:var(--dim);line-height:1.5}
 .exp-pts{list-style:none;padding:0;display:flex;flex-direction:column;gap:var(--sp3)}
 .exp-pts li{font-family:var(--sans);font-size:clamp(var(--text-base),1.4vw,var(--text-md));font-weight:300;color:var(--muted);line-height:1.75;padding-left:1.1rem;position:relative}
-.exp-pts li::before{content:'·';position:absolute;left:0;color:var(--rose);opacity:.7;font-size:1.1em}
+.exp-pts li::before{content:'\B7';position:absolute;left:0;color:var(--rose);opacity:.7;font-size:1.1em}
 .lnk{color:var(--gold);text-decoration:underline;text-decoration-color:rgba(212,180,131,.35);text-underline-offset:3px;transition:text-decoration-color .25s,color .25s}
 .lnk:hover{color:var(--gold-bright);text-decoration-color:var(--gold-bright)}
 .ao-links{margin-top:clamp(var(--sp8),4vw,3.5rem);padding-top:clamp(var(--sp8),4vw,3rem);border-top:1px solid var(--border)}
@@ -149,8 +149,6 @@ img,svg,video,canvas{display:block;max-width:100%}
 .work-intro{font-family:var(--sans);font-size:clamp(var(--text-base),1.8vw,var(--text-md));font-weight:300;color:var(--muted);line-height:1.9;margin-bottom:clamp(var(--sp8),4vw,3rem);max-width:64ch}
 .cs-container{display:flex;flex-direction:column;gap:1.25rem;list-style:none;padding:0}
 .cs-card{display:grid;grid-template-columns:clamp(12rem,22vw,18rem) 1fr;text-decoration:none;background:var(--surface);border:1px solid rgba(255,255,255,.07);transition:background .35s,border-color .35s,transform .25s;overflow:hidden;border-radius:12px}
-.cs-card:first-child{border-radius:12px}
-.cs-card:last-child{border-radius:12px}
 .cs-card:hover{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.16);transform:translateX(4px)}
 .cs-visual{display:flex;align-items:center;justify-content:center;border-right:1px solid rgba(255,255,255,.07);min-height:10rem;overflow:hidden;position:relative}
 .cs-visual img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transition:transform .5s ease}
@@ -159,8 +157,6 @@ img,svg,video,canvas{display:block;max-width:100%}
 .cs-v2{background:radial-gradient(ellipse at 40% 40%,rgba(126,201,201,.07),transparent 65%)}
 .cs-v3{background:radial-gradient(ellipse at 40% 40%,rgba(176,164,216,.07),transparent 65%)}
 .cs-v4{background:radial-gradient(ellipse at 40% 40%,rgba(212,137,154,.07),transparent 65%)}
-.cs-glyph{width:clamp(5rem,9vw,7rem);height:clamp(5rem,9vw,7rem)}
-.cs-glyph svg{width:100%;height:100%}
 .cs-content{padding:clamp(var(--sp5),2.5vw,2rem) clamp(var(--sp6),3vw,2.25rem);display:flex;flex-direction:column;gap:var(--sp3);justify-content:center}
 .cs-num{font-family:var(--mono);font-size:var(--text-xs);letter-spacing:.28em;color:var(--dim);text-transform:uppercase}
 .cs-title{font-family:var(--sans);font-size:clamp(var(--text-md),2vw,var(--text-xl));font-weight:300;color:var(--bright);line-height:1.3}
@@ -206,6 +202,46 @@ img,svg,video,canvas{display:block;max-width:100%}
   .wr-item{grid-template-columns:1fr auto}.wr-meta{flex-direction:row;align-items:center;gap:var(--sp2);grid-column:1/-1;margin-bottom:-.5rem}.wr-title{font-size:var(--text-base)}
   .cs-card{grid-template-columns:1fr}
 }
+/* PANEL HEADER — replaced by panel-topbar */
+.p-header{display:none;align-items:center;justify-content:space-between;padding:1rem clamp(1rem,5vw,3rem);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:5;background:rgba(6,5,14,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.p-header-logo{font-family:var(--mono);font-size:clamp(.6rem,1.1vw,var(--text-xs));letter-spacing:.32em;text-transform:uppercase;color:var(--gold);font-weight:500}
+.p-header-nav{display:flex;align-items:center;gap:clamp(.75rem,2vw,2rem);flex-wrap:wrap}
+.p-header-nav a,.p-header-nav button{font-family:var(--mono);font-size:clamp(.55rem,.9vw,var(--text-xs));letter-spacing:.2em;text-transform:uppercase;color:var(--dim);text-decoration:none;background:none;border:none;cursor:pointer;padding:0;transition:color .25s;white-space:nowrap}
+.p-header-nav a:hover,.p-header-nav button:hover{color:var(--bright)}
+.p-header-cta{color:var(--bg)!important;background:var(--gold);padding:.45rem 1.1rem;border-radius:2px;font-weight:500!important;transition:background .25s,transform .15s!important}
+.p-header-cta:hover{background:var(--gold-bright)!important;transform:translateY(-1px)!important}
+
+/* PANEL TOPBAR — return btn left, nav right, same row */
+.panel-topbar{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:var(--sp5)}
+.panel-topbar .pbk{margin-bottom:0}
+.panel-nav{display:flex;align-items:center;gap:clamp(.75rem,2vw,2rem);flex-wrap:wrap}
+.panel-nav button,.panel-nav a{font-family:var(--mono);font-size:clamp(.55rem,.9vw,var(--text-xs));letter-spacing:.2em;text-transform:uppercase;color:var(--dim);text-decoration:none;background:none;border:none;cursor:pointer;padding:0;transition:color .25s;white-space:nowrap}
+.panel-nav button:hover,.panel-nav a:hover{color:var(--bright)}
+.panel-nav-cta{color:var(--bg)!important;background:var(--gold);padding:.4rem 1rem;border-radius:2px;font-weight:500!important;transition:background .25s,transform .15s!important}
+.panel-nav-cta:hover{background:var(--gold-bright)!important;transform:translateY(-1px)!important}
+@media(max-width:30em){.panel-nav button:not(:last-child){display:none}.panel-topbar{gap:.5rem}}
+/* PANEL FOOTER */
+.p-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;padding:1.5rem clamp(1rem,5vw,3rem);border-top:1px solid var(--border);margin-top:clamp(2rem,4vw,4rem)}
+.p-footer-logo{font-family:var(--mono);font-size:clamp(.6rem,1.1vw,var(--text-xs));letter-spacing:.32em;text-transform:uppercase;color:var(--gold);font-weight:500}
+.p-footer-links{display:flex;align-items:center;gap:clamp(.75rem,2vw,1.75rem);flex-wrap:wrap}
+.p-footer-links a{font-family:var(--mono);font-size:clamp(.55rem,.9vw,var(--text-xs));letter-spacing:.2em;text-transform:uppercase;color:var(--dim);text-decoration:none;transition:color .25s;white-space:nowrap}
+.p-footer-links a:hover{color:var(--bright)}
+.p-footer-cta{color:var(--bg)!important;background:var(--gold);padding:.45rem 1.1rem;border-radius:2px;font-weight:500!important;transition:background .25s,transform .15s!important}
+.p-footer-cta:hover{background:var(--gold-bright)!important;transform:translateY(-1px)!important}
+/* BEYOND THE PORTFOLIO */
+.btp-section{margin-top:clamp(var(--sp8),4vw,3.5rem);padding-top:clamp(var(--sp8),4vw,3rem);border-top:1px solid var(--border)}
+.btp-intro{font-family:var(--sans);font-size:clamp(var(--text-base),1.6vw,var(--text-md));font-weight:300;color:var(--muted);line-height:1.75;margin-bottom:1.75rem;max-width:52ch}
+.btp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.btp-card{display:flex;flex-direction:column;gap:.6rem;cursor:default;transition:transform .35s}
+.btp-card:hover{transform:translateY(-4px)}
+.btp-img-wrap{width:100%;aspect-ratio:1/1;overflow:hidden;border-radius:12px;background:var(--surface);border:1px solid var(--border)}
+.btp-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease,filter .4s;filter:saturate(.88)}
+.btp-card:hover .btp-img-wrap img{transform:scale(1.05);filter:saturate(1.1)}
+.btp-info{padding:0 .2rem}
+.btp-tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);opacity:.75;margin-bottom:.25rem}
+.btp-cap{font-family:var(--serif);font-size:clamp(.88rem,1.3vw,var(--text-base));font-weight:300;color:var(--muted);line-height:1.4}
+@media(max-width:48em){.btp-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:30em){.btp-grid{grid-template-columns:repeat(2,1fr);gap:.75rem}}
 </style>
 </head>
 <body>
@@ -213,13 +249,13 @@ img,svg,video,canvas{display:block;max-width:100%}
 <a href="#pi" class="skip">Skip to content</a>
 
 <div id="wrap">
-  <canvas id="c" role="img" aria-label="Interactive 3D cosmic universe with three celestial bodies. Click or tap a body to explore."></canvas>
+  <canvas id="c" role="img" aria-label="Interactive 3D cosmic universe. Click or tap a body to explore."></canvas>
   <div id="wf" aria-hidden="true"></div>
 
   <section id="ob" aria-label="Welcome">
     <div class="ob-lines">
       <p class="obl">You are inside <em>a system of thought.</em></p>
-      <p class="obl">Three forces hold the universe together —<br>energy, matter, and the fields between them.</p>
+      <p class="obl">Three forces hold the universe together &mdash;<br>energy, matter, and the fields between them.</p>
       <p class="obl">Choose one <em>to begin.</em></p>
     </div>
     <div class="odv" aria-hidden="true"></div>
@@ -234,30 +270,30 @@ img,svg,video,canvas{display:block;max-width:100%}
     <button id="sndbtn" onclick="toggleSound()" aria-pressed="false" aria-label="Toggle ambient sound">&#9834; Sound Off</button>
     <button class="nlb" id="le" onclick="openByIdx(0)" aria-label="About Me">
       <span class="nc" aria-hidden="true">Energy</span><span class="nn">About Me</span>
-      <span class="ns" aria-hidden="true">Designer · Thinker</span><div class="nl" aria-hidden="true"></div>
+      <span class="ns" aria-hidden="true">Designer &middot; Thinker</span><div class="nl" aria-hidden="true"></div>
     </button>
     <button class="nlb" id="lm" onclick="openByIdx(1)" aria-label="My Work">
       <span class="nc" aria-hidden="true">Matter</span><span class="nn">My Work</span>
-      <span class="ns" aria-hidden="true">Brand · Type · Digital</span><div class="nl" aria-hidden="true"></div>
+      <span class="ns" aria-hidden="true">Brand &middot; Type &middot; Digital</span><div class="nl" aria-hidden="true"></div>
     </button>
     <button class="nlb" id="lf" onclick="openByIdx(2)" aria-label="Writing">
       <span class="nc" aria-hidden="true">Fields</span><span class="nn">Writing</span>
-      <span class="ns" aria-hidden="true">Essays · Philosophy</span><div class="nl" aria-hidden="true"></div>
+      <span class="ns" aria-hidden="true">Essays &middot; Philosophy</span><div class="nl" aria-hidden="true"></div>
     </button>
     <div id="ntt" role="tooltip" aria-hidden="true"><div class="tnm" id="tnm"></div><div class="tds" id="tds"></div></div>
     <div id="btt" role="tooltip" aria-hidden="true"><div class="brl" id="brl"></div><div class="bds" id="bds"></div></div>
     <div id="lgd" aria-hidden="true">
-      <div class="lgr"><div class="lgd2" style="background:var(--gold)"></div>Energy · About Me</div>
-      <div class="lgr"><div class="lgd2" style="background:var(--rose)"></div>Matter · Work</div>
-      <div class="lgr"><div class="lgd2" style="background:var(--teal)"></div>Fields · Writing</div>
+      <div class="lgr"><div class="lgd2" style="background:var(--gold)"></div>Energy &middot; About Me</div>
+      <div class="lgr"><div class="lgd2" style="background:var(--rose)"></div>Matter &middot; Work</div>
+      <div class="lgr"><div class="lgd2" style="background:var(--teal)"></div>Fields &middot; Writing</div>
     </div>
-    <div id="cmp" aria-live="off" aria-hidden="true"><div id="caz">AZ 000°</div><div id="cel">EL +10°</div><div id="cds">DST 14.0</div></div>
-    <div id="hint" aria-hidden="true">Drag · Scroll · Click to enter</div>
+    <div id="cmp" aria-live="off" aria-hidden="true"><div id="caz">AZ 000&deg;</div><div id="cel">EL +10&deg;</div><div id="cds">DST 14.0</div></div>
+    <div id="hint" aria-hidden="true">Drag &middot; Scroll &middot; Click to enter</div>
   </div>
 
   <div id="pnl" role="dialog" aria-modal="true" aria-labelledby="ptt" aria-hidden="true">
     <div id="pi">
-      <button class="pbk" onclick="closePanel()">&#8592; Return to universe</button>
+      <div class="panel-topbar"><button class="pbk" onclick="closePanel()">&#8592; Return to universe</button><nav class="panel-nav"><button onclick="closePanel();setTimeout(function(){openByIdx(0);},300)">About Me</button><button onclick="closePanel();setTimeout(function(){openByIdx(1);},300)">My Work</button><button onclick="closePanel();setTimeout(function(){openByIdx(2);},300)">Writing</button><a class="panel-nav-cta" href="mailto:hello@gunjsampat.com">Get in Touch</a></nav></div>
       <p class="plb" id="plb" aria-hidden="true"></p>
       <p class="pcp" id="pcp" aria-hidden="true"></p>
       <h2 class="ptt" id="ptt"></h2>
@@ -308,9 +344,11 @@ function buildStars(){
 buildStars();
 
 function aboutHTML(){
-  return [
+  return ['',
     '<div class="ao-hero">',
       '<div>',
+        '<h1 class="ao-name">Gunj<br>Sampat</h1>',
+        '<p class="ao-tagline">Transforming complexity into clarity. Designing systems people actually want to use.</p>',
         '<nav class="ao-cta">',
           '<button class="btn-primary" onclick="closePanel();setTimeout(function(){openByIdx(1);},300)">View Work &#8599;</button>',
           '<a class="btn-ghost" href="mailto:hello@gunjsampat.com">Get in Touch</a>',
@@ -325,12 +363,7 @@ function aboutHTML(){
         ['UX/UI Design','Interaction Design','Design Systems','Visual Design','Information Architecture','Data Visualisation','Instructional Design'].map(function(s){return '<li class="ao-chip">'+s+'</li>';}).join(''),
       '</ul>',
     '</div>',
-    '<dl class="ao-stats">',
-      '<div class="stat-item"><dt class="stat-l">Years Experience</dt><dd class="stat-n">5+</dd></div>',
-      '<div class="stat-item"><dt class="stat-l">Projects Shipped</dt><dd class="stat-n">12+</dd></div>',
-      '<div class="stat-item"><dt class="stat-l">Industries</dt><dd class="stat-n">3</dd></div>',
-      '<div class="stat-item"><dt class="stat-l">Google UX Cert</dt><dd class="stat-n">98%</dd></div>',
-    '</dl>',
+
     '<section aria-labelledby="h-exp"><h3 class="sec-lbl" id="h-exp">Experience</h3>',
     '<ol class="exp-list">',
       '<li class="exp-item"><div class="exp-l"><div class="exp-co">Sarjak Container Lines Pvt. Ltd.</div><div class="exp-role">UX / UI Designer</div><div class="exp-per">May 2023 &ndash; Present &nbsp;&middot;&nbsp; 2 yrs+</div></div>',
@@ -340,20 +373,7 @@ function aboutHTML(){
       '<li class="exp-item"><div class="exp-l"><div class="exp-co">Gator Creative Studio</div><div class="exp-role">Graphic Designer</div><div class="exp-per">Aug 2019 &ndash; Jul 2020 &nbsp;&middot;&nbsp; 1 yr</div></div>',
       '<ul class="exp-pts"><li>Designed creative assets and branding materials for clients across Pharma, IT, and Manufacturing industries.</li><li>Developed visual concepts aligned with brand identity and business communication needs.</li></ul></li>',
     '</ol></section>',
-    '<section class="ao-links" aria-labelledby="h-social"><h3 class="sec-lbl" id="h-social">Find me on</h3>',
-    '<nav class="links-grid">',
-      [['B&#x0113;','Behance','behance.net/gunjs','https://www.behance.net/gunjs'],
-       ['Ig','Instagram','@mahanadesign','https://www.instagram.com/mahanadesign/'],
-       ['Fg','Figma','@gunjsampat','https://www.figma.com/@gunjsampat'],
-       ['&#9654;','YouTube','youtube.com','https://www.youtube.com/watch?v=uUFRVWpBomU']]
-      .map(function(s){
-        return '<a class="social-link" href="'+s[3]+'" target="_blank" rel="noopener noreferrer">'
-          +'<span class="social-icon" aria-hidden="true">'+s[0]+'</span>'
-          +'<span class="social-info"><span class="social-lbl">'+s[1]+'</span><span class="social-url">'+s[2]+'</span></span>'
-          +'<span class="social-arr" aria-hidden="true">&#8599;</span></a>';
-      }).join(''),
-    '</nav></section>'
-  ].join('');
+  '<div class="p-footer"><div class="p-footer-logo">My Whitespace</div><nav class="p-footer-links"><a href="https://www.behance.net/gunjs" target="_blank" rel="noopener noreferrer">Behance</a><a href="https://www.instagram.com/mahanadesign/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.figma.com/@gunjsampat" target="_blank" rel="noopener noreferrer">Figma</a><a href="https://www.youtube.com/watch?v=uUFRVWpBomU" target="_blank" rel="noopener noreferrer">YouTube</a><a class="p-footer-cta" href="mailto:hello@gunjsampat.com">Get in Touch</a></nav></div>'].join('');
 }
 
 function workHTML(){
@@ -371,7 +391,8 @@ function workHTML(){
      'https://www.behance.net/gallery/234822727/Redesigning-Passport-Seva',
      'https://mir-s3-cdn-cf.behance.net/project_modules/1400/8c3092234822727.68cad4f4e22fa.jpg']
   ];
-  return '<p class="work-intro">I design systems that translate complex problems into intuitive experiences. From research to interaction design, each project reflects a balance between user needs, business goals, and thoughtful execution.</p>'
+  return ''
+    +'<p class="work-intro">I design systems that translate complex problems into intuitive experiences. From research to interaction design, each project reflects a balance between user needs, business goals, and thoughtful execution.</p>'
     +'<ul class="cs-container">'
     +cards.map(function(c){
       return '<li><a class="cs-card" href="'+c[3]+'" target="_blank" rel="noopener noreferrer">'
@@ -380,6 +401,7 @@ function workHTML(){
         +'<ul class="cs-tags">'+c[2].map(function(t){return '<li class="cs-tag">'+t+'</li>';}).join('')+'</ul>'
         +'<span class="cs-arrow">View project &rarr;</span></div></a></li>';
     }).join('')+'</ul>';
+    +'<div class="p-footer"><div class="p-footer-logo">My Whitespace</div><nav class="p-footer-links"><a href="https://www.behance.net/gunjs" target="_blank" rel="noopener noreferrer">Behance</a><a href="https://www.instagram.com/mahanadesign/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.figma.com/@gunjsampat" target="_blank" rel="noopener noreferrer">Figma</a><a href="https://www.youtube.com/watch?v=uUFRVWpBomU" target="_blank" rel="noopener noreferrer">YouTube</a><a class="p-footer-cta" href="mailto:hello@gunjsampat.com">Get in Touch</a></nav></div>';
 }
 
 function writingHTML(){
@@ -390,7 +412,8 @@ function writingHTML(){
     ['2024','Process','The Tao of the blank page: a designer\'s meditation on starting'],
     ['2024','Research','Why I redesigned my entire process around negative space']
   ];
-  return '<p class="work-intro">Writing is where I test ideas before they become systems. These are essays on design thinking, process, and the invisible forces that shape how people experience the world.</p>'
+  return ''
+    +'<p class="work-intro">Writing is where I test ideas before they become systems. These are essays on design thinking, process, and the invisible forces that shape how people experience the world.</p>'
     +'<nav class="wr-list">'
     +essays.map(function(e){
       return '<a class="wr-item" href="#" onclick="return false">'
@@ -398,6 +421,7 @@ function writingHTML(){
         +'<div class="wr-title">'+e[2]+'</div>'
         +'<div class="wr-arrow">Read &rarr;</div></a>';
     }).join('')+'</nav>';
+    +'<div class="p-footer"><div class="p-footer-logo">My Whitespace</div><nav class="p-footer-links"><a href="https://www.behance.net/gunjs" target="_blank" rel="noopener noreferrer">Behance</a><a href="https://www.instagram.com/mahanadesign/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.figma.com/@gunjsampat" target="_blank" rel="noopener noreferrer">Figma</a><a href="https://www.youtube.com/watch?v=uUFRVWpBomU" target="_blank" rel="noopener noreferrer">YouTube</a><a class="p-footer-cta" href="mailto:hello@gunjsampat.com">Get in Touch</a></nav></div>';
 }
 
 var bodies=[
@@ -428,9 +452,9 @@ bodies.forEach(function(b){
 });
 
 var beamDefs=[
-  {from:0,to:1,col:'rgba(170,130,200,',rel:'Energy \u2192 Matter',desc:'Thought becomes form. The electric mind crystallises into solid work.'},
-  {from:1,to:2,col:'rgba(200,100,70,',rel:'Matter \u2192 Fields',desc:'The made object radiates meaning \u2014 forces that pull readers in.'},
-  {from:2,to:0,col:'rgba(70,120,180,',rel:'Fields \u2192 Energy',desc:'Writing feeds back into being. The field regenerates the source.'}
+  {from:0,to:1,col:'rgba(170,130,200,',rel:'Energy → Matter',desc:'Thought becomes form. The electric mind crystallises into solid work.'},
+  {from:1,to:2,col:'rgba(200,100,70,',rel:'Matter → Fields',desc:'The made object radiates meaning — forces that pull readers in.'},
+  {from:2,to:0,col:'rgba(70,120,180,',rel:'Fields → Energy',desc:'Writing feeds back into being. The field regenerates the source.'}
 ];
 
 var tick=0,revealPhase=0,hovered=-1,hovBeam=-1,beamFlash=-1;
@@ -616,45 +640,38 @@ function draw(){
 }
 
 var actx=null,sndOn=false,ambientNodes=null;
-
 function buildAmbient(){
   if(!actx||ambientNodes) return;
   try{
-    var master=actx.createGain(); master.gain.value=0; master.connect(actx.destination);
-    var o1=actx.createOscillator(); o1.type='sine'; o1.frequency.value=55;
-    var g1=actx.createGain(); g1.gain.value=0.06; o1.connect(g1); g1.connect(master); o1.start();
-    var o2=actx.createOscillator(); o2.type='sine'; o2.frequency.value=110;
-    var g2=actx.createGain(); g2.gain.value=0.035; o2.connect(g2); g2.connect(master); o2.start();
-    var o3=actx.createOscillator(); o3.type='sine'; o3.frequency.value=165;
-    var lfo=actx.createOscillator(); lfo.type='sine'; lfo.frequency.value=0.12;
-    var lfoGain=actx.createGain(); lfoGain.gain.value=0.018;
-    lfo.connect(lfoGain); lfoGain.connect(g2.gain);
-    var g3=actx.createGain(); g3.gain.value=0.02; o3.connect(g3); g3.connect(master);
-    o3.start(); lfo.start();
-    var o4=actx.createOscillator(); o4.type='triangle'; o4.frequency.value=220;
-    var g4=actx.createGain(); g4.gain.value=0.012; o4.connect(g4); g4.connect(master); o4.start();
+    var master=actx.createGain();master.gain.value=0;master.connect(actx.destination);
+    var o1=actx.createOscillator();o1.type='sine';o1.frequency.value=55;
+    var g1=actx.createGain();g1.gain.value=0.06;o1.connect(g1);g1.connect(master);o1.start();
+    var o2=actx.createOscillator();o2.type='sine';o2.frequency.value=110;
+    var g2=actx.createGain();g2.gain.value=0.035;o2.connect(g2);g2.connect(master);o2.start();
+    var lfo=actx.createOscillator();lfo.type='sine';lfo.frequency.value=0.12;
+    var lfoG=actx.createGain();lfoG.gain.value=0.018;lfo.connect(lfoG);lfoG.connect(g2.gain);lfo.start();
+    var o3=actx.createOscillator();o3.type='sine';o3.frequency.value=165;
+    var g3=actx.createGain();g3.gain.value=0.02;o3.connect(g3);g3.connect(master);o3.start();
+    var o4=actx.createOscillator();o4.type='triangle';o4.frequency.value=220;
+    var g4=actx.createGain();g4.gain.value=0.012;o4.connect(g4);g4.connect(master);o4.start();
     ambientNodes={master:master};
-  }catch(e){ ambientNodes=null; }
+  }catch(e){ambientNodes=null;}
 }
-
 function toggleSound(){
-  if(!actx){
-    try{ actx=new(window.AudioContext||window.webkitAudioContext)(); }catch(e){ return; }
-  }
+  if(!actx){try{actx=new(window.AudioContext||window.webkitAudioContext)();}catch(e){return;}}
   if(actx.state==='suspended') actx.resume();
   sndOn=!sndOn;
   var btn=document.getElementById('sndbtn');
-  btn.textContent=sndOn?'\u266a Sound On':'\u266a Sound Off';
+  btn.textContent=sndOn?'♪ Sound On':'♪ Sound Off';
   btn.setAttribute('aria-pressed',sndOn?'true':'false');
   buildAmbient();
   if(ambientNodes){
     var now=actx.currentTime;
     ambientNodes.master.gain.cancelScheduledValues(now);
-    ambientNodes.master.gain.linearRampToValueAtTime(sndOn?1:0, now+(sndOn?1.2:0.8));
+    ambientNodes.master.gain.linearRampToValueAtTime(sndOn?1:0,now+(sndOn?1.2:0.8));
   }
 }
-
-function playSnd(id){}
+function playSnd(){}
 function stopSnd(){}
 
 var _entered=false;
@@ -678,7 +695,6 @@ function loop(){
   if(autoIdle&&!dragging){tAz+=.003;tEl=.18+.08*Math.sin(tick*.28);tDist=14+.6*Math.sin(tick*.16);}
   camAz+=(tAz-camAz)*.07;camEl+=(tEl-camEl)*.07;camDist+=(tDist-camDist)*.07;
   for(var i=0;i<3;i++){scaleT[i]=i===hovered?1.18:1.0;scaleC[i]+=(scaleT[i]-scaleC[i])*.09;}
-  if(hovered>=0&&sndOn)playSnd(hovered);else if(hovered<0)stopSnd();
   draw();updateLabels();updateCompass();
 }
 loop();resetIdle();
